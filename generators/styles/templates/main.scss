@@ -1,0 +1,33 @@
+// Vendor
+@import 'normalize.css/normalize.css';
+@import 'reset.css/reset.css';
+<%_ if (deps.indexOf('sass-mq') > -1) { _%>
+@import 'sass-mq/mq';
+<%_ } _%>
+
+// Utilities
+@import 'util/*';
+
+// Variables
+@import 'base/variables';
+
+<%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
+// Toolkit
+@import '@malven/sass-toolkit/color';
+@import '@malven/sass-toolkit/fluid-size';
+@import '@malven/sass-toolkit/type-styles';
+
+<%_ } _%>
+// Helpers
+@import 'helpers/*';
+
+// Base
+@import 'base/base';
+@import 'base/helpers';
+
+// Components
+@import 'layout/*';
+@import 'objects/*';
+
+// Vendor Customizations
+@import 'vendor-customization/*';

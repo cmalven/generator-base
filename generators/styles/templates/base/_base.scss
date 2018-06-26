@@ -1,0 +1,35 @@
+html,
+body {
+  overflow-x: hidden;
+  <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
+  background-color: color(white);
+  <%_ } _%>
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
+  @include type-style(a);
+  color: color(black);
+  <%_ } _%>
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

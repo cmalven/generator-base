@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Chris Malven",
+      "authorEmail": "chris@malven.co",
+      "authorUrl": "https://malven.co"
+    }
+  }
+}
