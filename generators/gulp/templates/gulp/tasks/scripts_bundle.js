@@ -5,6 +5,7 @@ const path = require('path');
 const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const util = require('util');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 //
 //   Scripts : Bundle
@@ -20,36 +21,13 @@ gulp.task('scripts:bundle', function(callback) {
   // Plugins
   //---------------------------------------------------------------
   const plugins = [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      filename: 'common.bundle.js'
-    }),
-
     // Give all modules access to jQuery
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
-    }),
-
-    // Get the current environment
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      }
     })
   ];
-
-  // Add uglification in production
-  if (process.env.NODE_ENV === 'production') {
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-        comparisons: false
-      }
-    }));
-  }
 
 
   //---------------------------------------------------------------
@@ -57,6 +35,8 @@ gulp.task('scripts:bundle', function(callback) {
   //---------------------------------------------------------------
 
   const webpackConfig = {
+    mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+
     entry: _.reduce(config.scripts.entryFiles, function(result, name) {
       result[name] = path.resolve('./' + config.paths.scriptSrc + name);
       return result;
@@ -90,6 +70,12 @@ gulp.task('scripts:bundle', function(callback) {
           ] },
           exclude: [/node_modules/]
         }
+      ]
+    },
+
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin()
       ]
     },
 
