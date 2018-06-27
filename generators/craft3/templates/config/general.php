@@ -9,12 +9,12 @@
 
 return [
     '*' => [
-      // This appId is used to generate a unique prefix for session cookies and cache locations across our dev environments 
+      // This appId is used to generate a unique prefix for session cookies and cache locations across our dev environments
 
       'appId'                              => getenv('APP_SITE_URL'),
 
       // FUZZY SEARCH
-      
+
       'defaultSearchTermOptions' => array(
           'subLeft' => true,
           'subRight' => true,
@@ -41,5 +41,9 @@ return [
       // CACHING
 
       'enableTemplateCaching'               => filter_var(getenv('APP_ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
+
+      // SECURITY KEY
+
+      'securityKey'                         => getenv('APP_SECURITY_KEY'),
     ]
 ];
