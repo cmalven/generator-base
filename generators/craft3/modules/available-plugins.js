@@ -1,5 +1,10 @@
 module.exports = [
   {
+    name: 'SEOmatic',
+    src: 'nystudio107/craft-seomatic',
+    checked: true
+  },
+  {
     name: 'Asset Rev',
     src: 'clubstudioltd/craft-asset-rev',
     checked: true
