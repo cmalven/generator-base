@@ -241,11 +241,11 @@ module.exports = class extends Generator {
     if (this.fs.exists('.gitignore')) {
       this.fs.append(
         this.destinationPath('.gitignore'),
-        fs.readFileSync(this.templatePath('.gitignore'))
+        fs.readFileSync(this.templatePath('gitignore'))
       );
     } else {
       this.fs.copy(
-        this.templatePath('.gitignore'),
+        this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
       );
     }
