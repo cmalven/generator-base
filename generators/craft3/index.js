@@ -10,6 +10,7 @@ const extend = require('lodash/extend');
 const guid = require('guid');
 const path = require('path');
 const mkdirp = require('mkdirp');
+const ora = require('ora');
 
 module.exports = class extends Generator {
   initializing() {
@@ -19,7 +20,7 @@ module.exports = class extends Generator {
     };
 
     try {
-      childProcess.execSync('composer --version');
+      childProcess.execSync('composer --version --quiet');
     } catch (e) {
       this.log(chalk.red('Composer is not installed. You must install it to use this generator. See https://getcomposer.org/download/.'));
       process.exit(1);
@@ -80,10 +81,9 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.log(chalk.yellow('Installing Craft...'));
-
     // download craft
-    childProcess.execSync(`composer create-project craftcms/craft ${this.props.projectName}-craft`);
+    this.spinner = ora('Installing Craft').start();
+    childProcess.execSync(`composer create-project craftcms/craft ${this.props.projectName}-craft --quiet`);
 
     // move install to this dir since composer requires installing to a sub directory
     childProcess.execSync(`mv ${this.props.projectName}-craft/* ${this.destinationRoot()}`);
@@ -207,18 +207,21 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.log(chalk.yellow('\nInstalling dependencies via composer…'));
     const pluginList = this.props.craftPlugins.join(' ');
-    childProcess.execSync(`composer require --no-progress ${pluginList}`);
+    childProcess.execSync(`composer require --no-progress ${pluginList} --quiet`);
     this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at /admin/settings/plugins'));
   }
 
   end() {
+    this.spinner.succeed('Your Craft 3 project is ready!');
+
     this.log("\n\n\n");
     this.log(chalk.green('==============================='));
     this.log(chalk.green('====== Install Notes =========='));
     this.log(chalk.green('==============================='));
-    this.log(`Database: Create a MySQL database named '${chalk.cyan(this.props.projectName)}' if you haven’t already.`);
+
+    this.closingStatements.push('Database: ' + chalk.yellow(`Create a MySQL database named '${chalk.cyan(this.props.projectName)}' if you haven’t already.`));
+    this.closingStatements.push('Directory: ' + chalk.yellow(`If you’re not in '${chalk.cyan(this.props.projectName)}' already, run ${chalk.cyan('cd ' + this.props.projectName)}`));
 
     const that = this;
     // Output all closing statements
