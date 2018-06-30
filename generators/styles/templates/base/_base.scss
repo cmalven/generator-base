@@ -1,6 +1,5 @@
 html,
 body {
-  overflow-x: hidden;
   <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
   background-color: color(white);
   <%_ } _%>
