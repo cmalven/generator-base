@@ -1,6 +1,8 @@
 const config = require('../config');
 const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks-render');
+const Notifier = require('../utils/notifier')();
+const stripAnsi = require('strip-ansi');
 
 //
 //   nunjucks
@@ -13,6 +15,7 @@ Compiles templates using nunjucks
 
 module.exports = gulp.task('nunjucks', function() {
   function swallowError(error) {
+    Notifier.queue('nunjucks', stripAnsi(error.toString()));
     console.log(error.toString());
     this.emit('end');
   }
