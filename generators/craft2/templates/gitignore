@@ -11,6 +11,9 @@
 !/public/*.txt
 !/public/*.png
 !/public/*.ico
+!/web/*.webmanifest
+!/web/*.svg
+!/web/*.xml
 
 # Package Managers
 # ---------------------------

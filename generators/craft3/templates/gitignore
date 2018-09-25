@@ -12,6 +12,9 @@
 !/web/*.txt
 !/web/*.png
 !/web/*.ico
+!/web/*.webmanifest
+!/web/*.svg
+!/web/*.xml
 
 # Package Managers
 # ---------------------------
