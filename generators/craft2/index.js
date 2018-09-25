@@ -24,7 +24,7 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = extend(props, {
-        authorName: 'One Design Company',
+        authorName: 'Malven Co.',
         authorEmail: 'chris@malven.co',
         authorUrl: 'https://malven.co',
         githubName: 'cmalven',

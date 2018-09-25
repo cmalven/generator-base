@@ -1,6 +1,6 @@
 # Styles Generator
 
-This is a yeoman generator to add the One Design Company standard CSS styles structure.
+This is a yeoman generator to add the Malven Co. standard CSS styles structure.
 
 ## What it does
 
