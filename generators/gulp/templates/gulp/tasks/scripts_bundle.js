@@ -61,12 +61,12 @@ gulp.task('scripts:bundle', function(callback) {
           test: /\.js$/,
           loader: 'babel-loader',
           options: { presets: [
-            ['env', {
+            ['@babel/preset-env', {
               'targets': {
                 'browsers': ['> 1%', 'last 2 versions']
               }
             }],
-            'react'
+            '@babel/preset-react'
           ] },
           exclude: [/node_modules/]
         }
