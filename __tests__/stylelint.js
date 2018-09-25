@@ -19,7 +19,7 @@ describe('generator-base:stylelint', () => {
     });
 
     it('adds dependencies', () => {
-      assert.fileContent('package.json', 'stylelint-config-odc');
+      assert.fileContent('package.json', '@malven/stylelint-config');
     });
   });
 });

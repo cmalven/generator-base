@@ -20,7 +20,7 @@ describe('generator-base:eslint', () => {
 
     it('adds dependencies', () => {
       assert.fileContent('package.json', 'eslint');
-      assert.fileContent('package.json', 'eslint-config-odc');
+      assert.fileContent('package.json', '@malven/eslint-config');
     });
   });
 });
