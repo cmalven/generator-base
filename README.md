@@ -27,6 +27,7 @@ There are many types of generators which can reference other generators. For exa
 - `base:git` - initializes a git repo and installs hooks and Github templates
 - `base:eslint` - installs the rules and rc files for linting javascript
 - `base:stylelint` - installs the rules and rc files for linting stylesheets
+- `base:husky` - uses husky for quality control checks during git actions
 
 
 ## Installation
