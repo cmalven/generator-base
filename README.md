@@ -8,7 +8,7 @@ This is a set of generators based on [yeoman-generator][yeoman-url] to aid in se
 
 ## Generators
 
-There are many types of generators which can reference other generators. For example, a `craft` generator may compose a Craft project with `eslint`, `husky`, `style`, `scripts`, `gulp`, and `router`.
+There are many types of generators which can reference other generators.
 
 ### Platforms
 
