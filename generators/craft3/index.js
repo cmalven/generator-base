@@ -68,6 +68,10 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../scripts'));
   }
 
+  husky() {
+    this.composeWith(require.resolve('../husky'));
+  }
+
   build() {
     // Currently only supports gulp for building
     this.composeWith(require.resolve('../gulp'), {
@@ -215,7 +219,7 @@ module.exports = class extends Generator {
   end() {
     this.spinner.succeed('Your Craft 3 project is ready!');
 
-    this.log("\n\n\n");
+    this.log('\n\n\n');
     this.log(chalk.green('==============================='));
     this.log(chalk.green('====== Install Notes =========='));
     this.log(chalk.green('==============================='));
