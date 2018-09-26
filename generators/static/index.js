@@ -51,6 +51,10 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../scripts'));
   }
 
+  husky() {
+    this.composeWith(require.resolve('../husky'));
+  }
+
   build() {
     let gulpOptions = {};
 
