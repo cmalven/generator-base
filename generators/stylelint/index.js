@@ -15,7 +15,7 @@ module.exports = class extends Generator {
   install() {
     const devDependencies = [
       'stylelint',
-      'stylelint-config-odc',
+      '@malven/stylelint-config',
       'stylelint-scss'
     ];
 

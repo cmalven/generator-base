@@ -20,7 +20,7 @@ const _resultNotifications = function(result) {
     msg += '<br/>';
     msg += [
       [resultMessage.line, resultMessage.column].join(':'),
-      resultMessage.source.trim(),
+      resultMessage.source ? resultMessage.source.trim() : '',
       resultMessage.message
     ].join('   ');
   });

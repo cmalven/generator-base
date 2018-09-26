@@ -24,7 +24,7 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = extend(props, {
-        authorName: 'One Design Company',
+        authorName: 'Malven Co.',
         authorEmail: 'chris@malven.co',
         authorUrl: 'https://malven.co',
         githubName: 'cmalven',
@@ -41,7 +41,7 @@ module.exports = class extends Generator {
           throw new Error(`Plugin "${idx}" is not in the list of available plugins.`);
         }
         plugin.key = idx;
-        if (plugin.src.indexOf('http') == -1) {
+        if (plugin.src.indexOf('http') === -1) {
           self.props.composerPlugins.push(plugin);
         } else {
           self.props.githubPlugins.push(plugin);
@@ -71,6 +71,10 @@ module.exports = class extends Generator {
 
   scripts() {
     this.composeWith(require.resolve('../scripts'));
+  }
+
+  husky() {
+    this.composeWith(require.resolve('../husky'));
   }
 
   gulp() {
@@ -288,7 +292,7 @@ module.exports = class extends Generator {
   }
 
   end() {
-    this.log("\n\n\n");
+    this.log('\n\n\n');
     this.log(chalk.green('==============================='));
     this.log(chalk.green('====== Install Notes =========='));
     this.log(chalk.green('==============================='));

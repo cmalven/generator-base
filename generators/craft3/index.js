@@ -34,7 +34,7 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = extend(props, {
-        authorName: 'One Design Company',
+        authorName: 'Malven Co.',
         authorEmail: 'chris@malven.co',
         authorUrl: 'https://malven.co',
         githubName: 'cmalven',
@@ -66,6 +66,10 @@ module.exports = class extends Generator {
 
   scripts() {
     this.composeWith(require.resolve('../scripts'));
+  }
+
+  husky() {
+    this.composeWith(require.resolve('../husky'));
   }
 
   build() {
@@ -215,7 +219,7 @@ module.exports = class extends Generator {
   end() {
     this.spinner.succeed('Your Craft 3 project is ready!');
 
-    this.log("\n\n\n");
+    this.log('\n\n\n');
     this.log(chalk.green('==============================='));
     this.log(chalk.green('====== Install Notes =========='));
     this.log(chalk.green('==============================='));

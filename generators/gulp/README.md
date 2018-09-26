@@ -1,6 +1,6 @@
 # Gulp Generator
 
-This is a yeoman generator to setup a gulp build process based on One Design Company standard structure.
+This is a yeoman generator to setup a gulp build process based on Malven Co. standard structure.
 
 ## What it does
 

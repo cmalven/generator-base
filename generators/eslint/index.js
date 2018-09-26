@@ -15,9 +15,9 @@ module.exports = class extends Generator {
   install() {
     const devDependencies = [
       'eslint',
-      'eslint-config-odc',
-      'eslint-plugin-react', // dependency of eslint-config-odc
-      'babel-eslint' // dependency of eslint-config-odc
+      '@malven/eslint-config',
+      'eslint-plugin-react', // dependency of @malven/eslint-config
+      'babel-eslint' // dependency of @malven/eslint-config
     ];
 
     // Display a message

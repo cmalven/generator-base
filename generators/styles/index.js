@@ -67,7 +67,7 @@ module.exports = class extends Generator {
       'normalize.css'
     ]);
     this.yarnInstall(deps, { silent: true }).then(() => {
-      this.log(chalk.green('Installed style-related depenencies.'));
+      this.log(chalk.green('Installed style-related dependencies.'));
     });
   }
 };
