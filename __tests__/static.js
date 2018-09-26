@@ -6,9 +6,9 @@ const helpers = require('yeoman-test');
 describe('generator-base:static', () => {
   describe('default', () => {
     const promptAnswers = {
-      projectTitle: 'Craft2 Project',
-      projectName: 'craft2-project',
-      projectDescription: 'Craft2 project description',
+      projectTitle: 'Static Project',
+      projectName: 'static-project',
+      projectDescription: 'Static project description',
       useNunjucks: false
     };
 
