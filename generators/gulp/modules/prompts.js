@@ -5,7 +5,7 @@ module.exports = function(options) {
   //   Paths
   //
   //////////////////////////////////////////////////////////////////////
-  if (options.rootDistPath === null) {
+  if (typeof options.rootDistPath === 'undefined') {
     questions.push({
       type: 'input',
       name: 'rootDistPath',
@@ -14,7 +14,7 @@ module.exports = function(options) {
     });
   }
 
-  if (options.templateSrc === null) {
+  if (typeof options.templateSrc === 'undefined') {
     questions.push({
       type: 'input',
       name: 'templateSrc',
@@ -23,7 +23,7 @@ module.exports = function(options) {
     });
   }
 
-  if (options.templateDist === null) {
+  if (typeof options.templateDist === 'undefined') {
     questions.push({
       type: 'input',
       name: 'templateDist',
@@ -36,7 +36,7 @@ module.exports = function(options) {
   //   Browsersync
   //
   //////////////////////////////////////////////////////////////////////
-  if (options.useProxy === null) {
+  if (typeof options.useProxy === 'undefined') {
     questions.push({
       type: 'confirm',
       name: 'useProxy',
@@ -45,7 +45,7 @@ module.exports = function(options) {
     });
   }
 
-  if (options.serverBaseDir === null) {
+  if (typeof options.serverBaseDir === 'undefined') {
     questions.push({
       type: 'input',
       name: 'serverBaseDir',
@@ -58,7 +58,7 @@ module.exports = function(options) {
   //    Engines
   //
   //////////////////////////////////////////////////////////////////////
-  if (options.useNunjucks === null) {
+  if (typeof options.useNunjucks === 'undefined') {
     questions.push({
       type: 'confirm',
       name: 'useNunjucks',
