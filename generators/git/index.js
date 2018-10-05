@@ -26,17 +26,5 @@ module.exports = class extends Generator {
       this.destinationPath('.github')
     );
     this.log(chalk.green(`Created .github folder.`));
-
-    this.spawnCommandSync('cp', [
-      this.templatePath('hooks/pre-commit'),
-      this.destinationPath('.git/hooks/pre-commit')
-    ]);
-    this.log(chalk.green('Configured git hooks.'));
-
-    this.spawnCommandSync('chmod', [
-      '+x',
-      this.destinationPath('.git/hooks/pre-commit')
-    ]);
-    this.log(chalk.green('Git hooks configured.'));
   }
 };
