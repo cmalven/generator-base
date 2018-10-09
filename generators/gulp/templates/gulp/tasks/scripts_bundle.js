@@ -6,6 +6,7 @@ const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const util = require('util');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+require('@babel/polyfill');
 
 //
 //   Scripts : Bundle
@@ -62,9 +63,8 @@ gulp.task('scripts:bundle', function(callback) {
           loader: 'babel-loader',
           options: { presets: [
             ['@babel/preset-env', {
-              'targets': {
-                'browsers': ['> 1%', 'last 2 versions']
-              }
+              'debug': true,
+              'useBuiltIns': 'usage'
             }],
             '@babel/preset-react'
           ] },
