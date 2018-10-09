@@ -94,7 +94,7 @@ gulp.task('scripts:bundle', function(callback) {
         colors: true,
         version: false,
         hash: false,
-        maxModules: 50,
+        maxModules: 30,
         modulesSort: '!size'
       }));
     };
