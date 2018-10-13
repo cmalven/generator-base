@@ -27,6 +27,11 @@ module.exports = class extends Generator {
       this.destinationPath('gulpfile.js')
     );
 
+    this.fs.copy(
+      this.templatePath('.browserslistrc'),
+      this.destinationPath('.browserslistrc')
+    );
+
     this.fs.copyTpl(
       this.templatePath('gulp/tasks'),
       this.destinationPath('gulp/tasks'), this.options, {}, {
@@ -72,6 +77,7 @@ module.exports = class extends Generator {
     const devDependencies = [
       'webpack',
       '@babel/core',
+      '@babel/polyfill',
       '@babel/preset-env',
       '@babel/preset-react',
       'babel-loader',
