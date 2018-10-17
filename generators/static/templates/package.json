@@ -16,7 +16,8 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "lint": "gulp scripts:lint & gulp styles:lint"
+    "lint": "gulp scripts:lint & gulp styles:lint",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "license": "UNLICENSED"
 }
