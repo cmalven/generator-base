@@ -7,6 +7,6 @@ return [
   'labelText' => getenv('APP_ENV_LABEL'),
   'prefix' => null,
   'suffix' => null,
-  'labelColor' => '#0085a1',
+  'labelColor' => getenv('APP_ENV_COLOR'),
   'textColor' => '#ffffff',
 ];
