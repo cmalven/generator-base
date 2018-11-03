@@ -16,7 +16,7 @@ const _resultNotifications = function(result) {
   if (!result.messages.length) return;
   let msg = '<br/>' + result.filePath;
   result.messages.forEach(function(resultMessage) {
-    if (resultMessage.severity == 1) return;
+    if (resultMessage.severity === 1) return;
     msg += '<br/>';
     msg += [
       [resultMessage.line, resultMessage.column].join(':'),
