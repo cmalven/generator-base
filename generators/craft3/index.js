@@ -10,7 +10,6 @@ const extend = require('lodash/extend');
 const guid = require('guid');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const ora = require('ora');
 
 module.exports = class extends Generator {
   initializing() {
@@ -86,7 +85,6 @@ module.exports = class extends Generator {
 
   writing() {
     // download craft
-    this.spinner = ora('Installing Craft').start();
     childProcess.execSync(`composer create-project craftcms/craft ${this.props.projectName}-craft --quiet`);
 
     // move install to this dir since composer requires installing to a sub directory
@@ -217,8 +215,6 @@ module.exports = class extends Generator {
   }
 
   end() {
-    this.spinner.succeed('Your Craft 3 project is ready!');
-
     this.log('\n\n\n');
     this.log(chalk.green('==============================='));
     this.log(chalk.green('====== Install Notes =========='));
