@@ -65,7 +65,7 @@ module.exports = class extends Generator {
         'git add'
       ];
       newObj['lint-staged'].ignore = [
-        '/src/scripts/vendor/**/*.js'
+        'src/scripts/vendor/**/*.js'
       ];
     }
 
