@@ -27,7 +27,8 @@ $mq-breakpoints: (
   small: 500px,
   medium: 768px,
   large: 1024px,
-  xlarge: 1280px
+  xlarge: 1280px,
+  max: 1600px
 );
 <%_ } _%>
 <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
