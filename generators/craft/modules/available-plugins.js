@@ -65,6 +65,11 @@ module.exports = [
     checked: true
   },
   {
+    name: 'Mailgun',
+    src: 'craftcms/mailgun',
+    checked: true
+  },
+  {
     name: 'Bits',
     src: 'malven/craft-bits',
     checked: false

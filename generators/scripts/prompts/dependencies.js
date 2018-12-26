@@ -1,17 +1,17 @@
 module.exports = [
   {
-    name: 'LoDash',
-    value: 'lodash',
-    checked: true
-  },
-  {
     name: 'jQuery',
     value: 'jquery',
     checked: true
   },
   {
-    name: 'One Router',
-    value: 'one-router',
-    checked: true
+    name: 'LoDash',
+    value: 'lodash',
+    checked: false
+  },
+  {
+    name: 'lazysizes',
+    value: 'lazysizes',
+    checked: false
   }
 ];

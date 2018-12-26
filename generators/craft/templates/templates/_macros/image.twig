@@ -1,0 +1,273 @@
+{# ================================================================== #}
+{# Image
+{# ================================================================== #}
+{#
+    {% import '_macros/image' as image %}
+#}
+
+
+{# ------------------------------------------------------------------ #}
+{# Get Params
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.getParams(transformKey, quality) }}
+
+  Returns a params object that can be used for getting a srcset
+#}
+
+{%- macro getParams(transformKey, quality = 75) -%}
+  {# Create the transforms #}
+  {% set transforms = {
+    "scale": {
+      width: 10,
+      fit: 'fit'
+    },
+
+    "1x1": {
+      width: 10,
+      height: 10,
+      fit: 'crop'
+    },
+
+    "7x5": {
+      width: 7,
+      height: 5,
+      fit: 'crop'
+    },
+
+    "16x9": {
+      width: 16,
+      height: 9,
+      fit: 'crop'
+    }
+  } %}
+
+  {# Set image params #}
+  {% set transform = transforms[transformKey] %}
+  {% set params = {
+    width: transform.width,
+    height: transform.height ?? null,
+    quality: quality
+  } %}
+  {% return params %}
+{%- endmacro -%}
+
+
+{# ------------------------------------------------------------------ #}
+{# Background Image Srcset
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.bgSet(CraftAsset, { transform: '7x5' }) }}
+
+  Returns the attributes neccessary to load a background image via lazysizes
+#}
+
+{%- macro bgSet(asset, options) -%}
+{% spaceless %}
+  {% import _self as image %}
+
+  {# Animated GIFs #}
+  {% if asset | length and asset.extension == 'gif' %}
+    {% return image.bgImg(asset.url) %}
+  {% endif %}
+
+  {# Set some defaults #}
+  {% set defaults = {
+    transform: '7x5'
+  } %}
+
+  {# Merge options with defaults #}
+  {% set options = defaults | merge(options) %}
+
+  {# Get the image params #}
+  {% set params = image.getParams(options.transform, options.quality ?? null) %}
+
+  data-bgset="{{ image.srcset(asset, params) }}" data-sizes="auto"
+{% endspaceless %}
+{%- endmacro -%}
+
+
+{# ------------------------------------------------------------------ #}
+{# Background Image
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.bgImg(imageUrl) }}
+
+  Returns markup for a background image url
+#}
+
+{%- macro bgImg(imageUrl) -%}
+style="background-image: url({{ imageUrl }});"
+{%- endmacro -%}
+
+
+{# ------------------------------------------------------------------ #}
+{# Image URL
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.imgUrl(CraftAsset, { transform: '7x5' }, 50) }}
+
+  Returns the URL for a single transformed image
+#}
+
+{%- macro imgUrl(asset, options, sizeMultiplier = 50) -%}
+  {% import _self as image %}
+
+  {# Animated GIFs #}
+  {% if asset | length and asset.extension == 'gif' %}
+    {% return asset.url %}
+  {% endif %}
+
+  {# Set some defaults #}
+  {% set defaults = {
+    transform: '7x5'
+  } %}
+
+  {# Merge options with defaults #}
+  {% set options = defaults | merge(options) %}
+
+  {# Get the image params #}
+  {% set params = image.getParams(options.transform, options.quality ?? null) %}
+
+  {# Add the multiplier #}
+  {% set params = params | merge({
+    width: params.width * sizeMultiplier,
+    height: params.height * sizeMultiplier
+  }) %}
+
+  {% return asset.getUrl(params) %}
+{%- endmacro -%}
+
+
+{# ------------------------------------------------------------------ #}
+{# Img
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.img(CraftAsset, {
+    alt: 'My alt text',
+    class: 'foo',
+    transform: '7x5',
+    wrapperClass: ''
+  }) }}
+
+  Returns an <img> or <picture> for a Craft asset
+
+  "Options" argument will take an optional key of `smallTransform` which is
+  the name of the transform to use at smaller sizes.
+  If the asset has a `smallVersion` field set to an alternate asset, the macro
+  will automatically display that asset at smaller sizes:
+
+  smallTransform: '1x1'
+#}
+
+{%- macro img(asset, options) -%}
+  {% import _self as image %}
+
+  {# Set a default for img #}
+  {% set img = null %}
+
+  {# Animated GIFs #}
+  {% if asset | length and asset.extension == 'gif' %}
+    {% set img %}
+      <img src="{{ asset.url }}" alt="{{ options.alt ?? '' }}">
+    {% endset %}
+    {% return img %}
+  {% endif %}
+
+  {# Set some defaults #}
+  {% set defaults = {
+    alt: '',
+    class: '',
+    transform: '7x5',
+    wrapperClass: ''
+  } %}
+
+  {# Merge options with defaults #}
+  {% set options = defaults | merge(options) %}
+
+  {# Get the image params #}
+  {% set fullParams = image.getParams(options.transform, options.quality ?? null) %}
+
+  {#
+    If an alternate small image is supplied as a field on the asset
+    output a <picture> element, otherwise use a standard <img> element.
+  #}
+  {% set smallVersion = asset.smallVersion ?? false and asset.smallVersion | length %}
+  {% set useSmall = options.smallTransform ?? false or smallVersion %}
+  {% if useSmall %}
+    {# By default, use the same asset for large and small versions #}
+    {% set smallAsset = asset %}
+
+    {# Use an alternate small image supplied as a field on the asset #}
+    {% if smallVersion %}
+      {% set smallAsset = asset.smallVersion[0] %}
+    {% endif %}
+
+    {% set smallParams = image.getParams(options.smallTransform ?? 'scale', options.quality ?? null) %}
+    {% set img %}
+      <picture class="{{ options.class }}">
+        <source
+          data-srcset="{{ image.srcset(smallAsset, smallParams) }}"
+          media="--small" />
+        <source
+          data-srcset="{{ image.srcset(asset, fullParams) }}" />
+        <img
+          data-src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}"
+          class="lazyload"
+          src="{{ craft.placeholderPixel.get({ width: fullParams.width, height: fullParams.height }) }}"
+          data-sizes="auto"
+          alt="{{ options.alt }}" />
+      </picture>
+    {% endset %}
+  {% else %}
+    {% set img %}
+      <img class="{{ options.class }} lazyload" alt="{{ options.alt }}" src="{{ craft.placeholderPixel.get({ width: fullParams.width * 10, height: fullParams.height * 10 }) }}" data-sizes="auto" data-srcset="{{ image.srcset(asset, fullParams) }}" >
+    {% endset %}
+  {% endif %}
+
+  {# Return the element #}
+  {% set wrappedImg %}
+    <div class="image {{ options.wrapperClass ?? '' }}">
+      <div class="image__inner">
+        {{ img | raw }}
+      </div>
+    </div>
+  {% endset %}
+  {% return wrappedImg | raw %}
+{%- endmacro -%}
+
+
+{# ------------------------------------------------------------------ #}
+{# Srcset
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.srcset(CraftAsset, params) }}
+
+  Returns a srcset for a Craft asset
+#}
+
+{%- macro srcset(asset, params) -%}
+  {% set srcsetItems = [] %}
+  {% set maxSize = 2800 %}
+  {% set pixelDensity = 2 %}
+  {% set widthIncrement = 400 %}
+  {% set baseWidth = widthIncrement %}
+  {% set numSets = maxSize / (widthIncrement) | round %}
+
+  {% for idx in 1..numSets %}
+    {% set scaledWidth = baseWidth * idx %}
+    {% set scaleFactor = scaledWidth / params.width %}
+    {% set width = scaledWidth %}
+    {% set height = params.height ? params.height * scaleFactor : null %}
+    {% set currentParams = params | merge({
+      width: width,
+      height: height
+    }) %}
+    {% set url = asset.getUrl(currentParams) %}
+    {% set srcsetItems = srcsetItems | merge([
+      url ~ " #{(width / pixelDensity) | round}w"
+    ]) %}
+  {% endfor %}
+
+  {% return srcsetItems | join(', ') | raw %}
+{%- endmacro -%}

@@ -1,6 +1,6 @@
-# Craft 3 Generator
+# Craft CMS Generator
 
-This is a yeoman generator to generate a Craft 3 site.
+This is a yeoman generator to generate a Craft site.
 
 ## Dependencies
 

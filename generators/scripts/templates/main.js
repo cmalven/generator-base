@@ -1,5 +1,5 @@
-<%_ if (deps.includes('one-router')) { _%>
-import OneRouter from 'one-router';
+<%_ if (deps.includes('lazysizes')) { _%>
+import 'lazysizes';
 <%_ } _%>
 
 //
@@ -8,10 +8,6 @@ import OneRouter from 'one-router';
 //////////////////////////////////////////////////////////////////////
 
 window.APP = window.APP || {};
-<%_ if (deps.includes('one-router')) { _%>
-import globalRoute from './routes/global';
-import homeRoute from './routes/home';
-<%_ } _%>
 
 
 //
@@ -20,19 +16,7 @@ import homeRoute from './routes/home';
 //////////////////////////////////////////////////////////////////////
 
 APP.init = function() {
-  <%_ if (deps.includes('one-router')) { _%>
-  // Configure Routing
-  // Each route should be defined in a routename.js file in /scripts/routes
 
-  const routes = {
-    '^/$': homeRoute
-  };
-
-  APP.router = new OneRouter(routes);
-
-  // Trigger Global Setup
-  globalRoute();
-  <%_ } _%>
 };
 
 

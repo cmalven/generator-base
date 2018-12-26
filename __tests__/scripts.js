@@ -22,16 +22,16 @@ describe('generator-base:scripts', () => {
     });
   });
 
-  describe('enabling one-router', () => {
+  describe('enabling lazysizes', () => {
     beforeAll(() => {
       return helpers.run(path.join(__dirname, '../generators/scripts'))
         .withPrompts({
-          deps: ['one-router']
+          deps: ['lazysizes']
         });
     });
 
-    it('adds one-router init code', () => {
-      assert.fileContent('src/scripts/main.js', 'import OneRouter');
+    it('adds lazysizes init code', () => {
+      assert.fileContent('src/scripts/main.js', "import 'lazysizes'");
     });
   });
 });

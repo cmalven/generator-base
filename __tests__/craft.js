@@ -3,12 +3,12 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-describe('generator-base:craft-3', () => {
+describe('generator-base:craft', () => {
   describe('default', () => {
     const promptAnswers = {
-      projectTitle: 'Test Project Craft 3',
-      projectName: 'test-craft-3',
-      projectDescription: 'Craft 3 production description',
+      projectTitle: 'Test Project Craft',
+      projectName: 'test-craft',
+      projectDescription: 'Craft production description',
       craftPlugins: [
         'clubstudioltd/craft-asset-rev',
         'topshelfcraft/environment-label'
@@ -17,15 +17,8 @@ describe('generator-base:craft-3', () => {
 
     beforeAll(() => {
       return helpers
-        .run(path.join(__dirname, '../generators/craft3'))
+        .run(path.join(__dirname, '../generators/craft'))
         .withPrompts(promptAnswers);
-    });
-
-    it('downloads craft', () => {
-      assert.file([
-        'web/index.php',
-        'templates/index.html'
-      ]);
     });
 
     it('configures craft', () => {
@@ -46,7 +39,7 @@ describe('generator-base:craft-3', () => {
     });
 
     it('adds .gitignore', () => {
-      assert.fileContent('.gitignore', '# Craft 3');
+      assert.fileContent('.gitignore', '# Craft');
     });
 
     it('adds a README.md', () => {

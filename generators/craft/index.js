@@ -28,7 +28,7 @@ module.exports = class extends Generator {
 
   prompting() {
     this.log(yosay(
-      'Welcome to the impressive ' + chalk.red('Craft 3') + ' generator!'
+      'Welcome to the impressive ' + chalk.red('Craft') + ' generator!'
     ));
 
     return this.prompt(prompts).then(props => {

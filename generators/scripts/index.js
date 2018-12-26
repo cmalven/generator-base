@@ -33,13 +33,6 @@ module.exports = class extends Generator {
       this.destinationPath('src/scripts/modules/.gitkeep')
     );
 
-    if (deps.includes('one-router')) {
-      this.fs.copy(
-        this.templatePath('routes/*'),
-        this.destinationPath('src/scripts/routes')
-      );
-    }
-
     this.fs.copyTpl(
       this.templatePath('main.js'),
       this.destinationPath('src/scripts/main.js'),

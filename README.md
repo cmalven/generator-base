@@ -12,8 +12,7 @@ There are many types of generators which can reference other generators.
 
 ### Platforms
 
-- `base:craft3` - generates a basic Craft 3 app
-- `base:craft2` - generates a basic Craft 2 app
+- `base:craft` - generates a basic Craft app
 - `base:static` - generates a simple front end app with no back end
 
 ### Front End
@@ -35,7 +34,7 @@ There are many types of generators which can reference other generators.
 ### Dependencies
 - [node.js][node-url] v6.11.1+
 - [npm][npm-url] v3.10.3+
-- [composer][composer-url] 1.6.2+ (for `craft3` and `craft2` generators)
+- [composer][composer-url] 1.6.2+ (for `craft` generator)
 
 First, install [Yeoman][yeoman-url]:
 
@@ -54,9 +53,7 @@ npm link
 Finally, generate your new project:
 
 ```bash
-yo base:craft3
-# or
-yo base:craft2
+yo base:craft
 # or
 yo base:static
 # or ... any other included generator
