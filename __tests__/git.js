@@ -13,8 +13,7 @@ describe('generator-base:git', () => {
       assert.file([
         '.git',
         '.gitignore',
-        '.github/PULL_REQUEST_TEMPLATE.md',
-        '.git/hooks/pre-commit'
+        '.github/PULL_REQUEST_TEMPLATE.md'
       ]);
     });
   });

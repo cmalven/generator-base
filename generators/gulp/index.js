@@ -58,6 +58,15 @@ module.exports = class extends Generator {
       this.destinationPath('gulp/utils')
     );
 
+    this.fs.copy(
+      this.templatePath('src/images/svg/icon/gitkeep'),
+      this.destinationPath('src/images/svg/icon/.gitkeep')
+    );
+    this.fs.copy(
+      this.templatePath('src/images/svg/full/gitkeep'),
+      this.destinationPath('src/images/svg/full/.gitkeep')
+    );
+
     this.fs.copyTpl(
       this.templatePath('gulp/config.ejs'),
       this.destinationPath('gulp/config.js'),
@@ -66,7 +75,7 @@ module.exports = class extends Generator {
 
     if (this.options.useNunjucks) {
       this.fs.copyTpl(
-        this.templatePath('templates'),
+        this.templatePath('src/templates'),
         this.destinationPath('src/templates'),
         this.options
       );
@@ -85,7 +94,7 @@ module.exports = class extends Generator {
       'cssnano',
       'del',
       'dotenv',
-      'gulp',
+      'gulp@3.9.1',
       'autoprefixer',
       'gulp-changed-in-place',
       'gulp-css-globbing',
@@ -98,6 +107,7 @@ module.exports = class extends Generator {
       'gulp-sass',
       'gulp-shell',
       'gulp-stylelint',
+      'gulp-svg-sprite',
       'jsonfile',
       'node-libs-browser',
       'postcss-import',

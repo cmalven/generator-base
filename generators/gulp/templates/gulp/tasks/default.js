@@ -17,7 +17,8 @@ module.exports = gulp.task('default', function(callback) {
     [
       'browserSync',
       'watch',
-      'images'
+      'images',
+      'svg'
     ],
     'notify',
     'reload',

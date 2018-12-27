@@ -8,7 +8,7 @@ describe('generator-base:gulp', () => {
     beforeAll(() => {
       return helpers.run(path.join(__dirname, '../generators/gulp'))
         .withOptions({
-          skipInstall: false,
+          skipInstall: true,
           rootDistPath: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',
@@ -23,6 +23,7 @@ describe('generator-base:gulp', () => {
         'gulpfile.js',
         '.stylelintrc',
         'gulp/tasks',
+        'src/images',
         'gulp/tasks/base.js',
         'gulp/tasks/build.js'
       ]);
@@ -36,22 +37,12 @@ describe('generator-base:gulp', () => {
       assert.fileContent('.gitignore', '/dist');
     });
 
-    it('adds dependencies', () => {
-      assert.fileContent('package.json', 'gulp');
-      assert.fileContent('package.json', 'dotenv');
-      assert.fileContent('package.json', 'run-sequence');
-    });
-
     it("doesn't create nunjucks build files", () => {
       assert.noFile([
         'gulp/tasks/nunjucks.js'
       ]);
       assert.noFileContent('gulp/tasks/base.js', "'nunjucks',");
-      assert.noFileContent('gulp/tasks/watch.js', "runSequence('nunjucks')");
-    });
-
-    it("doesn't add nunjucks as a dep", () => {
-      assert.noFileContent('package.json', 'gulp-nunjucks-render');
+      assert.noFileContent('gulp/tasks/watch.js', "runSequence('nunjucks'");
     });
   });
 
@@ -59,7 +50,7 @@ describe('generator-base:gulp', () => {
     beforeAll(() => {
       return helpers.run(path.join(__dirname, '../generators/gulp'))
         .withOptions({
-          skipInstall: false,
+          skipInstall: true,
           rootDistPath: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',
@@ -74,16 +65,12 @@ describe('generator-base:gulp', () => {
         'gulp/tasks/nunjucks.js'
       ]);
       assert.fileContent('gulp/tasks/base.js', "'nunjucks',");
-      assert.fileContent('gulp/tasks/watch.js', "runSequence('nunjucks')");
+      assert.fileContent('gulp/tasks/watch.js', "runSequence('nunjucks'");
     });
 
     it('creates nunjucks templates', () => {
       assert.file('src/templates/index.twig');
       assert.file('src/templates/_layout.twig');
-    });
-
-    it('adds nunjucks as a dep', () => {
-      assert.fileContent('package.json', 'gulp-nunjucks-render');
     });
   });
 });
