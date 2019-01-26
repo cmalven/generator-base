@@ -42,8 +42,10 @@ return [
 
       'enableTemplateCaching'               => filter_var(getenv('APP_ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
 
-      // SECURITY KEY
+      // SECURITY
 
       'securityKey'                         => getenv('APP_SECURITY_KEY'),
+      'cooldownDuration'                    => 'PT5M',
+      'invalidLoginWindowDuration'          => 'PT1H',
     ]
 ];

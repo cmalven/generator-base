@@ -1,13 +1,9 @@
 {
   "repositories": [],
 
-  "minimum-stability": "beta",
-
   "require": {
-    "php": ">=7.0.0",
     "craftcms/cms": "^3.0.0",
-    "vlucas/phpdotenv": "^2.4.0",
-    "roave/security-advisories": "dev-master"
+    "vlucas/phpdotenv": "^2.4.0"
   },
 
   "autoload": {
@@ -17,6 +13,10 @@
   },
 
   "config": {
-    "optimize-autoloader": true
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.0"
+    }
   }
 }

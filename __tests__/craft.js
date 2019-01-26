@@ -11,7 +11,8 @@ describe('generator-base:craft', () => {
       projectDescription: 'Craft production description',
       craftPlugins: [
         'clubstudioltd/craft-asset-rev',
-        'topshelfcraft/environment-label'
+        'topshelfcraft/environment-label',
+        'nystudio107/craft-seomatic'
       ]
     };
 
@@ -36,6 +37,11 @@ describe('generator-base:craft', () => {
 
     it('configures environment label plugin', () => {
       assert.file('config/environment-label.php');
+    });
+
+    it('configures SEOmatic plugin', () => {
+      assert.file('config/seomatic.php');
+      assert.fileContent('env.sample', `SEO_ENV=`);
     });
 
     it('adds .gitignore', () => {

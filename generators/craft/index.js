@@ -160,6 +160,14 @@ module.exports = class extends Generator {
       );
     }
 
+    // SEOmatic
+    if (this.props.craftPlugins.includes('nystudio107/craft-seomatic')) {
+      this.fs.copy(
+        this.templatePath('config/seomatic.php'),
+        this.destinationPath('config/seomatic.php')
+      );
+    }
+
     // Environment Label
     if (this.props.craftPlugins.includes('topshelfcraft/environment-label')) {
       this.fs.copy(
