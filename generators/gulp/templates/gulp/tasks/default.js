@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
 global.browserSync = require('browser-sync').create();
 
 //
@@ -11,17 +10,19 @@ global.browserSync = require('browser-sync').create();
 Base tasks + local development tasks
 */
 
-module.exports = gulp.task('default', function(callback) {
-  runSequence(
+module.exports = gulp.task('default',
+  gulp.series(
     'base',
-    [
+    gulp.parallel(
       'browserSync',
       'watch',
       'images',
       'svg'
-    ],
+    ),
     'notify',
     'reload',
-    callback
-  );
-});
+    function(done) {
+      done();
+    }
+  )
+);

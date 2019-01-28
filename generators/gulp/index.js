@@ -94,7 +94,7 @@ module.exports = class extends Generator {
       'cssnano',
       'del',
       'dotenv',
-      'gulp@3.9.1',
+      'gulp',
       'autoprefixer',
       'gulp-changed-in-place',
       'gulp-css-globbing',
@@ -112,10 +112,10 @@ module.exports = class extends Generator {
       'node-libs-browser',
       'postcss-import',
       'require-dir',
-      'run-sequence',
       'script-loader',
       'strip-ansi',
-      'uglifyjs-webpack-plugin'
+      'uglifyjs-webpack-plugin',
+      'undertaker-forward-reference'
     ];
 
     // Add nunjucks if desired
