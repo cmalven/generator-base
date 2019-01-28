@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
 
 //
 //   Base
@@ -10,11 +9,11 @@ const runSequence = require('run-sequence');
 The baseline tasks to get things going.
 */
 
-module.exports = gulp.task('base', function(callback) {
-  runSequence(
+module.exports = gulp.task('base',
+  gulp.series(
     'clean',
     'rev:clear',
-    [
+    gulp.parallel(
       'templates',<% if (useNunjucks) { %>
       'nunjucks',<% } %>
       'scripts:bundle',
@@ -23,7 +22,9 @@ module.exports = gulp.task('base', function(callback) {
       'styles:copy',
       'styles:lint',
       'scripts:copy'
-    ],
-    callback
-  );
-});
+    ),
+    function(done) {
+      done();
+    }
+  )
+);

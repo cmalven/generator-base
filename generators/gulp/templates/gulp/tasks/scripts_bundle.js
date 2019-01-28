@@ -17,7 +17,7 @@ require('@babel/polyfill');
 Bundles javascript files.
 */
 
-gulp.task('scripts:bundle', function(callback) {
+gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
   // Plugins
   //---------------------------------------------------------------
@@ -109,6 +109,6 @@ gulp.task('scripts:bundle', function(callback) {
       global.browserSync.reload({ once: true });
     }
     log(stats);
-    callback();
+    done();
   });
 });

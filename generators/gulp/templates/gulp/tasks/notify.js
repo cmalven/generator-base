@@ -10,7 +10,7 @@ const Notifier = require('../utils/notifier')();
 Broadcasts all queued notifications as in-browser messages
 */
 
-module.exports = gulp.task('notify', function(callback) {
+module.exports = gulp.task('notify', function(done) {
   Notifier.notify();
-  callback();
+  done();
 });
