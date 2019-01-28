@@ -1,7 +1,6 @@
 const config = require('../config');
 const gulp = require('gulp');
 const svgSprite = require('gulp-svg-sprite');
-const runSequence = require('run-sequence');
 const del = require('del');
 
 //
@@ -34,9 +33,18 @@ module.exports = gulp.task('svg', function(callback) {
   );
 });
 
-module.exports = gulp.task('svg:clean', function() {
-  return del(config.paths.templateDist + '_svg/');
-});
+module.exports = gulp.task('svg',
+  gulp.series(
+    'svg:clean',
+    gulp.parallel(
+      'svg:icon',
+      'svg:full'
+    ),
+    function(done) {
+      done();
+    }
+  )
+);
 
 gulp.task('svg:icon', function() {
   return gulp.src([
@@ -93,4 +101,8 @@ gulp.task('svg:full', function() {
       }
     }))
     .pipe(gulp.dest(config.paths.templateDist + '_svg/'));
+});
+
+module.exports = gulp.task('svg:clean', function() {
+  return del(config.paths.templateDist + '_svg/');
 });

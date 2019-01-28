@@ -114,7 +114,8 @@ module.exports = class extends Generator {
       'require-dir',
       'script-loader',
       'strip-ansi',
-      'uglifyjs-webpack-plugin'
+      'uglifyjs-webpack-plugin',
+      'undertaker-forward-reference'
     ];
 
     // Add nunjucks if desired
