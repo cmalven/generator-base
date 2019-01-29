@@ -66,6 +66,10 @@ module.exports = class extends Generator {
       this.templatePath('src/images/svg/full/gitkeep'),
       this.destinationPath('src/images/svg/full/.gitkeep')
     );
+    this.fs.copy(
+      this.templatePath('src/images/svg/inline/gitkeep'),
+      this.destinationPath('src/images/svg/inline/.gitkeep')
+    );
 
     this.fs.copyTpl(
       this.templatePath('gulp/config.ejs'),

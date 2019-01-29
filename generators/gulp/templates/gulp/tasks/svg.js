@@ -22,29 +22,9 @@ var defaultSVGO = [
   { removeViewBox: false }
 ];
 
-module.exports = gulp.task('svg', function(callback) {
-  runSequence(
-    'svg:clean',
-    [
-      'svg:icon',
-      'svg:full'
-    ],
-    callback
-  );
+gulp.task('svg:clean', function() {
+  return del(config.paths.templateDist + '_svg/');
 });
-
-module.exports = gulp.task('svg',
-  gulp.series(
-    'svg:clean',
-    gulp.parallel(
-      'svg:icon',
-      'svg:full'
-    ),
-    function(done) {
-      done();
-    }
-  )
-);
 
 gulp.task('svg:icon', function() {
   return gulp.src([
@@ -103,6 +83,33 @@ gulp.task('svg:full', function() {
     .pipe(gulp.dest(config.paths.templateDist + '_svg/'));
 });
 
-module.exports = gulp.task('svg:clean', function() {
-  return del(config.paths.templateDist + '_svg/');
+gulp.task('svg:inline', function() {
+  return gulp.src([
+    config.paths.imageSrc + 'svg/inline/**/*.svg'
+  ])
+    .pipe(svgSprite({
+      shape: {
+        dest: 'inline',
+        transform: [
+          { svgo: {
+            plugins: [].concat(defaultSVGO)
+          } }
+        ]
+      }
+    }))
+    .pipe(gulp.dest(config.paths.templateDist + '_svg/'));
 });
+
+module.exports = gulp.task('svg',
+  gulp.series(
+    'svg:clean',
+    gulp.parallel(
+      'svg:icon',
+      'svg:full',
+      'svg:inline'
+    ),
+    function(done) {
+      done();
+    }
+  )
+);
