@@ -20,6 +20,7 @@
 {% for key, item in items %}
   {% include 'styleguide/_partials/styleguide-item' with {
     name: key,
-    code: item.code
+    code: item.code,
+    classes: item.classes ?? null
   } only %}
 {% endfor %}

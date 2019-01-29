@@ -31,3 +31,15 @@ An individual styleguide item
 .styleguide-item__example {
   flex: 1 0 auto;
 }
+
+
+// ---------------------------------------------------------------
+// Modifiers - Background
+// ---------------------------------------------------------------
+
+.styleguide-item--dark {
+  .styleguide-item__example {
+    padding: 4rem;
+    background-color: black;
+  }
+}

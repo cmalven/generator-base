@@ -4,11 +4,12 @@
 {#
   {% include 'styleguide/_partials/styleguide-item' with {
     name: 'My Component',
-    code: '{% include "_partials/card-a" with { foo: 'bar' } only %}'
+    code: '{% include "_partials/card-a" with { foo: 'bar' } only %}',
+    classes: 'styleguide-item--dark'
   } only %}
 #}
 
-<div class="styleguide-item">
+<div class="styleguide-item {{ classes ?? '' }}">
   <div class="styleguide-item__name">{{ name }}</div>
   <div class="styleguide-item__code">
     {% include 'styleguide/_partials/styleguide-code' with {
