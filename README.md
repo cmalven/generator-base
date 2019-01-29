@@ -4,7 +4,7 @@
 
 ## What is this?
 
-This is a set of generators based on [yeoman-generator][yeoman-url] to aid in setting up commonly-used dependencies and application structure for web projects..
+This is a set of generators based on [yeoman-generator](https://github.com/yeoman/generator) to aid in setting up commonly-used dependencies and application structure for web projects..
 
 ## Generators
 
