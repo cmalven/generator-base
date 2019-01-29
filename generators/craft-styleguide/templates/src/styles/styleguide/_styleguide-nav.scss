@@ -1,0 +1,27 @@
+/*
+Styleguide Nav
+
+Navigation for the styleguide
+*/
+
+.styleguide-nav {
+  @include fluid-size(outer, padding-left);
+  @include fluid-size(outer, padding-right);
+  background-color: #333;
+}
+
+.styleguide-nav__item {
+  display: inline-block;
+  color: white;
+  font-size: 15px;
+  line-height: 60px;
+  margin-right: 10px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.is-active {
+    color: #99c9c0;
+  }
+}

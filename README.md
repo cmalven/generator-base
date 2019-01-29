@@ -28,6 +28,10 @@ There are many types of generators which can reference other generators.
 - `base:stylelint` - installs the rules and rc files for linting stylesheets
 - `base:husky` - uses husky for quality control checks during git actions
 
+### Other
+
+- `base:craft-styleguide` - used on top of a `base:craft` installation to add a simple styleguide.
+
 
 ## Installation
 
