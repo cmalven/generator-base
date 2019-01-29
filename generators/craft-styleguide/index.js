@@ -30,5 +30,7 @@ module.exports = class extends Generator {
 
   end() {
     this.log(chalk.green('Finished adding the Craft styleguide!'));
+
+    this.log('You’ll probably need to add ' + chalk.yellow(`@import 'styleguide/*';`) + ' to the bottom of your ' + chalk.cyan('main.scss'));
   }
 };
