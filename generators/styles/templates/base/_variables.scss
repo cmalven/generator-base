@@ -15,6 +15,11 @@ $colors: (
   black: #333,
   white: #fff
 );
+
+// Tints
+$colors: map-merge($colors, (
+  gray: mix(white, map-get($colors, black), 50)
+));
 <%_ if (deps.indexOf('sass-mq') > -1) { _%>
 
 
