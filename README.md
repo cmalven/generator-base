@@ -4,7 +4,7 @@
 
 ## What is this?
 
-This is a set of generators based on [yeoman-generator][yeoman-url] to aid in setting up commonly-used dependencies and application structure for web projects..
+This is a set of generators based on [yeoman-generator](https://github.com/yeoman/generator) to aid in setting up commonly-used dependencies and application structure for web projects..
 
 ## Generators
 
@@ -36,11 +36,8 @@ There are many types of generators which can reference other generators.
 ## Installation
 
 ### Dependencies
-- [node.js][node-url] v6.11.1+
-- [npm][npm-url] v3.10.3+
-- [composer][composer-url] 1.6.2+ (for `craft` generator)
 
-First, install [Yeoman][yeoman-url]:
+First, install [Yeoman](https://github.com/yeoman/generator):
 
 ```bash
 npm install -g yo
