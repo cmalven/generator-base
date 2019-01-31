@@ -41,6 +41,7 @@ return [
       // CACHING
 
       'enableTemplateCaching'               => filter_var(getenv('APP_ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
+      'maxCachedCloudImageSize'             => 0,
 
       // SECURITY
 

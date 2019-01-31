@@ -29,7 +29,7 @@ An individual styleguide item
 }
 
 .styleguide-item__example {
-  flex: 1 0 auto;
+  flex: 1;
 }
 
 
@@ -41,5 +41,16 @@ An individual styleguide item
   .styleguide-item__example {
     padding: 4rem;
     background-color: black;
+  }
+}
+
+
+// ---------------------------------------------------------------
+// Modifiers - Full
+// ---------------------------------------------------------------
+
+.styleguide-item--full {
+  .styleguide-item__example {
+    flex-basis: 100%;
   }
 }
