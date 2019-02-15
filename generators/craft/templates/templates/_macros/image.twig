@@ -15,7 +15,7 @@
   Returns a params object that can be used for getting a srcset
 #}
 
-{%- macro getParams(transformKey, quality = 75) -%}
+{%- macro getParams(transformKey, quality = 50) -%}
   {# Create the transforms #}
   {% set transforms = {
     "scale": {
@@ -57,9 +57,9 @@
 {# Background Image Srcset
 {# ------------------------------------------------------------------ #}
 {#
-  {{ image.bgSet(CraftAsset, { transform: '7x5' }) }}
+  <div class="lazyload" {{ image.bgSet(CraftAsset, { transform: '7x5' }) }}></div>
 
-  Returns the attributes neccessary to load a background image via lazysizes
+  Returns the attributes neccessary to load a background image via lazysizes.
 #}
 
 {%- macro bgSet(asset, options) -%}
@@ -71,6 +71,10 @@
     {% return image.bgImg(asset.url) %}
   {% endif %}
 
+  {# Set the focal point #}
+  {% set fpX = asset.focalPoint | first %}
+  {% set fpY = asset.focalPoint | last %}
+
   {# Set some defaults #}
   {% set defaults = {
     transform: '7x5'
@@ -80,8 +84,12 @@
   {% set options = defaults | merge(options) %}
 
   {# Get the image params #}
-  {% set params = image.getParams(options.transform, options.quality ?? null) %}
+  {% set params = image.getParams(options.transform) | merge({
+    'fp-x': fpX,
+    'fp-y': fpY
+  }) %}
 
+  style="background-position: {{ fpX * 100 }}% {{ fpY * 100 }}%;"
   data-bgset="{{ image.srcset(asset, params) }}" data-sizes="auto"
 {% endspaceless %}
 {%- endmacro -%}
@@ -127,15 +135,17 @@ style="background-image: url({{ imageUrl }});"
   {% set options = defaults | merge(options) %}
 
   {# Get the image params #}
-  {% set params = image.getParams(options.transform, options.quality ?? null) %}
+  {% set params = image.getParams(options.transform) %}
 
-  {# Add the multiplier #}
-  {% set params = params | merge({
-    width: params.width * sizeMultiplier,
-    height: params.height * sizeMultiplier
-  }) %}
+  {# Get updated params #}
+  {% set transformParams = {
+    width: params.w * sizeMultiplier,
+    height: params.h * sizeMultiplier,
+    mode: params.fit,
+    quality: params.q
+  } %}
 
-  {% return asset.getUrl(params) %}
+  {% return asset.getUrl(transformParams) %}
 {%- endmacro -%}
 
 
@@ -186,13 +196,21 @@ style="background-image: url({{ imageUrl }});"
   {% set options = defaults | merge(options) %}
 
   {# Get the image params #}
-  {% set fullParams = image.getParams(options.transform, options.quality ?? null) %}
+  {% set fullParams = image.getParams(options.transform) | merge({
+    'fp-x': asset.focalPoint | first,
+    'fp-y': asset.focalPoint | last
+  }) %}
+
+  {# Get the width/height for the placeholder image #}
+  {% set placeholderWidth = fullParams.w %}
+  {% set assetRatio = asset.height / asset.width %}
+  {% set placeholderHeight = fullParams.h ? fullParams.h : assetRatio * placeholderWidth %}
 
   {#
     If an alternate small image is supplied as a field on the asset
     output a <picture> element, otherwise use a standard <img> element.
   #}
-  {% set smallVersion = asset.smallVersion ?? false and asset.smallVersion | length %}
+  {% set smallVersion = asset['smallVersion'] is defined and asset['smallVersion'] | length %}
   {% set useSmall = options.smallTransform ?? false or smallVersion %}
   {% if useSmall %}
     {# By default, use the same asset for large and small versions #}
@@ -200,10 +218,10 @@ style="background-image: url({{ imageUrl }});"
 
     {# Use an alternate small image supplied as a field on the asset #}
     {% if smallVersion %}
-      {% set smallAsset = asset.smallVersion[0] %}
+      {% set smallAsset = asset['smallVersion'][0] %}
     {% endif %}
 
-    {% set smallParams = image.getParams(options.smallTransform ?? 'scale', options.quality ?? null) %}
+    {% set smallParams = image.getParams(options.smallTransform ?? 'scale') %}
     {% set img %}
       <picture class="{{ options.class }}">
         <source
@@ -214,14 +232,14 @@ style="background-image: url({{ imageUrl }});"
         <img
           data-src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}"
           class="lazyload"
-          src="{{ craft.placeholderPixel.get({ width: fullParams.width, height: fullParams.height }) }}"
+          src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
           data-sizes="auto"
           alt="{{ options.alt }}" />
       </picture>
     {% endset %}
   {% else %}
     {% set img %}
-      <img class="{{ options.class }} lazyload" alt="{{ options.alt }}" src="{{ craft.placeholderPixel.get({ width: fullParams.width * 10, height: fullParams.height * 10 }) }}" data-sizes="auto" data-srcset="{{ image.srcset(asset, fullParams) }}" >
+      <img class="{{ options.class }} lazyload" alt="{{ options.alt }}" src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}" data-sizes="auto" data-srcset="{{ image.srcset(asset, fullParams) }}" >
     {% endset %}
   {% endif %}
 
@@ -249,21 +267,22 @@ style="background-image: url({{ imageUrl }});"
 {%- macro srcset(asset, params) -%}
   {% set srcsetItems = [] %}
   {% set maxSize = 2800 %}
-  {% set pixelDensity = 2 %}
-  {% set widthIncrement = 400 %}
+  {% set pixelDensity = 1.5 %}
+  {% set widthIncrement = 200 %}
   {% set baseWidth = widthIncrement %}
   {% set numSets = maxSize / (widthIncrement) | round %}
 
   {% for idx in 1..numSets %}
     {% set scaledWidth = baseWidth * idx %}
-    {% set scaleFactor = scaledWidth / params.width %}
+    {% set scaleFactor = scaledWidth / params.w %}
     {% set width = scaledWidth %}
-    {% set height = params.height ? params.height * scaleFactor : null %}
+    {% set height = params.h ? params.h * scaleFactor : null %}
     {% set currentParams = params | merge({
-      width: width,
-      height: height
+      w: width,
+      h: height,
+      auto: 'format'
     }) %}
-    {% set url = asset.getUrl(currentParams) %}
+    {% set url = craft.imgix.url(asset, currentParams) %}
     {% set srcsetItems = srcsetItems | merge([
       url ~ " #{(width / pixelDensity) | round}w"
     ]) %}
