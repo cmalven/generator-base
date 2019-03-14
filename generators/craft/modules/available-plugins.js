@@ -65,6 +65,11 @@ module.exports = [
     checked: true
   },
   {
+    name: 'LinkIt',
+    src: 'fruitstudios/linkit',
+    checked: true
+  },
+  {
     name: 'Bits',
     src: 'malven/craft-bits',
     checked: true
@@ -72,6 +77,11 @@ module.exports = [
   {
     name: 'Craft Sentry',
     src: 'lukeyouell/craft-sentry',
+    checked: true
+  },
+  {
+    name: 'CP Field Inspect',
+    src: 'mmikkel/cp-field-inspect',
     checked: true
   },
   {

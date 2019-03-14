@@ -17,10 +17,19 @@
 {# Add styling hook class to <html> if javascript enabled and not in a live preview #}
 {% set isLivePreview = craft.app.request.isLivePreview ? 'true' : 'false' %}
 <script>
+  var root = document.getElementsByTagName('html')[0];
+  root.className += 'js';
+
   if (!{{ isLivePreview }}) {
-    var root = document.getElementsByTagName('html')[0];
-    root.className += 'js';
+    root.className += ' not-live-preview';
   };
+</script>
+
+{# Add a styling hook for devices with touch support #}
+<script>
+  window.addEventListener('touchstart', function() {
+    document.getElementsByTagName('html')[0].classList.add('is-touch');
+  });
 </script>
 
 {# Lazy Sizes #}

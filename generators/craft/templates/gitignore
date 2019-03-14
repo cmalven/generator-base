@@ -5,6 +5,7 @@
 /craft/storage/*
 !/craft/storage/.htaccess
 /storage/*
+/templates/_svg/inline/
 
 /web/*
 !/web/favicons/

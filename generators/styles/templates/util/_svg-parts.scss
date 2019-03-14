@@ -1,0 +1,16 @@
+/*
+Svg Parts
+
+Adds styling to all of the commmon SVG parts
+*/
+
+@mixin svg-parts {
+  path,
+  polygon,
+  circle,
+  ellipse,
+  rect {
+    @content;
+  }
+}
+

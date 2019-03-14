@@ -1,0 +1,12 @@
+/*
+Not Touch
+
+Apply styles only if we're not on a touch device
+*/
+
+@mixin not-touch {
+  html:not(.is-touch) & {
+    @content;
+  }
+}
+
