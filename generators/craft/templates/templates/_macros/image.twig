@@ -20,34 +20,35 @@
   {% set transforms = {
     "scale": {
       width: 10,
-      fit: 'fit'
+      mode: 'max'
     },
 
     "1x1": {
       width: 10,
       height: 10,
-      fit: 'crop'
+      mode: 'crop'
     },
 
-    "7x5": {
-      width: 7,
-      height: 5,
-      fit: 'crop'
+    "4x3": {
+      width: 12,
+      height: 9,
+      mode: 'crop'
     },
 
     "16x9": {
       width: 16,
       height: 9,
-      fit: 'crop'
-    }
+      mode: 'crop'
+    },
   } %}
 
   {# Set image params #}
   {% set transform = transforms[transformKey] %}
   {% set params = {
-    width: transform.width,
-    height: transform.height ?? null,
-    quality: quality
+    w: transform.width,
+    h: transform.height ?? null,
+    q: quality,
+    fit: transform.mode
   } %}
   {% return params %}
 {%- endmacro -%}
@@ -246,8 +247,11 @@ style="background-image: url({{ imageUrl }});"
   {# Return the element #}
   {% set wrappedImg %}
     <div class="image {{ options.wrapperClass ?? '' }}">
-      <div class="image__inner">
+      <div class="image__inner image-bg-muted-light">
         {{ img | raw }}
+        <noscript>
+          <img class="noscript" src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}" />
+        </noscript>
       </div>
     </div>
   {% endset %}

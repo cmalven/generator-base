@@ -8,9 +8,6 @@
 <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 <meta name="theme-color" content="#b08b74">
 
-{# Main stylesheet #}
-<link rel="stylesheet" href="{{ rev('styles/main.css') }}">
-
 {# SEO #}
 {% hook 'seomaticRender' %}
 
@@ -24,6 +21,9 @@
     root.className += ' not-live-preview';
   };
 </script>
+
+{# Main stylesheet #}
+<link rel="stylesheet" href="{{ rev('styles/main.css') }}">
 
 {# Add a styling hook for devices with touch support #}
 <script>
