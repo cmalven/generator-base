@@ -47,5 +47,5 @@ module.exports = gulp.task('styles', function() {
     .pipe(postcss(postCssProcessors, {}))
     .pipe(pixrem({ rootValue: '10px' }))
     .pipe(gulp.dest(config.paths.styleDist))
-    .pipe(global.browserSync.reload({ stream: true }));
+    .pipe(global.browserSync.stream());
 });

@@ -17,6 +17,7 @@ module.exports = gulp.task('browserSync', function() {
   const options = {
     port: 3000,
     open: false,
+    ui: false,
     notify: {
       styles: [
         'display: none;',
