@@ -22,15 +22,27 @@ return [
 
       // ASSETS
 
-      'imageDriver'                       => getenv('APP_IMAGE_DRIVER'),
-      'defaultImageQuality'               => getenv('APP_DEFAULT_IMAGE_QUALITY'),
-      'extraAllowedFileExtensions'        => getenv('EXTRA_ALLOWED_FILE_EXTENSIONS'),
+      'imageDriver'                        => getenv('APP_IMAGE_DRIVER'),
+      'defaultImageQuality'                => getenv('APP_DEFAULT_IMAGE_QUALITY'),
+      'extraAllowedFileExtensions'         => getenv('EXTRA_ALLOWED_FILE_EXTENSIONS'),
+      'maxUploadFileSize'                  => '4M',
+      'extraFileKinds' => [
+          'svg' => [
+              'label' => 'SVG',
+              'extensions' => ['svg'],
+          ],
+          'jpg' => [
+              'label' => 'JPEG',
+              'extensions' => ['jpg', 'jpeg'],
+          ],
+      ],
 
       // MISC
 
-      'devMode'                           => filter_var(getenv('APP_DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
-      'phpMaxMemoryLimit'                 => getenv('APP_PHP_MAX_MEMORY_LIMIT'),
-      'overridePhpSessionLocation'        => getenv('OVERRIDE_PHP_SESSION_LOCATION'),
+      'devMode'                            => filter_var(getenv('APP_DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
+      'phpMaxMemoryLimit'                  => getenv('APP_PHP_MAX_MEMORY_LIMIT'),
+      'overridePhpSessionLocation'         => getenv('OVERRIDE_PHP_SESSION_LOCATION'),
+      'allowUpdates'                       => false,
 
       // URLS
 
@@ -48,5 +60,17 @@ return [
       'securityKey'                         => getenv('APP_SECURITY_KEY'),
       'cooldownDuration'                    => 'PT5M',
       'invalidLoginWindowDuration'          => 'PT1H',
-    ]
+    ],
+
+    'dev' => [
+        'allowUpdates'                      => true,
+    ],
+
+    'staging' => [
+
+    ],
+
+    'production' => [
+
+    ],
 ];
