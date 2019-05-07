@@ -168,6 +168,14 @@ module.exports = class extends Generator {
       );
     }
 
+    // Blitz
+    if (this.props.craftPlugins.includes('putyourlightson/craft-blitz')) {
+      this.fs.copy(
+        this.templatePath('config/blitz.php'),
+        this.destinationPath('config/blitz.php')
+      );
+    }
+
     // Imager
     if (this.props.craftPlugins.includes('aelvan/imager')) {
       this.fs.copyTpl(

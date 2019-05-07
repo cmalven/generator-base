@@ -25,6 +25,11 @@ module.exports = [
     checked: true
   },
   {
+    name: 'Blitz',
+    src: 'putyourlightson/craft-blitz',
+    checked: true
+  },
+  {
     name: 'Snitch',
     src: 'marionnewlevant/snitch',
     checked: true
