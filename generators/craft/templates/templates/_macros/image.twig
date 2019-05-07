@@ -247,7 +247,7 @@ style="background-image: url({{ imageUrl }});"
   {# Return the element #}
   {% set wrappedImg %}
     <div class="image {{ options.wrapperClass ?? '' }}">
-      <div class="image__inner image-bg-muted-light">
+      <div class="image__inner">
         {{ img | raw }}
         <noscript>
           <img class="noscript" src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}" />
@@ -270,25 +270,25 @@ style="background-image: url({{ imageUrl }});"
 
 {%- macro srcset(asset, params) -%}
   {% set srcsetItems = [] %}
-  {% set maxSize = 2800 %}
-  {% set pixelDensity = 1.5 %}
-  {% set widthIncrement = 200 %}
-  {% set baseWidth = widthIncrement %}
-  {% set numSets = maxSize / (widthIncrement) | round %}
 
-  {% for idx in 1..numSets %}
-    {% set scaledWidth = baseWidth * idx %}
-    {% set scaleFactor = scaledWidth / params.w %}
-    {% set width = scaledWidth %}
-    {% set height = params.h ? params.h * scaleFactor : null %}
-    {% set currentParams = params | merge({
-      w: width,
-      h: height,
-      auto: 'format'
-    }) %}
-    {% set url = craft.imgix.url(asset, currentParams) %}
+  {% set transformedImages = craft.imager.transformImage(asset,
+    [{ width: 300 }, { width: 2700 }],
+    {
+      ratio: params.w and params.h ? (params.w/params.h) : null,
+      auto: 'format,compress',
+      'fp-x': params['fp-x'],
+      'fp-y': params['fp-y']
+    },
+    {
+      fillTransforms: true,
+      fillInterval: 300
+    })
+  %}
+
+  {% for image in transformedImages %}
+    {% set url = image.url %}
     {% set srcsetItems = srcsetItems | merge([
-      url ~ " #{(width / pixelDensity) | round}w"
+      url ~ " #{image.width}w"
     ]) %}
   {% endfor %}
 

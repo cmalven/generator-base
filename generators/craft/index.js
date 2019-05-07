@@ -168,6 +168,15 @@ module.exports = class extends Generator {
       );
     }
 
+    // Imager
+    if (this.props.craftPlugins.includes('aelvan/imager')) {
+      this.fs.copyTpl(
+        this.templatePath('config/imager.php'),
+        this.destinationPath('config/imager.php'),
+        this.props
+      );
+    }
+
     // Environment Label
     if (this.props.craftPlugins.includes('topshelfcraft/environment-label')) {
       this.fs.copy(

@@ -5,8 +5,8 @@ module.exports = [
     checked: true
   },
   {
-    name: 'Image Optimize',
-    src: 'nystudio107/craft-imageoptimize',
+    name: 'Imager',
+    src: 'aelvan/imager',
     checked: true
   },
   {
