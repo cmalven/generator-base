@@ -10,6 +10,11 @@ module.exports = [
     checked: true
   },
   {
+    name: 'SVG Placeholder',
+    src: 'mblode/svgplaceholder',
+    checked: true
+  },
+  {
     name: 'Asset Rev',
     src: 'clubstudioltd/craft-asset-rev',
     checked: true
