@@ -5,7 +5,7 @@ const path = require('path');
 const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const util = require('util');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('terser-webpack-plugin');
 require('@babel/polyfill');
 
 //
