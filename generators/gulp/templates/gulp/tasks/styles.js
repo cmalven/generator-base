@@ -27,7 +27,7 @@ autoprefixer: Automatically adds vendor prefixes to experimental properties
 module.exports = gulp.task('styles', function() {
   const postCssProcessors = [
     importCss(),
-    autoprefixer({ browsers: ['last 2 versions'] }),
+    autoprefixer(),
     cssnano()
   ];
 
