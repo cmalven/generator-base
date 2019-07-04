@@ -54,25 +54,22 @@ module.exports = class extends Generator {
           'pre-push': 'yarn test'
         }
       },
-      'lint-staged': { 'linters': {} }
+      'lint-staged': {}
     });
 
     // Add JS-related items
     if (this.props.lint.indexOf('js') > -1) {
       newObj.scripts['lint-scripts'] = 'eslint --fix';
-      newObj['lint-staged']['linters']['*.js'] = [
+      newObj['lint-staged']['*.js'] = [
         'yarn lint-scripts',
         'git add'
-      ];
-      newObj['lint-staged'].ignore = [
-        'src/scripts/vendor/**/*.js'
       ];
     }
 
     // Add CSS-related items
     if (this.props.lint.indexOf('scss') > -1) {
       newObj.scripts['lint-styles'] = 'stylelint --syntax scss';
-      newObj['lint-staged']['linters']['*.scss'] = [
+      newObj['lint-staged']['*.scss'] = [
         'yarn lint-styles'
       ];
     }

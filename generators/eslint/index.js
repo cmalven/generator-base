@@ -10,6 +10,11 @@ module.exports = class extends Generator {
       this.templatePath('.eslintrc'),
       this.destinationPath('.eslintrc')
     );
+
+    this.fs.copy(
+      this.templatePath('.eslintignore'),
+      this.destinationPath('.eslintignore')
+    );
   }
 
   install() {
