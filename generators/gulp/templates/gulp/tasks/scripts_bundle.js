@@ -6,7 +6,7 @@ const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const util = require('util');
 const UglifyJsPlugin = require('terser-webpack-plugin');
-require('@babel/polyfill');
+require('core-js/stable');
 
 //
 //   Scripts : Bundle
@@ -63,8 +63,9 @@ gulp.task('scripts:bundle', function(done) {
           loader: 'babel-loader',
           options: { presets: [
             ['@babel/preset-env', {
-              'debug': true,
-              'useBuiltIns': 'usage'
+              debug: true,
+              useBuiltIns: 'usage',
+              corejs: 3
             }],
             '@babel/preset-react'
           ] },

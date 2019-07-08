@@ -90,11 +90,11 @@ module.exports = class extends Generator {
     const devDependencies = [
       'webpack',
       '@babel/core',
-      '@babel/polyfill',
       '@babel/preset-env',
       '@babel/preset-react',
       'babel-loader',
       'browser-sync',
+      'core-js@3',
       'cssnano',
       'del',
       'dotenv',
