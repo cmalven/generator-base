@@ -236,7 +236,7 @@ module.exports = class extends Generator {
   install() {
     const pluginList = this.props.craftPlugins.join(' ');
     childProcess.execSync(`composer require --no-progress ${pluginList} --quiet`);
-    this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at /admin/settings/plugins'));
+    this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at ' + chalk.cyan(`/admin/settings/plugins`) + ' after you install Craft.'));
   }
 
   end() {
@@ -245,13 +245,22 @@ module.exports = class extends Generator {
     this.log(chalk.green('====== Install Notes =========='));
     this.log(chalk.green('==============================='));
 
-    this.closingStatements.push('Database: ' + chalk.yellow(`Create a MySQL database named '${chalk.cyan(this.props.projectName)}' if you haven’t already.`));
-    this.closingStatements.push('Directory: ' + chalk.yellow(`If you’re not in '${chalk.cyan(this.props.projectName)}' already, run ${chalk.cyan('cd ' + this.props.projectName)}`));
+    this.closingStatements.push(chalk.green('Finishing Craft Setup'));
+
+    this.closingStatements.push('Directory: ' + chalk.yellow(`If you’re not in ${chalk.cyan(this.props.projectName)} already, run ${chalk.cyan('cd ' + this.props.projectName)}`));
+
+    this.closingStatements.push('Database: ' + chalk.yellow(`Create a MySQL database named ${chalk.cyan(this.props.projectName)} if you haven’t already.`));
+
+    this.closingStatements.push('You may be able to create a database from the command line with:\n' + chalk.cyan(`echo 'CREATE DATABASE \`${this.props.projectName}\`' | mysql -u root -p`));
+
+    this.closingStatements.push('Install Craft: ' + chalk.yellow(`Finish your Craft installation by visiting ` + chalk.cyan(`/admin`) + ' or by running ' + chalk.cyan(`./craft install/craft`)));
 
     const that = this;
     // Output all closing statements
     this.closingStatements.forEach(function(statement) {
       that.log('\n' + statement);
     });
+
+    this.log('\n\n\n');
   }
 };
