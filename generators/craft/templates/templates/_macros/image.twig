@@ -146,7 +146,15 @@ style="background-image: url({{ imageUrl }});"
     quality: params.q
   } %}
 
-  {% return asset.getUrl(transformParams) %}
+  {% set transformedImage = craft.imager.transformImage(asset,
+    { width: transformParams.width },
+    {
+      ratio: transformParams.width and transformParams.height ? (transformParams.width/transformParams.height) : null,
+      auto: 'format,compress'
+    })
+  %}
+
+  {% return transformedImage.url %}
 {%- endmacro -%}
 
 

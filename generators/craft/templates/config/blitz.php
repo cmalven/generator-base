@@ -19,5 +19,5 @@
 
 return [
     // Whether static file caching should be enabled.
-    'cachingEnabled' => filter_var(getenv('APP_ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
+    'cachingEnabled' => filter_var(getenv('ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
 ];

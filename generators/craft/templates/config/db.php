@@ -7,12 +7,12 @@
  */
 
 return [
-    'driver' => getenv('APP_DB_DRIVER'),
-    'server' => getenv('APP_DB_SERVER'),
-    'user' => getenv('APP_DB_USER'),
-    'password' => getenv('APP_DB_PASSWORD'),
-    'database' => getenv('APP_DB_DATABASE'),
-    'schema' => getenv('APP_DB_SCHEMA'),
-    'tablePrefix' => getenv('APP_DB_TABLE_PREFIX'),
-    'port' => getenv('APP_DB_PORT')
+    'driver' => getenv('DB_DRIVER'),
+    'server' => getenv('DB_SERVER'),
+    'user' => getenv('DB_USER'),
+    'password' => getenv('DB_PASSWORD'),
+    'database' => getenv('DB_DATABASE'),
+    'schema' => getenv('DB_SCHEMA'),
+    'tablePrefix' => getenv('DB_TABLE_PREFIX'),
+    'port' => getenv('DB_PORT')
 ];

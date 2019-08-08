@@ -10,20 +10,17 @@
 return [
     '*' => [
       // This appId is used to generate a unique prefix for session cookies and cache locations across our dev environments
-
-      'appId'                              => getenv('APP_SITE_URL'),
+      'appId'                              => getenv('SITE_URL'),
 
       // FUZZY SEARCH
-
       'defaultSearchTermOptions' => array(
           'subLeft' => true,
           'subRight' => true,
       ),
 
       // ASSETS
-
-      'imageDriver'                        => getenv('APP_IMAGE_DRIVER'),
-      'defaultImageQuality'                => getenv('APP_DEFAULT_IMAGE_QUALITY'),
+      'imageDriver'                        => getenv('IMAGE_DRIVER'),
+      'defaultImageQuality'                => getenv('DEFAULT_IMAGE_QUALITY'),
       'extraAllowedFileExtensions'         => getenv('EXTRA_ALLOWED_FILE_EXTENSIONS'),
       'maxUploadFileSize'                  => '4M',
       'extraFileKinds' => [
@@ -38,26 +35,23 @@ return [
       ],
 
       // MISC
-
-      'devMode'                            => filter_var(getenv('APP_DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
-      'phpMaxMemoryLimit'                  => getenv('APP_PHP_MAX_MEMORY_LIMIT'),
+      'devMode'                            => filter_var(getenv('DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
+      'phpMaxMemoryLimit'                  => getenv('PHP_MAX_MEMORY_LIMIT'),
       'overridePhpSessionLocation'         => getenv('OVERRIDE_PHP_SESSION_LOCATION'),
       'allowUpdates'                       => false,
+      'useProjectConfigFile'               => false,
 
       // URLS
-
       'omitScriptNameInUrls'               => true,
-      'siteUrl'                            => getenv('APP_SITE_URL'),
-      'cpTrigger'                          => getenv('APP_CP_TRIGGER'),
+      'siteUrl'                            => getenv('SITE_URL'),
+      'cpTrigger'                          => getenv('CP_TRIGGER'),
 
       // CACHING
-
-      'enableTemplateCaching'               => filter_var(getenv('APP_ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
+      'enableTemplateCaching'               => filter_var(getenv('ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
       'maxCachedCloudImageSize'             => 0,
 
       // SECURITY
-
-      'securityKey'                         => getenv('APP_SECURITY_KEY'),
+      'securityKey'                         => getenv('SECURITY_KEY'),
       'cooldownDuration'                    => 'PT5M',
       'invalidLoginWindowDuration'          => 'PT1H',
     ],

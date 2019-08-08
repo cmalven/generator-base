@@ -23,8 +23,8 @@ describe('generator-base:craft', () => {
     });
 
     it('configures craft', () => {
-      assert.fileContent('config/general.php', "getenv('APP_SITE_URL')");
-      assert.fileContent('config/db.php', "getenv('APP_DB_SERVER')");
+      assert.fileContent('config/general.php', "getenv('SITE_URL')");
+      assert.fileContent('config/db.php', "getenv('DB_SERVER')");
     });
 
     it('installs plugins with composer', () => {
