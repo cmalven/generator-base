@@ -12,6 +12,8 @@ describe('generator-base:craft', () => {
       craftPlugins: [
         'clubstudioltd/craft-asset-rev',
         'topshelfcraft/environment-label',
+        'aelvan/imager',
+        'putyourlightson/craft-blitz',
         'nystudio107/craft-seomatic'
       ]
     };
@@ -41,7 +43,14 @@ describe('generator-base:craft', () => {
 
     it('configures SEOmatic plugin', () => {
       assert.file('config/seomatic.php');
-      assert.fileContent('env.sample', `SEO_ENV=`);
+    });
+
+    it('configures Imager plugin', () => {
+      assert.file('config/imager.php');
+    });
+
+    it('configures Blitz plugin', () => {
+      assert.file('config/blitz.php');
     });
 
     it('adds .gitignore', () => {

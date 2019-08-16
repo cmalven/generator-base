@@ -13,6 +13,7 @@ Runs tasks when files change
 module.exports = gulp.task('watch', function() {
   gulp.watch([config.paths.styleSrc + '**/*.scss'], gulp.series('styles', 'styles:lint', 'notify', 'rev:clear'));
   gulp.watch([config.paths.scriptSrc + '**/*.js'], gulp.series(gulp.parallel('scripts:lint', 'scripts:bundle', 'scripts:copy'), 'rev:clear'));
-  gulp.watch([config.paths.templateSrc + '**/*.html', config.paths.templateSrc + '**/*.php', config.paths.templateSrc + '**/*.twig'], gulp.series('templates'));
+  gulp.watch([config.paths.templateSrc + '**/*.html', config.paths.templateSrc + '**/*.php', config.paths.templateSrc + '**/*.twig'], gulp.series('templates'));<% if (useNunjucks) { %>
+  gulp.watch([config.paths.templateSrc + '**/*.twig'], function() { gulp.series('nunjucks', 'notify'); });<% } %>
   gulp.watch([config.paths.imageSrc + '**/*'], gulp.series('images', 'svg', 'reload'));
 });

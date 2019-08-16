@@ -65,7 +65,7 @@ describe('generator-base:gulp', () => {
         'gulp/tasks/nunjucks.js'
       ]);
       assert.fileContent('gulp/tasks/base.js', "'nunjucks',");
-      assert.fileContent('gulp/tasks/watch.js', "runSequence('nunjucks'");
+      assert.fileContent('gulp/tasks/watch.js', "gulp.series('nunjucks'");
     });
 
     it('creates nunjucks templates', () => {

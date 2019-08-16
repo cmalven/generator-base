@@ -70,11 +70,6 @@ module.exports = [
     checked: true
   },
   {
-    name: 'Mailgun',
-    src: 'craftcms/mailgun',
-    checked: true
-  },
-  {
     name: 'LinkIt',
     src: 'fruitstudios/linkit',
     checked: true
@@ -97,16 +92,11 @@ module.exports = [
   {
     name: 'Minify',
     src: 'nystudio107/craft-minify',
-    checked: false
+    checked: true
   },
   {
     name: 'Supertable',
     src: 'verbb/super-table',
-    checked: false
-  },
-  {
-    name: 'Typogrify',
-    src: 'nystudio107/craft-typogrify',
-    checked: false
+    checked: true
   }
 ];
