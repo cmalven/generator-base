@@ -46,8 +46,7 @@
   "jest": {
     "testEnvironment": "node",
     "setupTestFrameworkScriptFile": "<rootDir>/.jest-setup.js",
-    "verbose": true,
-    "collectCoverage": true
+    "verbose": true
   },
   "lint-staged": {
     "*.js": [
