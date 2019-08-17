@@ -4,27 +4,14 @@ const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
 describe('generator-base:husky', () => {
-  describe('default', () => {
-    const promptAnswers = {
-      projectTitle: 'Husky Project',
-      projectName: 'husky-project',
-      projectDescription: 'Husky project description',
-      useNunjucks: false
-    };
+  it('configures both JS and SCSS', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/husky'))
+      .then(() => {
+        assert.fileContent('package.json', 'husky');
+        assert.fileContent('package.json', 'lint-staged');
 
-    beforeAll(() => {
-      return helpers
-        .run(path.join(__dirname, '../generators/static'))
-        .withPrompts(promptAnswers);
-    });
-
-    it('adds dependencies', () => {
-      assert.fileContent('package.json', 'husky');
-      assert.fileContent('package.json', 'lint-staged');
-    });
-
-    it('configures husky and lint-staged', () => {
-      const config = `
+        const config = `
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -41,7 +28,43 @@ describe('generator-base:husky', () => {
     ]
   }
 `;
-      assert.fileContent('package.json', config);
-    });
+        assert.fileContent('package.json', config);
+      });
+  });
+
+  it('configures only JS', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/husky'))
+      .withPrompts({
+        lint: ['js']
+      })
+      .then(() => {
+        const config = `
+  "lint-staged": {
+    "*.js": [
+      "yarn lint-scripts",
+      "git add"
+    ]
+  }
+`;
+        assert.fileContent('package.json', config);
+      });
+  });
+  it('configures only SCSS', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/husky'))
+      .withPrompts({
+        lint: ['scss']
+      })
+      .then(() => {
+        const config = `
+  "lint-staged": {
+    "*.scss": [
+      "yarn lint-styles"
+    ]
+  }
+`;
+        assert.fileContent('package.json', config);
+      });
   });
 });

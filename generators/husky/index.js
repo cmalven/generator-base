@@ -40,11 +40,16 @@ module.exports = class extends Generator {
 
     // Read the existing package.json
     const filePath = this.destinationPath() + '/package.json';
-    let obj = jsonfile.readFileSync(filePath);
+    let obj = jsonfile.readFileSync(filePath, { throws: false });
 
-    // Throw a warning if an existing package.json cannot be found.
+    // Create package.json if an existing one cannot be found.
     if (!obj) {
-      return this.log(chalk.red('Could not find an existing package.json to add husky configuration to.'));
+      obj = {
+        name: 'my-app',
+        description: '',
+        version: '1.0.0',
+        scripts: {}
+      };
     }
 
     let newObj = Object.assign(obj, {
