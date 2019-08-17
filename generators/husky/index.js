@@ -26,7 +26,7 @@ module.exports = class extends Generator {
           checked: true
         }
       ],
-      default: []
+      default: ['js', 'scss']
     }];
 
     return this.prompt(prompts).then(props => {
