@@ -63,7 +63,7 @@ gulp.task('scripts:bundle', function(done) {
           loader: 'babel-loader',
           options: { presets: [
             ['@babel/preset-env', {
-              debug: true,
+              debug: false,
               useBuiltIns: 'usage',
               corejs: 3
             }],
