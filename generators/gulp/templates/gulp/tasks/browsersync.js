@@ -15,7 +15,7 @@ Your site will be available at http://localhost:3000
 
 module.exports = gulp.task('browserSync', function() {
   const options = {
-    port: 3000,
+    port: 3<%= String(Math.floor(Math.random() * 999)).padStart(3, '0') %>,
     open: false,
     ui: false,
     notify: {

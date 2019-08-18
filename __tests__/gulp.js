@@ -44,6 +44,10 @@ describe('generator-base:gulp', () => {
       assert.noFileContent('gulp/tasks/base.js', "'nunjucks',");
       assert.noFileContent('gulp/tasks/watch.js', "runSequence('nunjucks'");
     });
+
+    it('sets valid random browsersync port', () => {
+      assert.fileContent('gulp/tasks/browsersync.js', /port: 3\d\d\d,/);
+    });
   });
 
   describe('with nunjucks enabled', () => {
