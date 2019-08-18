@@ -60,6 +60,21 @@ yo base:static
 # or ... any other included generator
 ```
 
+## Development
+
+### Testing
+
+```bash
+# Run all tests once
+npm test
+
+# Run a specific test once
+npm test craft
+
+# Run all tests whenever a file changes
+npm run test:dev
+```
+
 ## License
 
 MIT © [Malven Co.](https://malven.co)

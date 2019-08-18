@@ -1,0 +1,7 @@
+{
+  "buttons": ["formatting", "bold", "italic", "unorderedlist", "orderedlist", "link"],
+  "formatting": ["h2", "h3", "p"],
+  "plugins": [],
+  "linkNewTab": true,
+  "toolbarFixed": true
+}

@@ -10,11 +10,12 @@ describe('generator-base:craft', () => {
       projectName: 'test-craft',
       projectDescription: 'Craft production description',
       craftPlugins: [
-        'clubstudioltd/craft-asset-rev',
-        'topshelfcraft/environment-label',
         'aelvan/imager',
+        'clubstudioltd/craft-asset-rev',
+        'craftcms/redactor',
+        'nystudio107/craft-seomatic',
         'putyourlightson/craft-blitz',
-        'nystudio107/craft-seomatic'
+        'topshelfcraft/environment-label'
       ]
     };
 
@@ -51,6 +52,11 @@ describe('generator-base:craft', () => {
 
     it('configures Blitz plugin', () => {
       assert.file('config/blitz.php');
+    });
+
+    it('configures Redactor plugin', () => {
+      assert.file('config/redactor/Simple.json');
+      assert.file('config/redactor/Standard.json');
     });
 
     it('adds .gitignore', () => {

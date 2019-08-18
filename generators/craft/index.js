@@ -102,6 +102,7 @@ module.exports = class extends Generator {
       this.destinationPath('.env'),
       this.destinationPath('.env.example'),
       this.destinationPath('config/general.php'),
+      this.destinationPath('config/redactor'),
       this.destinationPath('config/db.php'),
       this.destinationPath('composer.json'),
       this.destinationPath('composer.lock'),
@@ -190,6 +191,14 @@ module.exports = class extends Generator {
       this.fs.copy(
         this.templatePath('config/environment-label.php'),
         this.destinationPath('config/environment-label.php')
+      );
+    }
+
+    // Redactor
+    if (this.props.craftPlugins.includes('craftcms/redactor')) {
+      this.fs.copy(
+        this.templatePath('config/redactor'),
+        this.destinationPath('config/redactor')
       );
     }
 
