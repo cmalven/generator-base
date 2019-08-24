@@ -71,5 +71,12 @@ describe('generator-base:craft', () => {
       assert.fileContent('package.json', `"name": "${promptAnswers.projectName}",`);
       assert.fileContent('package.json', `"description": "${promptAnswers.projectDescription}",`);
     });
+
+    it('configures Gulp correctly', () => {
+      assert.fileContent('gulp/config.js', `dist: 'web/dist/'`);
+      assert.fileContent('gulp/config.js', `templateSrc: 'templates/'`);
+      assert.fileContent('gulp/config.js', `useProxy: true`);
+      assert.fileContent('gulp/config.js', `serverBaseDir: './'`);
+    });
   });
 });

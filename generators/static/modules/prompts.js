@@ -35,13 +35,13 @@ module.exports = [
   },
 
   //
-  //   Nunjucks for templating?
+  //   Twig for templating?
   //
   //////////////////////////////////////////////////////////////////////
   {
     type: 'confirm',
-    name: 'useNunjucks',
-    message: 'Add support for nunjucks template engine?',
+    name: 'useTwig',
+    message: 'Add support for twig template engine?',
     default: false
   }
 ];

@@ -12,9 +12,10 @@ describe('generator-base:gulp', () => {
           rootDistPath: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',
+          distCopyPath: 'web/',
           serverBaseDir: 'dist/',
           useProxy: false,
-          useNunjucks: false
+          useTwig: false
         });
     });
 
@@ -37,12 +38,13 @@ describe('generator-base:gulp', () => {
       assert.fileContent('.gitignore', '/dist');
     });
 
-    it("doesn't create nunjucks build files", () => {
+    it("doesn't create twig build files", () => {
       assert.noFile([
-        'gulp/tasks/nunjucks.js'
+        'gulp/tasks/twig.js'
       ]);
-      assert.noFileContent('gulp/tasks/base.js', "'nunjucks',");
-      assert.noFileContent('gulp/tasks/watch.js', "runSequence('nunjucks'");
+      assert.noFileContent('gulp/tasks/base.js', "'twig',");
+      assert.noFileContent('gulp/tasks/watch.js', "runSequence('twig'");
+      assert.fileContent('gulp/tasks/watch.js', `gulp.series('templates')`);
     });
 
     it('sets valid random browsersync port', () => {
@@ -50,7 +52,7 @@ describe('generator-base:gulp', () => {
     });
   });
 
-  describe('with nunjucks enabled', () => {
+  describe('with twig enabled', () => {
     beforeAll(() => {
       return helpers.run(path.join(__dirname, '../generators/gulp'))
         .withOptions({
@@ -58,21 +60,22 @@ describe('generator-base:gulp', () => {
           rootDistPath: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',
+          distCopyPath: 'src/templates/web/',
           serverBaseDir: 'dist/',
           useProxy: false,
-          useNunjucks: true
+          useTwig: true
         });
     });
 
-    it('creates nunjucks build files', () => {
+    it('creates twig build files', () => {
       assert.file([
-        'gulp/tasks/nunjucks.js'
+        'gulp/tasks/twig.js'
       ]);
-      assert.fileContent('gulp/tasks/base.js', "'nunjucks',");
-      assert.fileContent('gulp/tasks/watch.js', "gulp.series('nunjucks'");
+      assert.fileContent('gulp/tasks/base.js', `'twig',`);
+      assert.fileContent('gulp/tasks/watch.js', `gulp.series('twig', 'notify'))`);
     });
 
-    it('creates nunjucks templates', () => {
+    it('creates twig templates', () => {
       assert.file('src/templates/index.twig');
       assert.file('src/templates/_layout.twig');
     });

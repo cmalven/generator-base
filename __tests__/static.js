@@ -9,7 +9,7 @@ describe('generator-base:static', () => {
       projectTitle: 'Static Project',
       projectName: 'static-project',
       projectDescription: 'Static project description',
-      useNunjucks: false
+      useTwig: false
     };
 
     beforeAll(() => {
@@ -46,8 +46,12 @@ describe('generator-base:static', () => {
       assert.file('index.html');
     });
 
-    it('generates with gulp generator', () => {
+    it('configures Gulp correctly', () => {
       assert.file(['gulpfile.js', 'gulp']);
+      assert.fileContent('gulp/config.js', `dist: 'dist/'`);
+      assert.fileContent('gulp/config.js', `templateSrc: './'`);
+      assert.fileContent('gulp/config.js', `useProxy: false`);
+      assert.fileContent('gulp/config.js', `serverBaseDir: './'`);
     });
   });
 });

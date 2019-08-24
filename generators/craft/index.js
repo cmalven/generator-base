@@ -77,9 +77,10 @@ module.exports = class extends Generator {
       rootDistPath: 'web/dist',
       templateSrc: 'templates/',
       templateDist: 'templates/',
+      distCopyPath: 'web/',
       useProxy: true,
       serverBaseDir: './',
-      useNunjucks: false
+      useTwig: false
     });
   }
 

@@ -36,7 +36,7 @@ module.exports = class extends Generator {
       this.templatePath('gulp/tasks'),
       this.destinationPath('gulp/tasks'), this.options, {}, {
         globOptions: {
-          ignore: this.options.useNunjucks ? [] : ['**/nunjucks.js']
+          ignore: this.options.useTwig ? [] : ['**/twig.js']
         }
       }
     );
@@ -72,12 +72,12 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('gulp/config.ejs'),
+      this.templatePath('gulp/config.js'),
       this.destinationPath('gulp/config.js'),
       this.options
     );
 
-    if (this.options.useNunjucks) {
+    if (this.options.useTwig) {
       this.fs.copyTpl(
         this.templatePath('src/templates'),
         this.destinationPath('src/templates'),
@@ -122,9 +122,11 @@ module.exports = class extends Generator {
       'undertaker-forward-reference'
     ];
 
-    // Add nunjucks if desired
-    if (this.options.useNunjucks) {
-      devDependencies.push('gulp-nunjucks-render');
+    // Add twig if desired
+    if (this.options.useTwig) {
+      devDependencies.push('gulp-htmlmin');
+      devDependencies.push('gulp-twig');
+      devDependencies.push('twig-markdown');
     }
 
     // Display a message

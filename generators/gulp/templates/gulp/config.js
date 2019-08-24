@@ -26,6 +26,10 @@ const paths = {
 
   scriptCopyPaths: [
     'vendor'
+  ],
+
+  distCopyPaths: [
+    '<%= distCopyPath %>'
   ]
 };
 

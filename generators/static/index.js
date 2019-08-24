@@ -58,21 +58,23 @@ module.exports = class extends Generator {
   build() {
     let gulpOptions = {};
 
-    if (this.props.useNunjucks) {
+    if (this.props.useTwig) {
       gulpOptions = {
-        useNunjucks: true,
+        useTwig: true,
         rootDistPath: 'dist',
         templateSrc: 'src/templates/',
         templateDist: 'dist/',
+        distCopyPath: 'src/templates/web/',
         serverBaseDir: 'dist/',
         useProxy: false
       };
     } else {
       gulpOptions = {
-        useNunjucks: false,
+        useTwig: false,
         rootDistPath: 'dist',
         templateSrc: './',
         templateDist: './',
+        distCopyPath: 'web/',
         serverBaseDir: './',
         useProxy: false
       };
@@ -99,7 +101,7 @@ module.exports = class extends Generator {
     }
 
     // HTML
-    if (!this.props.useNunjucks) {
+    if (!this.props.useTwig) {
       this.fs.copyTpl(
         this.templatePath('index.html'),
         this.destinationPath('index.html'),

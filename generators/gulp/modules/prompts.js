@@ -58,11 +58,11 @@ module.exports = function(options) {
   //    Engines
   //
   //////////////////////////////////////////////////////////////////////
-  if (typeof options.useNunjucks === 'undefined') {
+  if (typeof options.useTwig === 'undefined') {
     questions.push({
       type: 'confirm',
-      name: 'useNunjucks',
-      message: 'Add support for nunjucks template engine to gulp build process?',
+      name: 'useTwig',
+      message: 'Add support for twig template engine to gulp build process?',
       default: false
     });
   }

@@ -3,12 +3,21 @@
 <head>
 <meta charset=utf-8>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page Title</title>
-<link rel="stylesheet" href="{{ rootDistPath }}/styles/main.css">
+{% include '_partials/head.twig' %}
 </head>
-<body>
-{% block content %}{% endblock %}
 
-<script src="{{ rootDistPath }}/scripts/main.bundle.js"></script>
+<body>
+
+<div class="l-container">
+  {% block content %}{% endblock %}
+</div>
+
+<script defer src="{{ rootDistPath }}/scripts/main.bundle.js"></script>
+
+<span class="h-hide-visually">
+  {% include '_svg/symbol/icon.symbol.svg' ignore missing %}
+  {% include '_svg/symbol/full.symbol.svg' ignore missing %}
+</span>
+
 </body>
 </html>

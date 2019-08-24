@@ -14,14 +14,15 @@ module.exports = gulp.task('base',
     'clean',
     'rev:clear',
     gulp.parallel(
-      'templates',<% if (useNunjucks) { %>
-      'nunjucks',<% } %>
+      'templates',<% if (useTwig) { %>
+      'twig',<% } %>
       'scripts:bundle',
       'scripts:lint',
       'styles',
       'styles:copy',
       'styles:lint',
-      'scripts:copy'
+      'scripts:copy',
+      'copy'
     ),
     function(done) {
       done();
