@@ -26,7 +26,7 @@ There are many types of generators which can reference other generators.
 - `base:git` - initializes a git repo and installs hooks and Github templates
 - `base:eslint` - installs the rules and rc files for linting javascript
 - `base:stylelint` - installs the rules and rc files for linting stylesheets
-- `base:husky` - uses husky for quality control checks during git actions
+- `base:husky` - lint and test on git actions using [husky](https://www.npmjs.com/package/husky) and [lint-staged](https://www.npmjs.com/package/lint-staged)
 
 ### Other
 
