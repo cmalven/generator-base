@@ -13,7 +13,7 @@ There are many types of generators which can reference other generators.
 ### Platforms
 
 - `base:craft` - generates a basic Craft app
-- `base:static` - generates a simple front end app with no back end
+- `base:static` - generates a simple front end app with no back end and optional [Twig](https://twig.symfony.com) templating
 
 ### Front End
 
