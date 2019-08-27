@@ -37,11 +37,13 @@
     "lodash": "^4.17.15",
     "mocha-parallel-tests": "^2.2.1",
     "npm": "^6.11.2",
+    "watch": "^1.0.2",
     "yeoman-generator": "^4.0.0",
     "yosay": "^2.0.2"
   },
   "scripts": {
     "test": "mocha-parallel-tests",
+    "test:dev": "watch 'mocha-parallel-tests' .",
     "lint-scripts": "eslint --fix"
   },
   "repository": "git@github.com:cmalven/generator-base.git",
