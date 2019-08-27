@@ -10,7 +10,7 @@ describe('generator-base:buddy', () => {
       projectName: 'test-project'
     };
 
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/buddy'))
         .withPrompts(promptAnswers);
     });

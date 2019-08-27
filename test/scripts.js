@@ -5,7 +5,7 @@ const helpers = require('yeoman-test');
 
 describe('generator-base:scripts', () => {
   describe('default', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/scripts'));
     });
 
@@ -23,7 +23,7 @@ describe('generator-base:scripts', () => {
   });
 
   describe('enabling lazysizes', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/scripts'))
         .withPrompts({
           deps: ['lazysizes']

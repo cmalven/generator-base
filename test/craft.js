@@ -19,7 +19,7 @@ describe('generator-base:craft', () => {
       ]
     };
 
-    beforeAll(() => {
+    before(() => {
       return helpers
         .run(path.join(__dirname, '../generators/craft'))
         .withPrompts(promptAnswers);

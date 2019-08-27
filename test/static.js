@@ -12,7 +12,7 @@ describe('generator-base:static', () => {
       useTwig: false
     };
 
-    beforeAll(() => {
+    before(() => {
       return helpers
         .run(path.join(__dirname, '../generators/static'))
         .withPrompts(promptAnswers);

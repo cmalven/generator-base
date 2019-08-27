@@ -5,7 +5,7 @@ const helpers = require('yeoman-test');
 
 describe('generator-base:styles', () => {
   describe('default', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
           deps: []
@@ -22,7 +22,7 @@ describe('generator-base:styles', () => {
   });
 
   describe('Sass MQ option', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
           deps: ['sass-mq']
@@ -36,7 +36,7 @@ describe('generator-base:styles', () => {
   });
 
   describe('Sass Toolkit option', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
           deps: ['@malven/sass-toolkit']

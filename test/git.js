@@ -5,7 +5,7 @@ const helpers = require('yeoman-test');
 
 describe('generator-base:git', () => {
   describe('default', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/git'));
     });
 

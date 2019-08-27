@@ -5,7 +5,7 @@ const helpers = require('yeoman-test');
 
 describe('generator-base:gulp', () => {
   describe('default', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/gulp'))
         .withOptions({
           skipInstall: true,
@@ -53,7 +53,7 @@ describe('generator-base:gulp', () => {
   });
 
   describe('with twig enabled', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/gulp'))
         .withOptions({
           skipInstall: true,

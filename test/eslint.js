@@ -5,7 +5,7 @@ const helpers = require('yeoman-test');
 
 describe('generator-base:eslint', () => {
   describe('default', () => {
-    beforeAll(() => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/eslint'))
         .withOptions({
           skipInstall: false
