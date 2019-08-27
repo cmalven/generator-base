@@ -13,7 +13,7 @@ There are many types of generators which can reference other generators.
 ### Platforms
 
 - `base:craft` - generates a basic Craft app
-- `base:static` - generates a simple front end app with no back end
+- `base:static` - generates a simple front end app with no back end and optional [Twig](https://twig.symfony.com) templating
 
 ### Front End
 
@@ -26,7 +26,7 @@ There are many types of generators which can reference other generators.
 - `base:git` - initializes a git repo and installs hooks and Github templates
 - `base:eslint` - installs the rules and rc files for linting javascript
 - `base:stylelint` - installs the rules and rc files for linting stylesheets
-- `base:husky` - uses husky for quality control checks during git actions
+- `base:husky` - lint and test on git actions using [husky](https://www.npmjs.com/package/husky) and [lint-staged](https://www.npmjs.com/package/lint-staged)
 - `base:buddy` - add deployment configuration via [Buddy](https://buddy.works).
 
 ### Other
