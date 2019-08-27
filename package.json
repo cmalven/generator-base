@@ -17,29 +17,25 @@
   ],
   "devDependencies": {
     "@malven/eslint-config": "^0.0.1",
-    "babel-eslint": "^8.2.3",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.4.0",
-    "eslint-config-xo": "^0.18.2",
-    "eslint-plugin-ejs": "^0.0.2",
-    "eslint-plugin-prettier": "^2.2.0",
-    "eslint-plugin-react": "^7.8.2",
-    "husky": "^0.14.3",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.2.2",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.4",
     "jest": "^22.4.4",
-    "lint-staged": "^4.2.1",
-    "prettier": "^1.12.1",
+    "lint-staged": "^9.2.5",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^2.0.0"
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "deep-extend": "^0.5.1",
+    "deep-extend": "^0.6.0",
+    "del": "^5.1.0",
     "download": "^7.1.0",
     "guid": "^0.0.12",
-    "install": "^0.10.4",
+    "install": "^0.13.0",
     "jsonfile": "^5.0.0",
     "lodash": "^4.17.15",
-    "npm": "^6.5.0",
+    "npm": "^6.11.2",
     "yeoman-generator": "^4.0.0",
     "yosay": "^2.0.2"
   },
@@ -48,23 +44,23 @@
     "setupTestFrameworkScriptFile": "<rootDir>/.jest-setup.js",
     "verbose": true
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
   "scripts": {
-    "prepush": "eslint .",
-    "precommit": "lint-staged",
     "test": "jest",
-    "test:dev": "jest --watch --verbose -o"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@malven"
-    ]
+    "test:dev": "jest --watch --verbose -o",
+    "lint-scripts": "eslint --fix"
   },
   "repository": "git@github.com:cmalven/generator-base.git",
-  "license": "MIT"
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn lint-scripts",
+      "git add"
+    ]
+  }
 }
