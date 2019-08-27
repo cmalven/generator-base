@@ -88,8 +88,10 @@ module.exports = class extends Generator {
       'lint-staged'
     ];
 
-    this.yarnInstall(devDependencies, { 'dev': true, silent: true }).then(() => {
-      this.log(chalk.green('Installed husky-related dependencies.'));
-    });
+    this.yarnInstall(devDependencies, { 'dev': true, silent: true });
+  }
+
+  end() {
+    this.log(chalk.green('Installed husky-related dependencies.'));
   }
 };
