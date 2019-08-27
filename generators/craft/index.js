@@ -71,6 +71,15 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../husky'));
   }
 
+  buddy() {
+    if (this.props.useBuddy) {
+      this.composeWith(require.resolve('../buddy'), {
+        projectTitle: this.props.projectTitle,
+        projectName: this.props.projectName
+      });
+    }
+  }
+
   build() {
     // Currently only supports gulp for building
     this.composeWith(require.resolve('../gulp'), {

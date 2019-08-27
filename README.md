@@ -27,6 +27,7 @@ There are many types of generators which can reference other generators.
 - `base:eslint` - installs the rules and rc files for linting javascript
 - `base:stylelint` - installs the rules and rc files for linting stylesheets
 - `base:husky` - uses husky for quality control checks during git actions
+- `base:buddy` - add deployment configuration via [Buddy](https://buddy.works).
 
 ### Other
 

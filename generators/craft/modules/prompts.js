@@ -44,6 +44,17 @@ module.exports = [
   },
 
   //
+  //   Buddy Deployment Pipelines
+  //
+  //////////////////////////////////////////////////////////////////////
+  {
+    type: 'confirm',
+    name: 'useBuddy',
+    message: 'Add deployment configuration for buddy.works?',
+    default: false
+  },
+
+  //
   //   Optional Craft Plugins
   //
   //////////////////////////////////////////////////////////////////////
