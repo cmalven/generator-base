@@ -11,7 +11,7 @@ First, make sure you have [NodeJS](http://nodejs.org), [Yarn](https://yarnpkg.co
 
 ### Development Server
 
-While `gulp` is running, you can access the site at [http://localhost:3000](http://localhost:3000)
+While `gulp` is running, you can access the site at http://localhost:XXXX
 
 ## Deployment
 
