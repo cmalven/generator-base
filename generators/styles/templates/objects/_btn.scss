@@ -1,0 +1,95 @@
+/*
+Btn
+
+A flexibile, reusable button.
+
+*/
+
+$btn-transition: 0.6s ease(out-expo);
+
+.btn {
+  position: relative;
+  display: inline-block;
+}
+
+.btn__inner {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  padding: 0.5rem 1.6rem 0.3rem;
+  z-index: 1;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+}
+
+.btn__text {
+  color: color(black);
+  transition: $btn-transition;
+  transition-property: color;
+  will-change: color;
+}
+
+.btn__bg {
+  @include absolute;
+  background-color: color(gray);
+  border-radius: 0.4rem;
+  z-index: 0;
+  overflow: hidden;
+
+  &:before {
+    @include pseudo-absolute;
+    top: 0;
+    right: -0.1rem;
+    bottom: 0;
+    left: -0.1rem;
+    background-color: color(black);
+    transition: 0.5s ease(out-expo);
+    transition-property: opacity;
+    will-change: opacity;
+    opacity: 0;
+  }
+}
+
+.btn__graphic {
+  position: absolute;
+  color: color(black);
+  transition: $btn-transition;
+  transition-property: transform, color;
+  will-change: transform, color;
+
+  &, & svg {
+    width: 2rem;
+    height: 2rem;
+    right: 2rem;
+    top: 0;
+    bottom: 0rem;
+    margin: auto 0;
+  }
+}
+
+
+// ---------------------------------------------------------------
+// State - Focus / Hover / Active
+// ---------------------------------------------------------------
+
+.btn:hover .btn__inner,
+.btn__inner:focus,
+a:hover .btn__inner {
+  outline: none;
+
+  & + .btn__bg:before {
+    opacity: 1;
+  }
+
+  .btn__text {
+    color: color(white);
+  }
+
+  & + .btn__bg + .btn__graphic {
+    color: color(white);
+    transform: translateX(0.3rem);
+  }
+}

@@ -51,6 +51,10 @@ $fluid-sizes: (
   outer: (
     default: 25px,
     max: (map-get($mq-breakpoints, max) - map-get($mq-breakpoints, content-max)) / 2
+  ),
+  section-vertical: (
+    default: 50px,
+    max: 100px
   )
 );
 <%_ } _%>

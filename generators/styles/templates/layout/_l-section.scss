@@ -1,0 +1,43 @@
+/*
+Layout - Section
+
+Reusable content container.
+*/
+
+@mixin l-section-fixed {
+  @include fluid-size(outer, padding-left padding-right);
+
+  .l-section__inner {
+    @include max-width;
+  }
+}
+
+.l-section {
+
+}
+
+.l-section__inner {
+
+}
+
+
+// ---------------------------------------------------------------
+// Common Variants
+// ---------------------------------------------------------------
+
+.l-section--fixed {
+  @include l-section-fixed;
+}
+
+.l-section--pad-vert {
+  @include fluid-size(section-vertical, padding-top padding-bottom);
+}
+
+
+// ---------------------------------------------------------------
+// Unique styles
+// ---------------------------------------------------------------
+
+// .l-section--foo {
+
+// }

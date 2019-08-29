@@ -1,0 +1,104 @@
+/*
+Image
+
+Wraps all images
+
+.image--fade             - Transitions image in with fade
+.image--wipe             - Transitions image in with wipe
+*/
+
+.image {
+
+}
+
+.image__inner {
+  width: 100%;
+
+  .image__img,
+  img,
+  picture > img {
+    width: 100%;
+  }
+
+  // Don't show srcset-powered images without javascript enabled
+  > img {
+    display: none;
+  }
+
+  .js & > img {
+    display: block;
+  }
+}
+
+// Don't show <noscript> images when javascript is enabled
+// (only needed in special cases in some browsers)
+.js img.noscript {
+  display: none !important;
+}
+
+
+// ---------------------------------------------------------------
+// Modifier - Fade
+// ---------------------------------------------------------------
+
+/*
+This will only work if you have javascript set up to load an .is-loaded
+class when the image is loaded.
+*/
+
+.js .image--fade {
+  .image__img,
+  img {
+    transition: 2s ease(out-expo);
+    transition-property: opacity;
+    will-change: opacity;
+    opacity: 0;
+  }
+
+  .image__img.is-loaded,
+  img.is-loaded {
+    opacity: 1;
+  }
+}
+
+
+// ---------------------------------------------------------------
+// Modifier - Wipe
+// ---------------------------------------------------------------
+
+/*
+This will only work if you have javascript set up to load an .is-visible
+class when the image is loaded.
+*/
+
+.js .image--wipe {
+  overflow: hidden;
+
+  .image__inner,
+  .image__img,
+  img {
+    transition: 2s ease(in-out-quint);
+    transition-property: transform, opacity;
+    will-change: transform, opacity;
+  }
+
+  .image__inner {
+    transform: translateY(100%);
+    overflow: hidden;
+  }
+
+  .image__img,
+  img {
+    transform: translateY(-100%);
+    opacity: 0.3;
+  }
+}
+
+.js .image--wipe.is-visible {
+  .image__inner,
+  .image__img,
+  img {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

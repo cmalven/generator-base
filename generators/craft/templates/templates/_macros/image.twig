@@ -198,7 +198,7 @@ style="background-image: url({{ imageUrl }});"
     alt: '',
     class: '',
     transform: '7x5',
-    wrapperClass: ''
+    wrapperClass: 'image--fade'
   } %}
 
   {# Merge options with defaults #}
@@ -248,22 +248,41 @@ style="background-image: url({{ imageUrl }});"
     {% endset %}
   {% else %}
     {% set img %}
-      <img class="{{ options.class }} lazyload" alt="{{ options.alt }}" src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}" data-sizes="auto" data-srcset="{{ image.srcset(asset, fullParams) }}" >
+      <img class="{{ options.class }} lazyload" alt="{{ options.alt }}" src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}" data-sizes="auto" data-srcset="{{ image.srcset(asset, fullParams) }}">
     {% endset %}
   {% endif %}
 
   {# Return the element #}
-  {% set wrappedImg %}
-    <div class="image {{ options.wrapperClass ?? '' }}">
-      <div class="image__inner">
-        {{ img | raw }}
-        <noscript>
-          <img class="noscript" src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}" />
-        </noscript>
-      </div>
-    </div>
-  {% endset %}
-  {% return wrappedImg | raw %}
+  {% return image.wrap(img, asset, options) | raw %}
+{%- endmacro -%}
+
+
+{# ------------------------------------------------------------------ #}
+{# Wrap Image
+{# ------------------------------------------------------------------ #}
+{#
+  {{ image.wrap(image, asset, options) }}
+
+  Wraps an image in common markup.
+
+  @param image (HTML)                   - [required] The HTML markup (e.g. <img>, <picture>, etc) to wrap
+  @param asset (CraftAsset)             - [required] Asset to use for <noscript> fallback
+  @param options.transform (String)     - [required] Transform to use for <noscript> fallback
+  @param options.wrapperClass (String)  - [optional] Class to add to wrapper
+#}
+
+{%- macro wrap(image, asset, options = {}) -%}
+{% set wrappedImg %}
+<div class="image {{ options.wrapperClass ?? '' }}">
+  <div class="image__inner">
+    {{ image | raw }}
+    <noscript>
+      <img class="noscript" src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}" />
+    </noscript>
+  </div>
+</div>
+{% endset %}
+{% return wrappedImg | raw %}
 {%- endmacro -%}
 
 

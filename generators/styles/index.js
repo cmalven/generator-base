@@ -28,6 +28,12 @@ module.exports = class extends Generator {
           }
         ],
         default: []
+      },
+      {
+        type: 'confirm',
+        name: 'includeObjectsLayouts',
+        message: 'Would you like to include default object and layout styles?',
+        default: true
       }
     ];
 
@@ -58,6 +64,17 @@ module.exports = class extends Generator {
       this.templatePath('util/*'),
       this.destinationPath('src/styles/util')
     );
+
+    if (this.props.includeObjectsLayouts) {
+      this.fs.copy(
+        this.templatePath('objects'),
+        this.destinationPath('src/styles/objects')
+      );
+      this.fs.copy(
+        this.templatePath('layout'),
+        this.destinationPath('src/styles/layout')
+      );
+    }
   }
 
   install() {
