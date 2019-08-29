@@ -31,6 +31,7 @@
     "deep-extend": "^0.6.0",
     "del": "^5.1.0",
     "download": "^7.1.0",
+    "eslint-plugin-ejs": "0.0.2",
     "guid": "^0.0.12",
     "install": "^0.13.0",
     "jsonfile": "^5.0.0",
@@ -43,7 +44,7 @@
   },
   "scripts": {
     "test": "mocha-parallel-tests",
-    "test:dev": "watch 'mocha-parallel-tests' .",
+    "test:dev": "watch 'mocha-parallel-tests' ./test",
     "lint-scripts": "eslint --fix"
   },
   "repository": "git@github.com:cmalven/generator-base.git",
