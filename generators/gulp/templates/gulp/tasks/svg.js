@@ -23,7 +23,7 @@ var defaultSVGO = [
 ];
 
 gulp.task('svg:clean', function() {
-  return del(config.paths.templateDist + '_svg/');
+  return del(config.paths.templateSrc + '_svg/');
 });
 
 gulp.task('svg:icon', function() {
@@ -53,7 +53,7 @@ gulp.task('svg:icon', function() {
         ]
       }
     }))
-    .pipe(gulp.dest(config.paths.templateDist + '_svg/'));
+    .pipe(gulp.dest(config.paths.templateSrc + '_svg/'));
 });
 
 gulp.task('svg:full', function() {
@@ -80,7 +80,7 @@ gulp.task('svg:full', function() {
         ]
       }
     }))
-    .pipe(gulp.dest(config.paths.templateDist + '_svg/'));
+    .pipe(gulp.dest(config.paths.templateSrc + '_svg/'));
 });
 
 gulp.task('svg:inline', function() {
@@ -97,7 +97,7 @@ gulp.task('svg:inline', function() {
         ]
       }
     }))
-    .pipe(gulp.dest(config.paths.templateDist + '_svg/'));
+    .pipe(gulp.dest(config.paths.templateSrc + '_svg/'));
 });
 
 module.exports = gulp.task('svg',
