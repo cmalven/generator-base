@@ -9,15 +9,16 @@
 {# Use
 {# ------------------------------------------------------------------ #}
 {#
-  {{ svg.use(id) }}
+  {{ svg.use(id, title = '') }}
 
   Display an SVG symbol with <use>
 
   @param id (String)        - [required] The ID of the SVG symbol
 #}
 
-{% macro use(id) %}
+{% macro use(id, title = '') %}
 <svg>
+  <title>{{ title }}</title>
   <use xlink:href="#{{ id }}" />
 </svg>
 {% endmacro %}
