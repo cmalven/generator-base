@@ -272,6 +272,7 @@ style="background-image: url({{ imageUrl }});"
 #}
 
 {%- macro wrap(image, asset, options = {}) -%}
+  {% import _self as image %}
 {% set wrappedImg %}
 <div class="image {{ options.wrapperClass ?? '' }}">
   <div class="image__inner">
