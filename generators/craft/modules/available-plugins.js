@@ -98,5 +98,10 @@ module.exports = [
     name: 'Supertable',
     src: 'verbb/super-table',
     checked: true
+  },
+  {
+    name: 'PHP CodeSniffer',
+    src: 'squizlabs/php_codesniffer',
+    checked: true
   }
 ];
