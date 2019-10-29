@@ -1,5 +1,6 @@
 <%_ if (deps.includes('lazysizes')) { _%>
 import 'lazysizes';
+import 'lazysizes/plugins/bgset/ls.bgset.js';
 <%_ } _%>
 
 //
