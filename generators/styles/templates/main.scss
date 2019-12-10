@@ -19,11 +19,10 @@
 
 <%_ } _%>
 // Helpers
-@import 'helpers/*';
+@import 'base/helpers';
 
 // Base
 @import 'base/base';
-@import 'base/helpers';
 
 // Components
 @import 'layout/*';
