@@ -74,7 +74,7 @@ module.exports = class extends Generator {
         rootDistPath: 'dist',
         templateSrc: './',
         templateDist: './',
-        distCopyPath: 'web/',
+        distCopyPath: '// web/',
         serverBaseDir: './',
         useProxy: false
       };

@@ -10,8 +10,10 @@ const gulp = require('gulp');
 Copies additional files to dist
 */
 
-module.exports = gulp.task('copy', function() {
+module.exports = gulp.task('copy', function(done) {
   const src = [];
+
+  if (!config.paths.distCopyPaths.length) return done();
 
   config.paths.distCopyPaths.forEach(function(path) {
     src.push(path + '**/*');
