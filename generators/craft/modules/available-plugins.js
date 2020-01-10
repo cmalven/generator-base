@@ -80,11 +80,6 @@ module.exports = [
     checked: true
   },
   {
-    name: 'Craft Sentry',
-    src: 'lukeyouell/craft-sentry',
-    checked: true
-  },
-  {
     name: 'CP Field Inspect',
     src: 'mmikkel/cp-field-inspect',
     checked: true
