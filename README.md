@@ -63,7 +63,7 @@ npx yo base:static
 npm test
 
 # Run a specific test once
-npm test craft
+npm test -- test/craft.js
 
 # Run all tests whenever a file changes
 npm run test:dev
