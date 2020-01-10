@@ -17,10 +17,5 @@ describe('generator-base:eslint', () => {
         '.eslintrc'
       ]);
     });
-
-    it('adds dependencies', () => {
-      assert.fileContent('package.json', 'eslint');
-      assert.fileContent('package.json', '@malven/eslint-config');
-    });
   });
 });

@@ -36,28 +36,21 @@ There are many types of generators which can reference other generators.
 
 ## Installation
 
-### Dependencies
-
-First, install [Yeoman](https://github.com/yeoman/generator):
-
-```bash
-npm install -g yo
-```
-
 Next, clone this repo and link it with npm:
 
 ```bash
 git clone git@github.com:cmalven/generator-base.git
 cd generator-base/
+npm i
 npm link
 ```
 
 Finally, generate your new project:
 
 ```bash
-yo base:craft
+npx yo base:craft
 # or
-yo base:static
+npx yo base:static
 # or ... any other included generator
 ```
 

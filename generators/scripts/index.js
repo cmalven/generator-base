@@ -45,7 +45,7 @@ module.exports = class extends Generator {
   install() {
     if (this.props.deps && this.props.deps.length) {
       this.log(chalk.yellow('\nInstalling script-related dependencies…'));
-      this.yarnInstall(this.props.deps, { silent: true });
+      this.npmInstall(this.props.deps, { silent: true });
     }
   }
 

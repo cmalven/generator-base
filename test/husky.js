@@ -15,16 +15,16 @@ describe('generator-base:husky', () => {
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-push": "npm test"
     }
   },
   "lint-staged": {
     "*.js": [
-      "yarn lint-scripts",
+      "npm run lint-scripts",
       "git add"
     ],
     "*.scss": [
-      "yarn lint-styles"
+      "npm run lint-styles"
     ]
   }
 `;
@@ -42,7 +42,7 @@ describe('generator-base:husky', () => {
         const config = `
   "lint-staged": {
     "*.js": [
-      "yarn lint-scripts",
+      "npm run lint-scripts",
       "git add"
     ]
   }
@@ -60,7 +60,7 @@ describe('generator-base:husky', () => {
         const config = `
   "lint-staged": {
     "*.scss": [
-      "yarn lint-styles"
+      "npm run lint-styles"
     ]
   }
 `;

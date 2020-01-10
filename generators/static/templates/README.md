@@ -4,10 +4,10 @@
 
 ### Front End Dependencies
 
-First, make sure you have [NodeJS](http://nodejs.org), [Yarn](https://yarnpkg.com), and [Gulp](http://gulpjs.com) installed. Then:
+First, make sure you have [NodeJS](http://nodejs.org) installed. Then:
 
-* `yarn`
-* `yarn start`
+* `npm i`
+* `npm start`
 
 ### Development Server
 
@@ -15,4 +15,4 @@ While `gulp` is running, you can access the site at http://localhost:XXXX
 
 ## Deployment
 
-Run `NODE_ENV=production yarn build` to build prepare all assets for deployment.
+Run `NODE_ENV=production npm run build` to build prepare all assets for deployment.

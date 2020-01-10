@@ -23,7 +23,7 @@ module.exports = class extends Generator {
     this.log(chalk.green('\nInstalling stylelint-related dependencies…'));
 
     // Install dev dependencies
-    this.yarnInstall(devDependencies, { 'dev': true, silent: true });
+    this.npmInstall(devDependencies, { 'save-dev': true, silent: true });
   }
 
   end() {

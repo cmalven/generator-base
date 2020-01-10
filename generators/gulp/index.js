@@ -133,7 +133,7 @@ module.exports = class extends Generator {
     this.log(chalk.yellow('\nInstalling gulp-related dependencies…'));
 
     // Install dev dependencies
-    this.yarnInstall(devDependencies, { 'dev': true, silent: true });
+    this.npmInstall(devDependencies, { 'save-dev': true, silent: true });
   }
 
   end() {

@@ -17,9 +17,5 @@ describe('generator-base:stylelint', () => {
         '.stylelintrc'
       ]);
     });
-
-    it('adds dependencies', () => {
-      assert.fileContent('package.json', '@malven/stylelint-config');
-    });
   });
 });

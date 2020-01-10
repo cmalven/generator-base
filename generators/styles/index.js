@@ -83,7 +83,7 @@ module.exports = class extends Generator {
       'reset.css',
       'normalize.css'
     ]);
-    this.yarnInstall(deps, { silent: true });
+    this.npmInstall(deps, { silent: true });
   }
 
   end() {

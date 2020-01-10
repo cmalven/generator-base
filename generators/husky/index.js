@@ -56,7 +56,7 @@ module.exports = class extends Generator {
       husky: {
         'hooks': {
           'pre-commit': 'lint-staged',
-          'pre-push': 'yarn test'
+          'pre-push': 'npm test'
         }
       },
       'lint-staged': {}
@@ -66,7 +66,7 @@ module.exports = class extends Generator {
     if (this.props.lint.indexOf('js') > -1) {
       newObj.scripts['lint-scripts'] = 'eslint --fix';
       newObj['lint-staged']['*.js'] = [
-        'yarn lint-scripts',
+        'npm run lint-scripts',
         'git add'
       ];
     }
@@ -75,7 +75,7 @@ module.exports = class extends Generator {
     if (this.props.lint.indexOf('scss') > -1) {
       newObj.scripts['lint-styles'] = 'stylelint --syntax scss';
       newObj['lint-staged']['*.scss'] = [
-        'yarn lint-styles'
+        'npm run lint-styles'
       ];
     }
 
@@ -88,7 +88,7 @@ module.exports = class extends Generator {
       'lint-staged'
     ];
 
-    this.yarnInstall(devDependencies, { 'dev': true, silent: true });
+    this.npmInstall(devDependencies, { 'save-dev': true, silent: true });
   }
 
   end() {
