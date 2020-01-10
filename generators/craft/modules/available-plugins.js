@@ -95,6 +95,11 @@ module.exports = [
     checked: true
   },
   {
+    name: 'Empty Coalesce',
+    src: 'nystudio107/craft-emptycoalesce',
+    checked: true
+  },
+  {
     name: 'PHP CodeSniffer',
     src: 'squizlabs/php_codesniffer',
     checked: true
