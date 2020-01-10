@@ -6,15 +6,17 @@ Wraps almost all content on the site
 
 $section: '.l-section';
 
-$bleed-items-top: (
-  'bleed-top',
+$bleed: (
   'bleed'
 );
 
-$bleed-items-bottom: (
-  'bleed-bottom',
-  'bleed'
-);
+$bleed-top: join((
+  'bleed-top'
+), $bleed);
+
+$bleed-bottom: join((
+  'bleed-bottom'
+), $bleed);
 
 @function exclude-bleed-selector($map) {
   $baseSelector: '';
@@ -30,8 +32,8 @@ $bleed-items-bottom: (
   }
 
   // "Full bleed" siblings shouldn't have space between them
-  @each $firstItem in $bleed-items-bottom {
-    @each $secondItem in $bleed-items-top {
+  @each $firstItem in $bleed-bottom {
+    @each $secondItem in $bleed-top {
       > #{$section}--#{$firstItem} + #{$section}--#{$secondItem} {
         @include fluid-size(none);
       }
@@ -39,12 +41,12 @@ $bleed-items-bottom: (
   }
 
   // First child spacing
-  > #{$section}:first-child#{exclude-bleed-selector($bleed-items-top)} {
+  > #{$section}:first-child#{exclude-bleed-selector($bleed-top)} {
     @include fluid-size(section-vertical);
   }
 
   // Last child spacing
-  > #{$section}:last-child#{exclude-bleed-selector($bleed-items-bottom)} {
+  > #{$section}:last-child#{exclude-bleed-selector($bleed-bottom)} {
     @include fluid-size(section-vertical, margin-bottom);
   }
 
