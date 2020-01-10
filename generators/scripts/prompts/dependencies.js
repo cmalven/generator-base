@@ -1,7 +1,7 @@
 module.exports = [
   {
-    name: 'jQuery',
-    value: 'jquery',
+    name: 'Cash',
+    value: 'cash-dom',
     checked: true
   },
   {
