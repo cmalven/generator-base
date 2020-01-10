@@ -1,0 +1,31 @@
+{# =============================================================== #}
+{# Matrix
+{# =============================================================== #}
+{#
+  {% import '_macros/matrix' as matrix %}
+#}
+
+{# ------------------------------------------------------------------ #}
+{# Block Classes
+{# ------------------------------------------------------------------ #}
+{#
+  {{ matrix.blockClasses(block) }}
+
+  Returns an array of modifier classes for a given matrix block
+
+  @param block (Matrix Block)        - [required] The block to examine
+#}
+
+{% macro blockClasses(block) %}
+  {% set classes = [] %}
+
+  {% if block.type == 'foo' %}
+    {#
+    {% if block.backgroundColor.value != 'white' %}
+      {% set classes = classes | merge(['bleed']) %}
+    {% endif %}
+    #}
+  {% endif %}
+
+  {% return classes %}
+{% endmacro %}
