@@ -32,6 +32,15 @@ module.exports = function(options) {
     });
   }
 
+  if (typeof options.distCopyPath === 'undefined') {
+    questions.push({
+      type: 'input',
+      name: 'distCopyPath',
+      message: 'Paths to copy to dist',
+      default: ''
+    });
+  }
+
   //
   //   Browsersync
   //
