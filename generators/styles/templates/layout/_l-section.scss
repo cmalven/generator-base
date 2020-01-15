@@ -4,7 +4,7 @@ Layout - Section
 Reusable content container.
 */
 
-@mixin l-section-fixed {
+@mixin l-section-max {
   @include fluid-size(outer, padding-left padding-right);
 
   .l-section__inner {
@@ -25,8 +25,8 @@ Reusable content container.
 // Common Variants
 // ---------------------------------------------------------------
 
-.l-section--fixed {
-  @include l-section-fixed;
+.l-section--max {
+  @include l-section-max;
 }
 
 .l-section--pad-vert {
