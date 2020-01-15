@@ -13,6 +13,14 @@ module.exports = function(options) {
       default: 'dist'
     });
   }
+  if (typeof options.rootPublicPath === 'undefined') {
+    questions.push({
+      type: 'input',
+      name: 'rootPublicPath',
+      message: 'Path from web root to all public files',
+      default: ''
+    });
+  }
 
   if (typeof options.templateSrc === 'undefined') {
     questions.push({
