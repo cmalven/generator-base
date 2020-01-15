@@ -45,7 +45,9 @@ gulp.task('scripts:bundle', function(done) {
 
     output: {
       path: path.resolve('./' + config.paths.scriptDist),
-      filename: '[name].bundle.js'
+      filename: '[name].bundle.js',
+      publicPath: config.paths.scriptPublic,
+      chunkFilename: '[name].bundle.js'
     },
 
     resolve: {

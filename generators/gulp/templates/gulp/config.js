@@ -13,6 +13,7 @@ const paths = {
 
   scriptSrc: 'src/scripts/',
   scriptDist: '<%= rootDistPath %>/scripts/',
+  scriptPublic: '<%= rootPublicPath %>scripts/',
 
   templateSrc: '<%= templateSrc %>',
   templateDist: '<%= templateDist %>',
