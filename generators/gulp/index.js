@@ -32,6 +32,11 @@ module.exports = class extends Generator {
       this.destinationPath('.browserslistrc')
     );
 
+    this.fs.copy(
+      this.templatePath('.babelrc'),
+      this.destinationPath('.babelrc')
+    );
+
     this.fs.copyTpl(
       this.templatePath('gulp/tasks'),
       this.destinationPath('gulp/tasks'), this.options, {}, {

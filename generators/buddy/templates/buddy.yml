@@ -60,6 +60,7 @@
     recursive: true
     compress: true
     deployment_excludes:
+    - ".babelrc"
     - ".browserslistrc"
     - ".dockerignore"
     - ".editorconfig"
@@ -222,6 +223,7 @@
     recursive: true
     compress: true
     deployment_excludes:
+    - ".babelrc"
     - ".browserslistrc"
     - ".dockerignore"
     - ".editorconfig"

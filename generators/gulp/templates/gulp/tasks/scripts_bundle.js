@@ -61,14 +61,6 @@ gulp.task('scripts:bundle', function(done) {
         {
           test: /\.js$/,
           loader: 'babel-loader',
-          options: { presets: [
-            ['@babel/preset-env', {
-              debug: false,
-              useBuiltIns: 'usage',
-              corejs: 3
-            }],
-            '@babel/preset-react'
-          ] },
           exclude: [/node_modules/]
         }
       ]
