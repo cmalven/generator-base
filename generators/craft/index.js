@@ -31,6 +31,8 @@ module.exports = class extends Generator {
       'Welcome to the impressive ' + chalk.red('Craft') + ' generator!'
     ));
 
+    console.log(chalk.yellow('Craft Config'));
+
     return this.prompt(prompts).then(props => {
       this.props = extend(props, {
         authorName: 'Malven Co.',

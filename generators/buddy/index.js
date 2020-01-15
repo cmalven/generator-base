@@ -6,6 +6,9 @@ const isEmpty = require('lodash/isEmpty');
 
 module.exports = class extends Generator {
   prompting() {
+    console.log(chalk.yellow('Buddy Config'));
+
+    let options = this.options || {};
     this.props = {};
     return this.prompt([
       {
@@ -14,7 +17,8 @@ module.exports = class extends Generator {
         message: 'What is the title of this project?',
         validate: value => {
           return isEmpty(value) ? 'Please enter a project title.' : true;
-        }
+        },
+        default: options.projectTitle || 'My Project'
       },
       {
         type: 'input',
@@ -24,7 +28,7 @@ module.exports = class extends Generator {
           return isEmpty(value) ? 'Please enter a project name.' : true;
         },
         default(answers) {
-          return kebab(answers.projectTitle);
+          return options.projectName || kebab(answers.projectTitle);
         }
       }
     ]).then(props => {
