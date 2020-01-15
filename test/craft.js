@@ -30,6 +30,12 @@ describe('generator-base:craft', () => {
       assert.fileContent('config/db.php', "getenv('DB_SERVER')");
     });
 
+    it('adds templates', () => {
+      assert.file('templates/_partials');
+      assert.file('templates/_embeds');
+      assert.file('templates/index.twig');
+    });
+
     it('installs plugins with composer', () => {
       assert.fileContent('composer.json', `"${promptAnswers.craftPlugins[0]}":`);
     });
