@@ -61,7 +61,7 @@ module.exports = class extends Generator {
     if (this.props.useTwig) {
       gulpOptions = {
         useTwig: true,
-        rootPublicPath: '',
+        publicDistPath: '',
         rootDistPath: 'dist',
         templateSrc: 'src/templates/',
         templateDist: 'dist/',
@@ -72,7 +72,7 @@ module.exports = class extends Generator {
     } else {
       gulpOptions = {
         useTwig: false,
-        rootPublicPath: '',
+        publicDistPath: '',
         rootDistPath: 'dist',
         templateSrc: './',
         templateDist: './',
