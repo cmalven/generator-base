@@ -17,7 +17,6 @@ module.exports = gulp.task('base',
       'templates',<% if (useTwig) { %>
       'twig',<% } %>
       'scripts:bundle',
-      'scripts:lint',
       'styles',
       'styles:copy',
       'styles:lint',

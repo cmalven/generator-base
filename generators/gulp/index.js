@@ -103,6 +103,7 @@ module.exports = class extends Generator {
       'cssnano',
       'del',
       'dotenv',
+      'eslint-loader',
       'gulp',
       'autoprefixer',
       'gulp-changed-in-place',
