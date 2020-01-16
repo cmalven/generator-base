@@ -18,6 +18,9 @@ Bundles javascript files.
 */
 
 gulp.task('scripts:bundle', function(done) {
+  const DEV = 'development';
+  const ENV = process.env.NODE_ENV ? process.env.NODE_ENV : DEV;
+
   //---------------------------------------------------------------
   // Plugins
   //---------------------------------------------------------------
@@ -36,7 +39,7 @@ gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
 
   const webpackConfig = {
-    mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+    mode: ENV,
 
     entry: _.reduce(config.scripts.entryFiles, function(result, name) {
       result[name] = path.resolve('./' + config.paths.scriptSrc + name);
