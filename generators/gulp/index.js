@@ -124,7 +124,8 @@ module.exports = class extends Generator {
       'script-loader',
       'strip-ansi',
       'uglifyjs-webpack-plugin',
-      'undertaker-forward-reference'
+      'undertaker-forward-reference',
+      'webpack-bundle-analyzer'
     ];
 
     // Add twig if desired

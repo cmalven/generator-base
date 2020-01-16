@@ -6,6 +6,7 @@ const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const util = require('util');
 const UglifyJsPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 require('core-js/stable');
 
 //
@@ -24,7 +25,7 @@ gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
   // Plugins
   //---------------------------------------------------------------
-  const plugins = [
+  let plugins = [
     // Give all modules access to jQuery
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -32,6 +33,16 @@ gulp.task('scripts:bundle', function(done) {
       'window.jQuery': 'jquery'
     })
   ];
+
+  // Bundle analyzer in development
+  if (ENV === DEV) {
+    plugins = plugins.concat([
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false
+      })
+    ]);
+  }
 
 
   //---------------------------------------------------------------
