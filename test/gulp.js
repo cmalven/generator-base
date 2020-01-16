@@ -9,7 +9,7 @@ describe('generator-base:gulp', () => {
       return helpers.run(path.join(__dirname, '../generators/gulp'))
         .withOptions({
           skipInstall: true,
-          publicDistPath: '',
+          publicDistPath: '/',
           rootDistPath: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',

@@ -19,7 +19,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'publicDistPath',
       message: 'Path from web root to all public dist files',
-      default: ''
+      default: '/'
     });
   }
 
