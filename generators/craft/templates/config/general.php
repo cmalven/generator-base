@@ -49,7 +49,6 @@ return [
       'omitScriptNameInUrls'               => true,
       'siteUrl'                            => getenv('SITE_URL'),
       'cpTrigger'                          => getenv('CP_TRIGGER'),
-      'addTrailingSlashesToUrls'           => true,
 
       // CACHING
       'enableTemplateCaching'               => filter_var(getenv('ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
