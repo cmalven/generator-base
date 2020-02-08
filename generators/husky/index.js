@@ -65,13 +65,18 @@ module.exports = class extends Generator {
     // Add JS-related items
     if (this.props.lint.indexOf('js') > -1) {
       newObj.scripts['lint-scripts'] = 'eslint --fix';
-      newObj['lint-staged']['*.js'] = 'npm run lint-scripts';
+      newObj['lint-staged']['*.js'] = [
+        'npm run lint-scripts',
+        'git add'
+      ];
     }
 
     // Add CSS-related items
     if (this.props.lint.indexOf('scss') > -1) {
       newObj.scripts['lint-styles'] = 'stylelint --syntax scss';
-      newObj['lint-staged']['*.scss'] = 'npm run lint-styles';
+      newObj['lint-staged']['*.scss'] = [
+        'npm run lint-styles'
+      ];
     }
 
     jsonfile.writeFileSync(filePath, newObj, { spaces: 2 });

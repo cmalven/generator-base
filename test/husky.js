@@ -19,8 +19,13 @@ describe('generator-base:husky', () => {
     }
   },
   "lint-staged": {
-    "*.js": "npm run lint-scripts",
-    "*.scss": "npm run lint-styles"
+    "*.js": [
+      "npm run lint-scripts",
+      "git add"
+    ],
+    "*.scss": [
+      "npm run lint-styles"
+    ]
   }
 `;
         assert.fileContent('package.json', config);
@@ -36,7 +41,10 @@ describe('generator-base:husky', () => {
       .then(() => {
         const config = `
   "lint-staged": {
-    "*.js": "npm run lint-scripts"
+    "*.js": [
+      "npm run lint-scripts",
+      "git add"
+    ]
   }
 `;
         assert.fileContent('package.json', config);
@@ -51,7 +59,9 @@ describe('generator-base:husky', () => {
       .then(() => {
         const config = `
   "lint-staged": {
-    "*.scss": "npm run lint-styles"
+    "*.scss": [
+      "npm run lint-styles"
+    ]
   }
 `;
         assert.fileContent('package.json', config);
