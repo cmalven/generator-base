@@ -1,14 +1,13 @@
 /*
-Reset Text Input
+Reset Input
 
 Removes the default appearance set by some browsers.
 */
 
-@mixin reset-text-input {
+@mixin reset-input {
   appearance: none;
   border-radius: 0;
   border: none;
   background-color: transparent;
   padding: 0;
 }
-
