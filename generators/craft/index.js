@@ -191,10 +191,10 @@ module.exports = class extends Generator {
     }
 
     // Imager
-    if (this.props.craftPlugins.includes('aelvan/imager')) {
+    if (this.props.craftPlugins.includes('spacecatninja/imager-x')) {
       this.fs.copyTpl(
-        this.templatePath('config/imager.php'),
-        this.destinationPath('config/imager.php'),
+        this.templatePath('config/imager-x.php'),
+        this.destinationPath('config/imager-x.php'),
         this.props
       );
     }

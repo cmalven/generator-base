@@ -10,7 +10,7 @@ describe('generator-base:craft', () => {
       projectName: 'test-craft',
       projectDescription: 'Craft production description',
       craftPlugins: [
-        'aelvan/imager',
+        'spacecatninja/imager-x',
         'clubstudioltd/craft-asset-rev',
         'craftcms/redactor',
         'nystudio107/craft-seomatic',
@@ -53,7 +53,7 @@ describe('generator-base:craft', () => {
     });
 
     it('configures Imager plugin', () => {
-      assert.file('config/imager.php');
+      assert.file('config/imager-x.php');
     });
 
     it('configures Blitz plugin', () => {

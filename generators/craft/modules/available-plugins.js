@@ -5,8 +5,8 @@ module.exports = [
     checked: true
   },
   {
-    name: 'Imager',
-    src: 'aelvan/imager',
+    name: 'Imager X',
+    src: 'spacecatninja/imager-x',
     checked: true
   },
   {
