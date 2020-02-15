@@ -166,7 +166,7 @@ style="background-image: url({{ imageUrl }});"
     alt: 'My alt text',
     class: 'foo',
     transform: '7x5',
-    wrapperClass: ''
+    wrapperClasses: ''
   }) }}
 
   Returns an <img> or <picture> for a Craft asset
@@ -198,7 +198,7 @@ style="background-image: url({{ imageUrl }});"
     alt: '',
     class: '',
     transform: '7x5',
-    wrapperClass: 'image--fade'
+    wrapperClasses: 'image--fade'
   } %}
 
   {# Merge options with defaults #}
@@ -265,16 +265,16 @@ style="background-image: url({{ imageUrl }});"
 
   Wraps an image in common markup.
 
-  @param image (HTML)                   - [required] The HTML markup (e.g. <img>, <picture>, etc) to wrap
-  @param asset (CraftAsset)             - [required] Asset to use for <noscript> fallback
-  @param options.transform (String)     - [required] Transform to use for <noscript> fallback
-  @param options.wrapperClass (String)  - [optional] Class to add to wrapper
+  @param image (HTML)                     - [required] The HTML markup (e.g. <img>, <picture>, etc) to wrap
+  @param asset (CraftAsset)               - [required] Asset to use for <noscript> fallback
+  @param options.transform (String)       - [required] Transform to use for <noscript> fallback
+  @param options.wrapperClasses (String)  - [optional] Class to add to wrapper
 #}
 
 {%- macro wrap(image, asset, options = {}) -%}
   {% import _self as image %}
 {% set wrappedImg %}
-<div class="image {{ options.wrapperClass ?? '' }}">
+<div class="image {{ options.wrapperClasses ?? '' }}">
   <div class="image__inner">
     {{ image | raw }}
     <noscript>
