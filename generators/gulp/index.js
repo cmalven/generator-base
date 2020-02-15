@@ -108,7 +108,6 @@ module.exports = class extends Generator {
       'autoprefixer',
       'gulp-changed-in-place',
       'gulp-css-globbing',
-      'gulp-eslint',
       'gulp-postcss',
       'gulp-imagemin',
       'gulp-pixrem',
