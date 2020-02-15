@@ -6,9 +6,9 @@
 */
 
 @mixin position($property: absolute, $distance: 0) {
-   position: $property;
-   top: $distance;
-   right: $distance;
-   bottom: $distance;
-   left: $distance;
+  position: $property;
+  top: $distance;
+  right: $distance;
+  bottom: $distance;
+  left: $distance;
 }
