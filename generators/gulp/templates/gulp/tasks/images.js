@@ -18,7 +18,7 @@ module.exports = gulp.task('images', function() {
   ])
     .pipe(changedInPlace({ firstPass: true }))
     .pipe(imagemin([
-      imagemin.jpegtran({
+      imagemin.mozjpeg({
         progressive: true
       }),
       imagemin.svgo({
