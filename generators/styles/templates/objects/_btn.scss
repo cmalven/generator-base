@@ -13,6 +13,7 @@ $btn-transition: 0.6s ease(out-expo);
 }
 
 .btn__inner {
+  @include reset-input;
   display: block;
   cursor: pointer;
   position: relative;
