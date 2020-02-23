@@ -25,14 +25,7 @@ gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
   // Plugins
   //---------------------------------------------------------------
-  let plugins = [
-    // Give all modules access to jQuery
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    })
-  ];
+  let plugins = [];
 
   // Bundle analyzer in development
   if (ENV === DEV) {
