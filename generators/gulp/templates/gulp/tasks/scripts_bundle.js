@@ -2,7 +2,6 @@ const config = require('../config');
 const gulp = require('gulp');
 const _ = require('lodash');
 const path = require('path');
-const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const util = require('util');
 const UglifyJsPlugin = require('terser-webpack-plugin');
@@ -68,9 +67,18 @@ gulp.task('scripts:bundle', function(done) {
     module: {
       rules: [
         {
+          enforce: 'pre',
           test: /\.js$/,
-          use: ['babel-loader', 'eslint-loader'],
-          exclude: [/node_modules/]
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
+          options: {
+            emitWarning: true
+          }
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader'
         }
       ]
     },
@@ -103,13 +111,7 @@ gulp.task('scripts:bundle', function(done) {
 
     if (err) throw new util.PluginError('webpack', err);
 
-    if (stats.hasErrors()) {
-      const info = stats.toJson('errors-only');
-      const body = stripAnsi(info.errors.join('/n'));
-      global.browserSync.notify(body, 30000);
-    } else {
-      global.browserSync.reload({ once: true });
-    }
+    global.browserSync.reload({ once: true });
     log(stats);
     done();
   });
