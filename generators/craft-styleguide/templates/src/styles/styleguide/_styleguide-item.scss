@@ -14,6 +14,16 @@ An individual styleguide item
   width: 100%;
 }
 
+.styleguide-item__anchor {
+  text-decoration: none;
+  color: #bbb;
+  transition: color 0.15s;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
 .styleguide-item__code,
 .styleguide-item__example {
   margin-top: 20px;
