@@ -128,7 +128,7 @@
     priority: "HIGH"
     trigger_condition: "ALWAYS"
     integration_id: 20934
-  - action: "Send notification to slack channel"
+  - action: "Send notification to slack channel on failure"
     type: "SLACK"
     trigger_time: "ON_FAILURE"
     content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
@@ -137,7 +137,7 @@
     - "{\"fallback\":\"${execution.pipeline.name} execution #${execution.id}\",\"color\":\"danger\",\"fields\":[{\"title\":\"Failed execution\",\"value\":\"<${execution.html_url}|Execution #${execution.id} ${execution.comment}>\",\"short\":true},{\"title\":\"Pipeline\",\"value\":\"<${execution.pipeline.html_url}|${execution.pipeline.name}>\",\"short\":true},{\"title\":\"Branch\",\"value\":\"${execution.branch.name}\",\"short\":true},{\"title\":\"Project\",\"value\":\"<${project.html_url}|${project.name}>\",\"short\":true}]}"
     trigger_condition: "ALWAYS"
     integration_id: 10282
-  - action: "Send notification to slack channel"
+  - action: "Send notification to slack channel on success"
     type: "SLACK"
     trigger_time: "ON_BACK_TO_SUCCESS"
     content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
@@ -292,7 +292,7 @@
     priority: "HIGH"
     trigger_condition: "ALWAYS"
     integration_id: 20934
-  - action: "Send notification to slack channel"
+  - action: "Send notification to slack channel on failure"
     type: "SLACK"
     trigger_time: "ON_FAILURE"
     content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
@@ -301,7 +301,7 @@
     - "{\"fallback\":\"${execution.pipeline.name} execution #${execution.id}\",\"color\":\"danger\",\"fields\":[{\"title\":\"Failed execution\",\"value\":\"<${execution.html_url}|Execution #${execution.id} ${execution.comment}>\",\"short\":true},{\"title\":\"Pipeline\",\"value\":\"<${execution.pipeline.html_url}|${execution.pipeline.name}>\",\"short\":true},{\"title\":\"Branch\",\"value\":\"${execution.branch.name}\",\"short\":true},{\"title\":\"Project\",\"value\":\"<${project.html_url}|${project.name}>\",\"short\":true}]}"
     trigger_condition: "ALWAYS"
     integration_id: 10282
-  - action: "Send notification to slack channel"
+  - action: "Send notification to slack channel on success"
     type: "SLACK"
     trigger_time: "ON_BACK_TO_SUCCESS"
     content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
