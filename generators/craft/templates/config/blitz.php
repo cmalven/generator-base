@@ -20,4 +20,39 @@
 return [
     // Whether static file caching should be enabled.
     'cachingEnabled' => filter_var(getenv('ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
+
+    // The URI patterns to include in caching. Set `siteId` to a blank string to indicate all sites.
+    'includedUriPatterns' => [
+       [
+           'siteId' => '',
+           'uriPattern' => '',
+       ],
+       [
+           'siteId' => '',
+           'uriPattern' => '.*',
+       ],
+    ],
+
+    // The URI patterns to exclude from caching (overrides any matching patterns to include). Set `siteId` to a blank string to indicate all sites.
+    'excludedUriPatterns' => [
+
+    ],
+
+    // Whether the cache should automatically be cleared when elements are updated.
+    'clearCacheAutomatically' => true,
+
+    // Whether the cache should automatically be warmed after clearing.
+    'warmCacheAutomatically' => true,
+
+    // The warmer settings.
+    'cacheWarmerSettings' => ['concurrency' => 3],
+
+    // Whether the cache should automatically be refreshed after a global set is updated.
+    'refreshCacheAutomaticallyForGlobals' => true,
+
+    // Whether URLs with query strings should cached and how.
+    // 0: Do not cache URLs with query strings
+    // 1: Cache URLs with query strings as unique pages
+    // 2: Cache URLs with query strings as the same page
+    'queryStringCaching' => 0,
 ];
