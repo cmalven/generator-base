@@ -15,7 +15,7 @@ const LazyImageTransitioner = function(options) {
 
   let self = Object.assign({}, {
     selector: '.image--wipe',
-    visibleClass: 'is-visible'
+    visibleClass: 'is-visible',
   }, options);
 
 
