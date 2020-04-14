@@ -6,7 +6,8 @@
 <%_ } _%>
 
 // Utilities
-@import 'util/**/*.scss';
+@import 'util/base/**/*.scss';
+@import 'util/project/**/*.scss';
 
 // Variables
 @import 'base/variables';
