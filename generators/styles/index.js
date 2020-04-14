@@ -61,7 +61,7 @@ module.exports = class extends Generator {
     );
 
     this.fs.copy(
-      this.templatePath('util/*'),
+      this.templatePath('util'),
       this.destinationPath('src/styles/util')
     );
 
