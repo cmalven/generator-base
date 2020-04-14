@@ -36,6 +36,10 @@ describe('generator-base:craft', () => {
       assert.file('templates/index.twig');
     });
 
+    it('adds favicons', () => {
+      assert.file('web/favicons/favicon.ico');
+    });
+
     it('installs plugins with composer', () => {
       assert.fileContent('composer.json', `"${promptAnswers.craftPlugins[0]}":`);
     });

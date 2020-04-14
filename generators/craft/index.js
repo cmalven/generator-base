@@ -138,6 +138,11 @@ module.exports = class extends Generator {
       this.props
     );
 
+    this.fs.copy(
+      this.templatePath('web/favicons'),
+      this.destinationPath('web/favicons')
+    );
+
     this.fs.copyTpl(
       this.templatePath('env.sample'),
       this.destinationPath('env.sample'),
