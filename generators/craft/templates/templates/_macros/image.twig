@@ -166,6 +166,7 @@ style="background-image: url({{ imageUrl }});"
     alt: 'My alt text',
     class: 'foo',
     transform: '7x5',
+    wrap: true,
     wrapperClasses: ''
   }) }}
 
@@ -198,6 +199,7 @@ style="background-image: url({{ imageUrl }});"
     alt: '',
     class: '',
     transform: '7x5',
+    wrap: true,
     wrapperClasses: 'image--fade'
   } %}
 
@@ -253,7 +255,12 @@ style="background-image: url({{ imageUrl }});"
   {% endif %}
 
   {# Return the element #}
-  {% return image.wrap(img, asset, options) | raw %}
+  {% if options.wrap %}
+    {% return image.wrap(img, asset, options) | raw %}
+  {% else %}
+    {{ img | raw }}
+  {% endif %}
+
 {%- endmacro -%}
 
 
@@ -298,6 +305,7 @@ style="background-image: url({{ imageUrl }});"
 
 {%- macro srcset(asset, params) -%}
   {% set srcsetItems = [] %}
+  {% set resolution = 1.75 %}
 
   {% set transformedImages = craft.imager.transformImage(asset,
     [{ width: 300 }, { width: 2700 }],
@@ -316,7 +324,7 @@ style="background-image: url({{ imageUrl }});"
   {% for image in transformedImages %}
     {% set url = image.url %}
     {% set srcsetItems = srcsetItems | merge([
-      url ~ " #{image.width}w"
+      url ~ " #{(image.width / resolution) | round}w"
     ]) %}
   {% endfor %}
 

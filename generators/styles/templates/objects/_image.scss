@@ -74,11 +74,7 @@ class when the image is loaded.
     @include absolute;
 
     .js & > img {
-      @include absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 50%;
+      @include bg-cover;
     }
   }
 }

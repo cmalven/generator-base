@@ -40,6 +40,14 @@ module.exports = class extends Generator {
         deps
       }
     );
+
+    // Lazy sizes
+    if (deps.indexOf('lazysizes') > -1) {
+      this.fs.copy(
+        this.templatePath('optional-modules/LazyImageTransitioner.js'),
+        this.destinationPath('src/scripts/modules/LazyImageTransitioner.js')
+      );
+    }
   }
 
   install() {

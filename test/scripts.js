@@ -32,6 +32,14 @@ describe('generator-base:scripts', () => {
 
     it('adds lazysizes init code', () => {
       assert.fileContent('src/scripts/main.js', "import 'lazysizes'");
+      assert.fileContent('src/scripts/main.js', 'new LazyImageTransitioner();');
     });
+
+    it('adds optional modules', () => {
+      assert.file([
+        'src/scripts/modules/LazyImageTransitioner.js'
+      ]);
+    });
+
   });
 });
