@@ -11,13 +11,13 @@ describe('generator-base:scripts', () => {
 
     it('creates dir structure', () => {
       assert.file([
-        'src/scripts/modules/.gitkeep'
+        'src/scripts/modules/Transitioner.js',
       ]);
     });
 
     it('creates main.js', () => {
       assert.file([
-        'src/scripts/main.js'
+        'src/scripts/main.js',
       ]);
     });
   });
@@ -26,7 +26,7 @@ describe('generator-base:scripts', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/scripts'))
         .withPrompts({
-          deps: ['lazysizes']
+          deps: ['lazysizes'],
         });
     });
 
@@ -37,7 +37,7 @@ describe('generator-base:scripts', () => {
 
     it('adds optional modules', () => {
       assert.file([
-        'src/scripts/modules/LazyImageTransitioner.js'
+        'src/scripts/modules/LazyImageTransitioner.js',
       ]);
     });
 

@@ -27,7 +27,7 @@ const Transitioner = function(options) {
 
   let self = Object.assign({}, {
     visibleClass: 'is-visible',
-    transitionImmediatelySelector: ''
+    transitionImmediatelySelector: '',
   }, options);
 
 
@@ -63,12 +63,11 @@ const Transitioner = function(options) {
       '.h-transition',
       '.h-transition-fade',
       '.h-transition-up',
-      '.h-transition-up-less',
       '.h-transition-down',
       '.h-transition-left',
       '.h-transition-right',
       '.h-transition-animate',
-      '.h-transition-stagger-children'
+      '.h-transition-stagger-children',
     ].join(', ');
 
     if (typeof els === 'undefined') {
@@ -93,7 +92,7 @@ const Transitioner = function(options) {
                 childElement.classList.add(self.visibleClass);
               });
             }
-          }
+          },
         }
       );
     });

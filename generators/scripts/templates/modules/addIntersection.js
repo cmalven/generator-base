@@ -39,7 +39,7 @@ export default (el, options = {}) => {
     element.setAttribute('data-intersection-id', uid);
     positions[uid] = {
       previousY: 0,
-      previousRatio: 0
+      previousRatio: 0,
     };
   });
 
@@ -49,7 +49,7 @@ export default (el, options = {}) => {
     inHandler = direction => {},
     outHandler = direction => {},
     atHandler = direction => {},
-    ratioSteps = 20
+    ratioSteps = 20,
   } = options;
 
   const add = () => {
@@ -92,7 +92,7 @@ export default (el, options = {}) => {
       },
       {
         rootMargin: rootMargin,
-        threshold: Array(ratioSteps + 1).fill(0).map((_, idx) => idx / ratioSteps || 0)
+        threshold: Array(ratioSteps + 1).fill(0).map((_, idx) => idx / ratioSteps || 0),
       }
     );
 

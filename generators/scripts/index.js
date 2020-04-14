@@ -15,7 +15,7 @@ module.exports = class extends Generator {
       name: 'deps',
       message: 'Which script dependencies do you want installed?',
       choices: dependencies,
-      default: []
+      default: [],
     }];
 
     return this.prompt(prompts).then(props => {
@@ -28,16 +28,18 @@ module.exports = class extends Generator {
     this.log(chalk.green('Writing scripts files...'));
     const { deps = [] } = this.props;
 
+    // Modules
     this.fs.copy(
-      this.templatePath('modules/.gitkeep'),
-      this.destinationPath('src/scripts/modules/.gitkeep')
+      this.templatePath('modules/'),
+      this.destinationPath('src/scripts/modules')
     );
 
+    // Main
     this.fs.copyTpl(
       this.templatePath('main.js'),
       this.destinationPath('src/scripts/main.js'),
       {
-        deps
+        deps,
       }
     );
 

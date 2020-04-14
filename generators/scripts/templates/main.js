@@ -9,7 +9,9 @@ import LazyImageTransitioner from './modules/LazyImageTransitioner';
 if (!('object-fit' in document.createElement('a').style)) {
   require('lazysizes/plugins/object-fit/ls.object-fit');
 }
+
 <%_ } _%>
+import Transitioner from './modules/Transitioner';
 
 //
 //   Global App Variable
