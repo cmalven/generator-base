@@ -12,7 +12,7 @@ html {
 
 body {
   <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
-  @include type-style(a);
+  @include get-type-style(a);
   color: color(black);
   <%_ } _%>
 }
