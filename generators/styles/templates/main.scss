@@ -6,7 +6,7 @@
 <%_ } _%>
 
 // Utilities
-@import 'util/*';
+@import 'util/**/*.scss';
 
 // Variables
 @import 'base/variables';
@@ -25,8 +25,8 @@
 @import 'base/base';
 
 // Components
-@import 'layout/*';
-@import 'objects/*';
+@import 'layout/**/*.scss';
+@import 'objects/**/*.scss';
 
 // Vendor Customizations
-@import 'vendor-customization/*';
+@import 'vendor-customization/**/*.scss';

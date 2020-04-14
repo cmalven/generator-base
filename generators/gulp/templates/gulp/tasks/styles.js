@@ -1,6 +1,6 @@
 const config = require('../config');
 const gulp = require('gulp');
-const cssGlobbing = require('gulp-css-globbing');
+const sassGlob = require('gulp-sass-glob');
 const sass = require('gulp-sass');
 const autoprefixer = require('autoprefixer');
 const pixrem = require('gulp-pixrem');
@@ -18,7 +18,7 @@ const Notifier = require('../utils/notifier')();
 Preprocesses stylesheets using the following plugins:
 
 sass: Sass compilation using super-fast libsass
-cssGlobbing: Allows globbing imports in .scss: @import 'styles/modules/*.scss';
+sassGlob: Allows globbing imports in .scss: @import 'styles/modules/*.scss';
 cssimport: Allows us to @import .css files in our .scss
 pixrem: adds px fallback for all rem values
 autoprefixer: Automatically adds vendor prefixes to experimental properties
@@ -34,9 +34,7 @@ module.exports = gulp.task('styles', function() {
   return gulp.src([
     config.paths.styleSrc + 'main.scss'
   ])
-    .pipe(cssGlobbing({
-      extensions: ['.scss']
-    }))
+    .pipe(sassGlob())
     .pipe(sass({
       outputStyle: 'nested',
       includePaths: ['./node_modules']
