@@ -20,8 +20,7 @@ describe('generator-base:husky', () => {
   },
   "lint-staged": {
     "*.js": [
-      "npm run lint-scripts",
-      "git add"
+      "npm run lint-scripts"
     ],
     "*.scss": [
       "npm run lint-styles"
@@ -36,14 +35,13 @@ describe('generator-base:husky', () => {
     return helpers
       .run(path.join(__dirname, '../generators/husky'))
       .withPrompts({
-        lint: ['js']
+        lint: ['js'],
       })
       .then(() => {
         const config = `
   "lint-staged": {
     "*.js": [
-      "npm run lint-scripts",
-      "git add"
+      "npm run lint-scripts"
     ]
   }
 `;
@@ -54,7 +52,7 @@ describe('generator-base:husky', () => {
     return helpers
       .run(path.join(__dirname, '../generators/husky'))
       .withPrompts({
-        lint: ['scss']
+        lint: ['scss'],
       })
       .then(() => {
         const config = `

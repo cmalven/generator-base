@@ -18,15 +18,15 @@ module.exports = class extends Generator {
         {
           name: 'JS',
           value: 'js',
-          checked: true
+          checked: true,
         },
         {
           name: 'SCSS',
           value: 'scss',
-          checked: true
-        }
+          checked: true,
+        },
       ],
-      default: ['js', 'scss']
+      default: ['js', 'scss'],
     }];
 
     return this.prompt(prompts).then(props => {
@@ -48,7 +48,7 @@ module.exports = class extends Generator {
         name: 'my-app',
         description: '',
         version: '1.0.0',
-        scripts: {}
+        scripts: {},
       };
     }
 
@@ -56,10 +56,10 @@ module.exports = class extends Generator {
       husky: {
         'hooks': {
           'pre-commit': 'lint-staged',
-          'pre-push': 'npm test'
-        }
+          'pre-push': 'npm test',
+        },
       },
-      'lint-staged': {}
+      'lint-staged': {},
     });
 
     // Add JS-related items
@@ -67,7 +67,6 @@ module.exports = class extends Generator {
       newObj.scripts['lint-scripts'] = 'eslint --fix';
       newObj['lint-staged']['*.js'] = [
         'npm run lint-scripts',
-        'git add'
       ];
     }
 
@@ -75,7 +74,7 @@ module.exports = class extends Generator {
     if (this.props.lint.indexOf('scss') > -1) {
       newObj.scripts['lint-styles'] = 'stylelint --syntax scss';
       newObj['lint-staged']['*.scss'] = [
-        'npm run lint-styles'
+        'npm run lint-styles',
       ];
     }
 
@@ -85,7 +84,7 @@ module.exports = class extends Generator {
 
     const devDependencies = [
       'husky',
-      'lint-staged'
+      'lint-staged',
     ];
 
     this.npmInstall(devDependencies, { 'save-dev': true, silent: true });
