@@ -1,9 +1,16 @@
+// ===============================================================
+// Main
+// ===============================================================
+
 // Vendor
 @import 'normalize.css/normalize.css';
 @import 'reset.css/reset.css';
 <%_ if (deps.indexOf('sass-mq') > -1) { _%>
 @import 'sass-mq/mq';
 <%_ } _%>
+
+// Fonts
+@import 'base/fonts';
 
 // Utilities
 @import 'util/base/**/*.scss';

@@ -1,3 +1,11 @@
+// ===============================================================
+// Base Styles
+// ===============================================================
+
+/*
+  General styling to provide a clean, solid base
+*/
+
 html,
 body {
   <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
