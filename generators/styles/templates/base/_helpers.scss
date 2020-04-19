@@ -32,3 +32,78 @@
 .h-text-light-on-dark { @include font-smoothing; }
 .h-text-smoothing--subpixel { -webkit-font-smoothing: subpixel-antialiased; }
 .h-text-smoothing--antialiased { -webkit-font-smoothing: antialiased; }
+
+
+// ---------------------------------------------------------------
+// Transitions
+// ---------------------------------------------------------------
+$h-transition-offset: 3rem;
+
+.js .h-transition,
+.js .h-transition-up,
+.js .h-transition-down,
+.js .h-transition-left,
+.js .h-transition-scale,
+.js .h-transition-right {
+  transition: 2s ease(out-quint);
+  transition-property: opacity, transform;
+  opacity: 0;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+
+.js .h-transition {
+
+}
+
+.js .h-transition-up {
+  transform: translateY($h-transition-offset);
+}
+
+.js .h-transition-down {
+  transform: translateY(-$h-transition-offset);
+}
+
+.js .h-transition-left {
+  transform: translateX($h-transition-offset);
+}
+
+.js .h-transition-scale {
+  transform: scale(0.9);
+}
+
+.js .h-transition-right {
+  transform: translateX(-$h-transition-offset);
+}
+
+// Does nothing on its on, but will trigger the addition of a .is-visible
+// class on the element which can be use to implement custom animation.
+.js .h-transition-animate {}
+
+// Does nothing on its on, but if set all children will animate in
+// when this element animates in.
+.js .h-transition-stagger-children {}
+
+// Automatically staggered delays on children based on :nth-child
+@for $i from 1 through 30 {
+  .js .h-transition-delay:nth-child(#{$i}) {
+    transition-delay: $i * 0.11 * 1s;
+  }
+}
+
+// Manual delays
+$h-transition-delay-increment: 0.05;
+@for $i from 1 through 30 {
+  .js .h-transition-delay-#{$i} {
+    transition-delay: #{$i * $h-transition-delay-increment} * 1s;
+  }
+}
+
+// Remove all transitions
+.h-no-transition {
+  transition: none !important;
+  transition-delay: 0 !important;
+}
