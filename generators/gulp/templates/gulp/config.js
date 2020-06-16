@@ -26,12 +26,12 @@ const paths = {
   ],
 
   scriptCopyPaths: [
-    'vendor'
+    'vendor',
   ],
 
   distCopyPaths: [
-    '<%= distCopyPath %>'
-  ]
+    '<%= distCopyPath %>',
+  ],
 };
 
 module.exports = {
@@ -41,7 +41,7 @@ module.exports = {
   // If you want BrowserSync to proxy an existing URL,
   // change `useProxy` to true and enter your URL as `proxyUrl`
   useProxy: <%= useProxy %>,
-  proxyUrl: process.env.SITE_URL || undefined,
+  proxyUrl: process.env.BROWSERSYNC_PROXY_URL || process.env.SITE_URL || undefined,
   serverBaseDir: '<%= serverBaseDir %>',
 
   scripts: {
@@ -54,7 +54,7 @@ module.exports = {
     // with a matching name, and if found, a corresponding
     // foo.bundle.js file will be generated in scriptDist
     entryFiles: [
-      'main'
+      'main',
     ],
 
     // aliases:
@@ -75,6 +75,6 @@ module.exports = {
 
     aliases: {
 
-    }
-  }
+    },
+  },
 };
