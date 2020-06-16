@@ -16,7 +16,7 @@ module.exports = class extends Generator {
   initializing() {
     this.closingStatements = [];
     this.props = {
-      craftPlugins: []
+      craftPlugins: [],
     };
 
     try {
@@ -42,7 +42,7 @@ module.exports = class extends Generator {
         githubName: 'cmalven',
 
         // Generates a random security key to be used in .env
-        securityKey: guid.raw()
+        securityKey: guid.raw(),
       });
 
       // To access props use this.props.someAnswer;
@@ -78,7 +78,7 @@ module.exports = class extends Generator {
     if (this.props.useBuddy) {
       this.composeWith(require.resolve('../buddy'), {
         projectTitle: this.props.projectTitle,
-        projectName: this.props.projectName
+        projectName: this.props.projectName,
       });
     }
   }
@@ -93,7 +93,7 @@ module.exports = class extends Generator {
       distCopyPath: 'web/',
       useProxy: true,
       serverBaseDir: './',
-      useTwig: false
+      useTwig: false,
     });
   }
 
@@ -104,7 +104,7 @@ module.exports = class extends Generator {
     // move install to this dir since composer requires installing to a sub directory
     childProcess.execSync(`mv ${this.props.projectName}-craft/* ${this.destinationRoot()}`);
     del.sync([
-      this.destinationPath(`${this.props.projectName}-craft`)
+      this.destinationPath(`${this.props.projectName}-craft`),
     ]);
 
     // Clean the default Craft install
@@ -121,13 +121,13 @@ module.exports = class extends Generator {
       this.destinationPath('composer.json'),
       this.destinationPath('composer.lock'),
       this.destinationPath('package.json'),
-      this.destinationPath('templates')
+      this.destinationPath('templates'),
     ]);
 
     // If using SEOmatic, remove default robots.txt
     if (this.props.craftPlugins.includes('seomatic') > -1) {
       del.sync([
-        this.destinationPath('web/robots.txt')
+        this.destinationPath('web/robots.txt'),
       ]);
       this.closingStatements.push('robots.txt: ' + chalk.yellow('We removed the default robots.txt because you’re using SEOmatic. Be sure to add your custom robots.txt to the SEOmatic settings in Craft.'));
     }
@@ -263,7 +263,7 @@ module.exports = class extends Generator {
 
   install() {
     const pluginList = this.props.craftPlugins.concat([
-      'squizlabs/php_codesniffer'
+      'squizlabs/php_codesniffer',
     ]).join(' ');
     childProcess.execSync(`composer require --no-progress ${pluginList} --quiet`);
   }
