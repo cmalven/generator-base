@@ -1,0 +1,9 @@
+/*
+Outer Padding Max
+
+Calculates outer padding at max width
+*/
+
+@function outer-padding-max($mult: 1, $breakpoint: content-max) {
+  @return calc(#{$mult} * ((100vw - #{map-get($mq-breakpoints, $breakpoint)}) / 2));
+}
