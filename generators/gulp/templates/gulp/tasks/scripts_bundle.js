@@ -26,13 +26,13 @@ gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
   let plugins = [];
 
-  // Bundle analyzer in development
-  if (ENV === DEV) {
+  // Bundle analyzer if requested
+  if (process.env.ANALYZE_BUNDLE === 'true') {
     plugins = plugins.concat([
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
-        openAnalyzer: false
-      })
+        openAnalyzer: false,
+      }),
     ]);
   }
 
@@ -53,15 +53,15 @@ gulp.task('scripts:bundle', function(done) {
       path: path.resolve('./' + config.paths.scriptDist),
       filename: '[name].bundle.js',
       publicPath: config.paths.scriptPublic,
-      chunkFilename: '[name].bundle.js'
+      chunkFilename: '[name].bundle.js',
     },
 
     resolve: {
       modules: [
         path.resolve('./node_modules'),
-        path.resolve('./' + config.paths.scriptSrc + 'vendor')
+        path.resolve('./' + config.paths.scriptSrc + 'vendor'),
       ],
-      alias: config.scripts.aliases
+      alias: config.scripts.aliases,
     },
 
     module: {
@@ -72,24 +72,30 @@ gulp.task('scripts:bundle', function(done) {
           exclude: /node_modules/,
           loader: 'eslint-loader',
           options: {
-            emitWarning: true
-          }
+            emitWarning: true,
+          },
         },
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
-        }
-      ]
+          loader: 'babel-loader',
+        },
+      ],
     },
 
     optimization: {
       minimizer: [
-        new UglifyJsPlugin()
-      ]
+        new UglifyJsPlugin(),
+      ],
+      splitChunks: {
+        cacheGroups: {
+          default: false,
+          vendors: false,
+        },
+      },
     },
 
-    plugins: plugins
+    plugins: plugins,
   };
 
 
@@ -98,21 +104,23 @@ gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
 
   webpack(webpackConfig, function(err, stats) {
+    if (err) throw new util.PluginError('webpack', err);
+
+    global.browserSync.reload({ once: true });
+
+    // Stats
     const log = function(stats) {
       util.log('[webpack]', stats.toString({
         chunks: false,
         colors: true,
         version: false,
         hash: false,
-        maxModules: 30,
-        modulesSort: '!size'
+        maxModules: 0,
+        modulesSort: '!size',
       }));
     };
-
-    if (err) throw new util.PluginError('webpack', err);
-
-    global.browserSync.reload({ once: true });
     log(stats);
+
     done();
   });
 });
