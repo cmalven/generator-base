@@ -196,6 +196,14 @@ module.exports = class extends Generator {
       );
     }
 
+    // Matrix Mate
+    if (this.props.craftPlugins.includes('vaersaagod/matrixmate')) {
+      this.fs.copy(
+        this.templatePath('config/matrixmate.php'),
+        this.destinationPath('config/matrixmate.php')
+      );
+    }
+
     // Imager
     if (this.props.craftPlugins.includes('spacecatninja/imager-x')) {
       this.fs.copyTpl(
