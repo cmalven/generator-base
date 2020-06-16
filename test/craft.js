@@ -15,8 +15,9 @@ describe('generator-base:craft', () => {
         'craftcms/redactor',
         'nystudio107/craft-seomatic',
         'putyourlightson/craft-blitz',
-        'topshelfcraft/environment-label'
-      ]
+        'topshelfcraft/environment-label',
+        'vaersaagod/matrixmate',
+      ],
     };
 
     before(() => {
@@ -62,6 +63,10 @@ describe('generator-base:craft', () => {
 
     it('configures Blitz plugin', () => {
       assert.file('config/blitz.php');
+    });
+
+    it('configures Matrix Mate plugin', () => {
+      assert.file('config/matrixmate.php');
     });
 
     it('configures Redactor plugin', () => {
