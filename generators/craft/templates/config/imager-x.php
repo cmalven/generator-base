@@ -13,7 +13,7 @@ return array(
 
     'imgixConfig' => [
         'default' => [
-            'domains' => ['<%= projectName %>.imgix.net'],
+            'domain' => '<%= projectName %>.imgix.net',
             'useHttps' => true,
             'signKey' => 'xxxxxxxxxxxxxxxxxxxxx',
             'useCloudSourcePath' => true,
