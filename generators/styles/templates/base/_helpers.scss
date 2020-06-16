@@ -98,7 +98,7 @@ $h-transition-offset: 3rem;
 $h-transition-delay-increment: 0.05;
 @for $i from 1 through 30 {
   .js .h-transition-delay-#{$i} {
-    transition-delay: #{$i * $h-transition-delay-increment} * 1s;
+    transition-delay: #{$i * $h-transition-delay-increment * 1s};
   }
 }
 
