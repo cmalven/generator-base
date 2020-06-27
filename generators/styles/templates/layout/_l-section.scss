@@ -14,11 +14,11 @@ Reusable content container.
 
 @include pad-top {
   @include fluid-size(section-vertical, padding-top);
-};
+}
 
 @include pad-bottom {
   @include fluid-size(section-vertical, padding-bottom);
-};
+}
 
 
 .l-section {
