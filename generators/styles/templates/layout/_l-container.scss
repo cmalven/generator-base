@@ -4,58 +4,6 @@ Layout Container
 Wraps almost all content on the site
 */
 
-$section: '.l-section';
-
-$bleed: (
-  'bleed'
-);
-
-$bleed-top: join((
-  'bleed-top'
-), $bleed);
-
-$bleed-bottom: join((
-  'bleed-bottom'
-), $bleed);
-
-@function exclude-bleed-selector($map) {
-  $baseSelector: '';
-  @each $item in $map {
-    $baseSelector: $baseSelector + ':not(#{$section}--#{$item})';
-  }
-  @return $baseSelector;
-}
-
 .l-container {
-  > #{$section} + #{$section} {
-    @include fluid-size(section-vertical);
-  }
 
-  // "Full bleed" siblings shouldn't have space between them
-  @each $firstItem in $bleed-bottom {
-    @each $secondItem in $bleed-top {
-      > #{$section}--#{$firstItem} + #{$section}--#{$secondItem} {
-        @include fluid-size(none);
-      }
-    }
-  }
-
-  // First child spacing
-  > #{$section}:first-child#{exclude-bleed-selector($bleed-top)} {
-    @include fluid-size(section-vertical);
-  }
-
-  // Last child spacing
-  > #{$section}:last-child#{exclude-bleed-selector($bleed-bottom)} {
-    @include fluid-size(section-vertical, margin-bottom);
-  }
-
-
-  // ---------------------------------------------------------------
-  // Spacing Combinations
-  // ---------------------------------------------------------------
-
-  // > #{$section}--foo + #{$section}--bar {
-
-  // }
 }

@@ -12,6 +12,15 @@ Reusable content container.
   }
 }
 
+@include pad-top {
+  @include fluid-size(section-vertical, padding-top);
+};
+
+@include pad-bottom {
+  @include fluid-size(section-vertical, padding-bottom);
+};
+
+
 .l-section {
 
 }
@@ -22,15 +31,49 @@ Reusable content container.
 
 
 // ---------------------------------------------------------------
-// Common Variants
+// Modifier - Max Width
 // ---------------------------------------------------------------
 
 .l-section--max {
   @include l-section-max;
 }
 
+
+// ---------------------------------------------------------------
+// Modifier - Padding
+// ---------------------------------------------------------------
+
+.l-section--pad-top {
+  @include pad-top;
+}
+
+.l-section--pad-bottom {
+  @include pad-bottom;
+}
+
 .l-section--pad-vert {
-  @include fluid-size(section-vertical, padding-top padding-bottom);
+  @include pad-top;
+  @include pad-bottom;
+}
+
+
+// ---------------------------------------------------------------
+// Modifier - Background Color
+// ---------------------------------------------------------------
+
+$section-bg-colors: (
+  default: color(white),
+  gray: color(gray)
+);
+
+@each $label, $color in $section-bg-colors {
+  .l-section--bg-#{$label} {
+    background-color: $color;
+
+    &.l-section--pad-bottom + &.l-section--pad-top {
+      @include fluid-size(none, padding-top);
+    }
+  }
 }
 
 
@@ -38,6 +81,6 @@ Reusable content container.
 // Unique styles
 // ---------------------------------------------------------------
 
-// .l-section--foo {
+// .l-section--foo + .l-section--bar {
 
 // }

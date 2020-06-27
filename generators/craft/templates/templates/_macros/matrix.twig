@@ -9,22 +9,38 @@
 {# Block Classes
 {# ------------------------------------------------------------------ #}
 {#
-  {{ matrix.blockClasses(block) }}
+  {{ matrix.blockClasses(handle, block) }}
 
   Returns an array of modifier classes for a given matrix block
 
+  @param handle (string)             - [required] Handle for the block
   @param block (Matrix Block)        - [required] The block to examine
 #}
 
-{% macro blockClasses(block) %}
+{% macro blockClasses(handle, block) %}
   {% set classes = [] %}
 
-  {% if block.type == 'foo' %}
-    {#
-    {% if block.backgroundColor.value != 'white' %}
-      {% set classes = classes | merge(['bleed']) %}
+  {# All padding #}
+  {% if handle not in [] %}
+    {# Top padding #}
+    {% if handle not in [] %}
+      {% set classes = classes | merge(['pad-top']) %}
     {% endif %}
-    #}
+
+    {# Bottom padding #}
+    {% if handle not in [] %}
+      {% set classes = classes | merge(['pad-bottom']) %}
+    {% endif %}
+  {% endif %}
+
+  {# Background Color #}
+  {% set hasGrayBg = block.backgroundColor ??? false and block.backgroundColor == 'gray' %}
+  {% if
+    handle in [] or hasGrayBg
+  %}
+    {% set classes = classes | merge(['bg-gray']) %}
+  {% else %}
+    {% set classes = classes | merge(['bg-default']) %}
   {% endif %}
 
   {% return classes %}
