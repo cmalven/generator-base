@@ -12,11 +12,11 @@ Reusable content container.
   }
 }
 
-@include pad-top {
+@mixin pad-top {
   @include fluid-size(section-vertical, padding-top);
 }
 
-@include pad-bottom {
+@mixin pad-bottom {
   @include fluid-size(section-vertical, padding-bottom);
 }
 
