@@ -36,6 +36,10 @@ return [
               'label' => 'PNG',
               'extensions' => ['png'],
           ],
+          'mp4' => [
+              'label' => 'MP4',
+              'extensions' => ['mp4'],
+          ],
       ],
 
       // MISC
