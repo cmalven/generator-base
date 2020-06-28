@@ -11,7 +11,7 @@ if (!('object-fit' in document.createElement('a').style)) {
 }
 
 <%_ } _%>
-import Transitioner from './modules/Transitioner';
+import { Transitioner } from './modules/Transitioner';
 
 //
 //   Global App Variable

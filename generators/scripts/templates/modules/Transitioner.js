@@ -18,7 +18,8 @@ const Transitioner = function(options) {
   //
   //////////////////////////////////////////////////////////////////////
 
-  // No Private Vars
+  let observers = [];
+
 
   //
   //   Public Vars
@@ -78,7 +79,7 @@ const Transitioner = function(options) {
         ? customRootMargin
         : '0px 0px -70px 0px';
 
-      addIntersection(
+      const observer = addIntersection(
         $(element).get(),
         {
           rootMargin: rootMargin,
@@ -93,7 +94,16 @@ const Transitioner = function(options) {
           },
         }
       );
+
+      observers.push(observer);
     });
+  };
+
+  self.destroyObservers = () => {
+    observers.forEach(observer => {
+      observer.disconnect();
+    });
+    observers = [];
   };
 
 

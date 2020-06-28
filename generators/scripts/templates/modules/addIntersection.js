@@ -99,7 +99,9 @@ export default (el, options = {}) => {
     el.forEach(element => {
       observer.observe(element);
     });
+
+    return observer;
   };
 
-  add();
+  return add();
 };
