@@ -4,13 +4,13 @@ Background Cover
 Force Image to Cover Background of it's Parent
 */
 
-@mixin bg-cover {
+@mixin bg-cover($position: 50% 50%) {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
-  font-family: 'object-fit: cover', serif;
+  object-position: $position;
+  font-family: 'object-fit: cover; object-position: #{$position};';
 }

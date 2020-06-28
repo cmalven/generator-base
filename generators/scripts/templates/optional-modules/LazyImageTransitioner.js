@@ -14,8 +14,8 @@ const LazyImageTransitioner = function(options) {
   //////////////////////////////////////////////////////////////////////
 
   let self = Object.assign({}, {
-    selector: '.image--wipe',
-    visibleClass: 'is-visible',
+    selector: '.image-wipe',
+    readyClass: 'is-ready',
   }, options);
 
 
@@ -29,12 +29,17 @@ const LazyImageTransitioner = function(options) {
   };
 
   const _addEventListeners = () => {
+    // Handle a lazysizes loaded image
     document.addEventListener('lazyloaded', function(evt) {
-      const $parentEl = $(evt.target).closest(self.selector);
-      if ($parentEl) {
-        $parentEl.addClass(self.visibleClass);
-      }
+      _makeParentVisible(evt);
     });
+  };
+
+  const _makeParentVisible = (evt) => {
+    const $parentEl = $(evt.target).closest(self.selector);
+    if ($parentEl) {
+      $parentEl.addClass(self.readyClass);
+    }
   };
 
 

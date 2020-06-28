@@ -28,6 +28,7 @@ const Transitioner = function(options) {
   let self = Object.assign({}, {
     visibleClass: 'is-visible',
     transitionImmediatelySelector: '',
+    dataRootMarginAttr: 'data-transitioner-root-margin',
   }, options);
 
 
@@ -59,16 +60,7 @@ const Transitioner = function(options) {
   //////////////////////////////////////////////////////////////////////
 
   self.add = (els, transitionImmediately = false) => {
-    const selectors = [
-      '.h-transition',
-      '.h-transition-fade',
-      '.h-transition-up',
-      '.h-transition-down',
-      '.h-transition-left',
-      '.h-transition-right',
-      '.h-transition-animate',
-      '.h-transition-stagger-children',
-    ].join(', ');
+    const selectors = getTransitionEls().join(', ');
 
     if (typeof els === 'undefined') {
       els = document.querySelector('body');
@@ -80,10 +72,16 @@ const Transitioner = function(options) {
         return element.classList.add(self.visibleClass);
       }
 
+      // Determine the root margin
+      const customRootMargin = element.getAttribute(self.dataRootMarginAttr);
+      const rootMargin = customRootMargin
+        ? customRootMargin
+        : '0px 0px -70px 0px';
+
       addIntersection(
         $(element).get(),
         {
-          rootMargin: '0px 0px -50px 0px',
+          rootMargin: rootMargin,
           inHandler: (el, direction) => {
             element.classList.add(self.visibleClass);
 
@@ -110,4 +108,22 @@ const Transitioner = function(options) {
   return self;
 };
 
-export default Transitioner;
+const getTransitionEls = () => {
+  return [
+    '.h-transition',
+    '.h-transition-fade',
+    '.h-transition-up',
+    '.h-transition-up-less',
+    '.h-transition-down',
+    '.h-transition-left',
+    '.h-transition-right',
+    '.h-transition-scale',
+    '.h-transition-animate',
+    '.h-transition-stagger-children',
+  ];
+};
+
+export {
+  Transitioner,
+  getTransitionEls,
+};

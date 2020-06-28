@@ -281,7 +281,11 @@ style="background-image: url({{ imageUrl }});"
 {%- macro wrap(image, asset, options = {}) -%}
   {% import _self as image %}
 {% set wrappedImg %}
-<div class="image {{ options.wrapperClasses ?? '' }}">
+<div class="image {{ options.wrapperClasses ?? '' }}"
+  {% if asset.dominantColor is defined and asset.dominantColor | length %}
+    style="background-color: {{ asset.dominantColor }};"
+  {% endif %}
+>
   <div class="image__inner">
     {{ image | raw }}
     <noscript>
