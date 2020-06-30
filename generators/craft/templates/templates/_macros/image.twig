@@ -282,7 +282,9 @@ style="background-image: url({{ imageUrl }});"
   {% import _self as image %}
 {% set wrappedImg %}
 <div class="image {{ options.wrapperClasses ?? '' }}"
-  {% if asset.dominantColor is defined and asset.dominantColor | length %}
+  {% if asset.dominantColor is defined and asset.dominantColor | length
+    and asset.extension | lower not in ['png', 'gif', 'svg']
+  %}
     style="background-color: {{ asset.dominantColor }};"
   {% endif %}
 >
