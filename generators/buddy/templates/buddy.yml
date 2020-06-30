@@ -221,6 +221,7 @@
     port: "22"
     env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
     authentication_mode: "ENV_KEY"
+    arguments: "--exclude=/public_html"
     archive: true
     delete_extra_files: true
     recursive: true
@@ -296,11 +297,11 @@
     - " cp -dR deploy-cache releases/$BUDDY_EXECUTION_REVISION;"
     - "fi"
     - "echo \"Linking current to revision: $BUDDY_EXECUTION_REVISION\""
-    - "rm -f current"
+    - "rm -rf current"
     - "ln -s releases/$BUDDY_EXECUTION_REVISION current"
     - "echo \"Linking web root to current\""
     - "rm -f public_html"
-    - "ln -s current public_html"
+    - "ln -s \"$(realpath current)\" public_html"
     - "echo \"Linking .env\""
     - "rm -f current/.env"
     - "ln -s \"$(realpath shared/.env)\" current"
@@ -310,7 +311,7 @@
     - "echo \"Linking web to public\""
     - "cd current"
     - "rm -rf public"
-    - "ln -s web public"
+    - "ln -s \"$(realpath web)\" public"
     - "chmod +x ./craft"
     - "echo \"Running Craft migrations\""
     - "./craft migrate/all"
@@ -356,7 +357,7 @@
     id: 376005
     description: ""
   - key: "server_path"
-    value: "/storage/avXXXXX/www"
+    value: "/storage/avXXXXX/www/public_html"
     id: 376008
     description: ""
   - key: "server_user"
