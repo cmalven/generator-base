@@ -138,10 +138,14 @@ style="background-image: url({{ imageUrl }});"
   {# Get the image params #}
   {% set params = image.getParams(options.transform) %}
 
+  {# Get scaled width and height #}
+  {% set scaledWidth = params.w * sizeMultiplier %}
+  {% set scaledHeight = params.h * sizeMultiplier %}
+
   {# Get updated params #}
   {% set transformParams = {
-    width: params.w * sizeMultiplier,
-    height: params.h * sizeMultiplier,
+    width: scaledWidth < asset.width ? scaledWidth : asset.width,
+    height: scaledHeight < asset.height ? scaledHeight : asset.height,
     mode: params.fit,
     quality: params.q
   } %}
