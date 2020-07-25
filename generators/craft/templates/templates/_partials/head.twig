@@ -10,15 +10,15 @@
 {# SEO #}
 {% hook 'seomaticRender' %}
 
-{# Add styling hook class to <html> if javascript enabled and not in a live preview #}
-{% set isLivePreview = craft.app.request.isLivePreview ? 'true' : 'false' %}
+{# Add styling hook class to <html> if javascript enabled #}
 <script>
   var root = document.getElementsByTagName('html')[0];
   root.className += 'js';
+</script>
 
-  if (!{{ isLivePreview }}) {
-    root.className += ' not-live-preview';
-  };
+{# Set global variable for Craft devMode #}
+<script>
+  window.devMode = {{ craft.config.devMode ? 'true' : 'false' }};
 </script>
 
 {# Main stylesheet #}
