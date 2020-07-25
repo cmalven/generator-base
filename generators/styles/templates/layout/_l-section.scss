@@ -62,16 +62,18 @@ Reusable content container.
 // ---------------------------------------------------------------
 
 $section-bg-colors: (
-  default: color(white),
+  default: false,
   gray: color(gray)
 );
 
 @each $label, $color in $section-bg-colors {
   .l-section--bg-#{$label} {
-    background-color: $color;
+    @if $color {
+      background-color: $color;
+    }
 
     &.l-section--pad-bottom + &.l-section--pad-top {
-      @include fluid-size(none, padding-top);
+      @include fluid-size(section-vertical, margin-top, $negative: true);
     }
   }
 }
