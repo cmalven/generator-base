@@ -34,11 +34,11 @@
   {% endif %}
 
   {# Background Color #}
-  {% set hasGrayBg = block.backgroundColor ??? false and block.backgroundColor == 'gray' %}
+  {% set hasBgColor = block.backgroundColor ??? false and block.backgroundColor.value != 'white' %}
   {% if
-    handle in [] or hasGrayBg
+    handle in [] or hasBgColor
   %}
-    {% set classes = classes | merge(['bg-gray']) %}
+    {% set classes = classes | merge(['bg-' ~ block.backgroundColor.value]) %}
   {% else %}
     {% set classes = classes | merge(['bg-default']) %}
   {% endif %}
