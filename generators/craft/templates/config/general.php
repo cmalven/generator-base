@@ -47,7 +47,6 @@ return [
       'phpMaxMemoryLimit'                  => getenv('PHP_MAX_MEMORY_LIMIT'),
       'overridePhpSessionLocation'         => getenv('OVERRIDE_PHP_SESSION_LOCATION'),
       'allowUpdates'                       => false,
-      'useProjectConfigFile'               => false,
 
       // URLS
       'omitScriptNameInUrls'               => true,
@@ -70,10 +69,12 @@ return [
     ],
 
     'staging' => [
-
+        // Uncomment below if using project config
+        // 'allowAdminChanges'                 => false,
     ],
 
     'production' => [
-
+        // Uncomment below if using project config
+        // 'allowAdminChanges'                 => false,
     ],
 ];
