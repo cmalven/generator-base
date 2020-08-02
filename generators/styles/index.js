@@ -19,22 +19,22 @@ module.exports = class extends Generator {
           {
             name: 'Sass MQ',
             value: 'sass-mq',
-            checked: true
+            checked: true,
           },
           {
             name: 'Sass Toolkit',
             value: '@malven/sass-toolkit',
-            checked: true
-          }
+            checked: true,
+          },
         ],
-        default: []
+        default: [],
       },
       {
         type: 'confirm',
         name: 'includeObjectsLayouts',
         message: 'Would you like to include default object and layout styles?',
-        default: true
-      }
+        default: true,
+      },
     ];
 
     return this.prompt(prompts).then(props => {
@@ -48,7 +48,7 @@ module.exports = class extends Generator {
       this.templatePath('main.scss'),
       this.destinationPath('src/styles/main.scss'),
       {
-        deps: this.props.deps
+        deps: this.props.deps,
       }
     );
 
@@ -56,7 +56,7 @@ module.exports = class extends Generator {
       this.templatePath('base/*'),
       this.destinationPath('src/styles/base'),
       {
-        deps: this.props.deps
+        deps: this.props.deps,
       }
     );
 
@@ -81,7 +81,7 @@ module.exports = class extends Generator {
     this.log(chalk.yellow('\nInstalling style-related dependencies…'));
     const deps = this.props.deps.concat([
       'reset.css',
-      'normalize.css'
+      'normalize.css',
     ]);
     this.npmInstall(deps, { silent: true });
   }
