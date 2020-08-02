@@ -33,16 +33,16 @@ module.exports = class extends Generator {
     );
 
     this.fs.copy(
-      this.templatePath('.babelrc'),
-      this.destinationPath('.babelrc')
+      this.templatePath('babel.config.json'),
+      this.destinationPath('babel.config.json')
     );
 
     this.fs.copyTpl(
       this.templatePath('gulp/tasks'),
       this.destinationPath('gulp/tasks'), this.options, {}, {
         globOptions: {
-          ignore: this.options.useTwig ? [] : ['**/twig.js']
-        }
+          ignore: this.options.useTwig ? [] : ['**/twig.js'],
+        },
       }
     );
 
@@ -125,7 +125,7 @@ module.exports = class extends Generator {
       'strip-ansi',
       'uglifyjs-webpack-plugin',
       'undertaker-forward-reference',
-      'webpack-bundle-analyzer'
+      'webpack-bundle-analyzer',
     ];
 
     // Add twig if desired

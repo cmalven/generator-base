@@ -59,7 +59,7 @@
     recursive: true
     compress: true
     deployment_excludes:
-    - ".babelrc"
+    - "babel.config.json"
     - ".browserslistrc"
     - ".dockerignore"
     - ".editorconfig"
@@ -227,7 +227,7 @@
     recursive: true
     compress: true
     deployment_excludes:
-    - ".babelrc"
+    - "babel.config.json"
     - ".browserslistrc"
     - ".dockerignore"
     - ".editorconfig"
