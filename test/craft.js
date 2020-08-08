@@ -29,6 +29,11 @@ describe('generator-base:craft', () => {
     it('configures craft', () => {
       assert.fileContent('config/general.php', "getenv('SITE_URL')");
       assert.fileContent('config/db.php', "getenv('DB_SERVER')");
+      assert.file('config/project/.gitkeep');
+    });
+
+    it('adds empty storage directory', () => {
+      assert.file('storage/.gitkeep');
     });
 
     it('adds templates', () => {
