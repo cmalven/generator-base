@@ -116,7 +116,7 @@
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
-    - "./craft clear-caches/template-caches"
+    - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
     run_as_script: true
     shell: "BASH"
@@ -284,7 +284,7 @@
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
-    - "./craft clear-caches/template-caches"
+    - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
     run_as_script: true
     shell: "BASH"
