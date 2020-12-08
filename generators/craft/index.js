@@ -304,7 +304,7 @@ module.exports = class extends Generator {
 
     this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at ' + chalk.cyan(`/admin/settings/plugins`) + ' after you install Craft, or via the command line using the command below:'));
     this.closingStatements.push(chalk.cyan(this.props.craftPlugins.map(plugin => {
-      return `./craft install/plugin ` + plugins.find(obj => obj.src === plugin).handle;
+      return `./craft plugin/install ` + plugins.find(obj => obj.src === plugin).handle;
     }).join(' && ')));
 
     const that = this;
