@@ -1,6 +1,8 @@
-// ---------------------------------------------------------------
-// Placeholder Color
-// ---------------------------------------------------------------
+/*
+Placeholder Color
+
+Sets an alternative placeholder color for inputs.
+*/
 
 @mixin placeholder-color($color: #000) {
   &::-webkit-input-placeholder { /* WebKit, Blink, Edge */

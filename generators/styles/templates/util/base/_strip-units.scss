@@ -1,9 +1,8 @@
-// ===============================================================
-// Strip Units
-// ===============================================================
 /*
-  Strips the units from a value. e.g. 12px -> 12
-  Used by the px-to-rem and px-to-em mixins
+Strip Units
+
+Strips the units from a value. e.g. 12px -> 12
+Used by the px-to-rem and px-to-em mixins
 */
 
 @function strip-units($val) {

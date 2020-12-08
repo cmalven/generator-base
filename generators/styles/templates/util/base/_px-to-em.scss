@@ -1,10 +1,9 @@
-// ===============================================================
-// PX-to-EM
-// ===============================================================
 /*
-  Convert pixels to ems
-  eg. for a relational value of 12px write em(12) when the paren
-  if the parent is another value say 24px write em(12, 24)
+px-to-em
+
+Convert pixels to ems
+eg. for a relational value of 12px write em(12) when the paren
+if the parent is another value say 24px write em(12, 24)
 */
 
 $em-base: 16px !default;

@@ -1,6 +1,8 @@
-// ---------------------------------------------------------------
-// Responsive SVG
-// ---------------------------------------------------------------
+/*
+Responsive SVG
+
+Ensures that a child SVG will grow responsively.
+*/
 
 @mixin responsive-svg($ratio: 1) {
   position: relative;
