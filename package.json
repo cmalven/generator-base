@@ -27,10 +27,13 @@
     "yeoman-test": "^2.6.0"
   },
   "dependencies": {
+    "@emmetio/expand-abbreviation": "^0.7.3",
+    "capital-case": "^1.0.4",
     "chalk": "^4.1.0",
     "deep-extend": "^0.6.0",
     "del": "^5.1.0",
     "download": "^8.0.0",
+    "emmet": "^2.2.1",
     "eslint-plugin-ejs": "0.0.2",
     "guid": "^0.0.12",
     "install": "^0.13.0",
@@ -38,6 +41,7 @@
     "lodash": "^4.17.15",
     "mocha-parallel-tests": "^2.3.0",
     "npm": "^6.14.5",
+    "pascalcase": "^1.0.0",
     "watch": "^1.0.2",
     "yeoman-generator": "^4.10.1",
     "yosay": "^2.0.2"
