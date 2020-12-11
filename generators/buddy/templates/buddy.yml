@@ -116,6 +116,7 @@
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
+    - "./craft project-config/apply"
     - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
     run_as_script: true
@@ -284,6 +285,7 @@
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
+    - "./craft project-config/apply"
     - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
     run_as_script: true
