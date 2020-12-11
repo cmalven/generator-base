@@ -23,7 +23,7 @@ module.exports = class extends Generator {
             value: 'twig-include',
           },
           {
-            name: 'Twig Embed (Twig embed, SCSS object)',
+            name: 'Twig Embed (Twig embed, SCSS layout)',
             value: 'twig-embed',
           },
         ],
