@@ -8,13 +8,13 @@ describe('generator-base:eslint', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/eslint'))
         .withOptions({
-          skipInstall: false
+          skipInstall: false,
         });
     });
 
     it('creates files', () => {
       assert.file([
-        '.eslintrc'
+        '.eslintrc',
       ]);
     });
   });

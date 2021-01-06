@@ -7,7 +7,7 @@ describe('generator-base:buddy', () => {
   describe('default', () => {
     const promptAnswers = {
       projectTitle: 'Test Project',
-      projectName: 'test-project'
+      projectName: 'test-project',
     };
 
     before(() => {
@@ -17,7 +17,7 @@ describe('generator-base:buddy', () => {
 
     it('creates files', () => {
       assert.file([
-        'buddy.yml'
+        'buddy.yml',
       ]);
 
       assert.fileContent('buddy.yml', `title: "Buddy - ${promptAnswers.projectTitle} Production"`);

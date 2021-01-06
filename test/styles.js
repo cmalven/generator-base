@@ -8,7 +8,7 @@ describe('generator-base:styles', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
-          deps: []
+          deps: [],
         });
     });
 
@@ -16,7 +16,7 @@ describe('generator-base:styles', () => {
       assert.file([
         'src/styles/main.scss',
         'src/styles/base',
-        'src/styles/util'
+        'src/styles/util',
       ]);
     });
 
@@ -30,7 +30,7 @@ describe('generator-base:styles', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
-          deps: ['sass-mq']
+          deps: ['sass-mq'],
         });
     });
 
@@ -44,7 +44,7 @@ describe('generator-base:styles', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
-          deps: ['@malven/sass-toolkit']
+          deps: ['@malven/sass-toolkit'],
         });
     });
 
@@ -61,7 +61,7 @@ describe('generator-base:styles', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
-          includeObjectsLayouts: false
+          includeObjectsLayouts: false,
         });
     });
 
