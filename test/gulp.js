@@ -16,7 +16,7 @@ describe('generator-base:gulp', () => {
           distCopyPath: 'web/',
           serverBaseDir: 'dist/',
           useProxy: false,
-          useTwig: false
+          useTwig: false,
         });
     });
 
@@ -27,7 +27,7 @@ describe('generator-base:gulp', () => {
         'gulp/tasks',
         'src/images',
         'gulp/tasks/base.js',
-        'gulp/tasks/build.js'
+        'gulp/tasks/build.js',
       ]);
     });
 
@@ -41,7 +41,7 @@ describe('generator-base:gulp', () => {
 
     it("doesn't create twig build files", () => {
       assert.noFile([
-        'gulp/tasks/twig.js'
+        'gulp/tasks/twig.js',
       ]);
       assert.noFileContent('gulp/tasks/base.js', "'twig',");
       assert.noFileContent('gulp/tasks/watch.js', "runSequence('twig'");
@@ -65,21 +65,16 @@ describe('generator-base:gulp', () => {
           distCopyPath: 'src/templates/web/',
           serverBaseDir: 'dist/',
           useProxy: false,
-          useTwig: true
+          useTwig: true,
         });
     });
 
     it('creates twig build files', () => {
       assert.file([
-        'gulp/tasks/twig.js'
+        'gulp/tasks/twig.js',
       ]);
       assert.fileContent('gulp/tasks/base.js', `'twig',`);
       assert.fileContent('gulp/tasks/watch.js', `gulp.series('twig', 'notify'))`);
-    });
-
-    it('creates twig templates', () => {
-      assert.file('src/templates/index.twig');
-      assert.file('src/templates/_layout.twig');
     });
   });
 });

@@ -12,7 +12,7 @@ module.exports = [
     message: 'What is the title of this project?',
     validate: value => {
       return _isEmpty(value) ? 'Please enter a project title.' : true;
-    }
+    },
   },
   {
     type: 'input',
@@ -23,7 +23,7 @@ module.exports = [
     },
     default(answers) {
       return _kebab(answers.projectTitle);
-    }
+    },
   },
   {
     type: 'input',
@@ -31,17 +31,6 @@ module.exports = [
     message: 'What is a 1 sentence description of this project?',
     validate: value => {
       return _isEmpty(value) ? 'Please enter a project description.' : true;
-    }
+    },
   },
-
-  //
-  //   Twig for templating?
-  //
-  //////////////////////////////////////////////////////////////////////
-  {
-    type: 'confirm',
-    name: 'useTwig',
-    message: 'Add support for twig template engine?',
-    default: false
-  }
 ];

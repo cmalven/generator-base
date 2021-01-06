@@ -23,7 +23,7 @@ module.exports = class extends Generator {
         authorName: 'Malven Co.',
         authorEmail: 'chris@malven.co',
         authorUrl: 'https://malven.co',
-        githubName: 'cmalven'
+        githubName: 'cmalven',
       });
 
       // To access props use this.props.someAnswer;
@@ -56,31 +56,16 @@ module.exports = class extends Generator {
   }
 
   build() {
-    let gulpOptions = {};
-
-    if (this.props.useTwig) {
-      gulpOptions = {
-        useTwig: true,
-        publicDistPath: '/',
-        rootDistPath: 'dist',
-        templateSrc: 'src/templates/',
-        templateDist: 'dist/',
-        distCopyPath: 'src/templates/web/',
-        serverBaseDir: 'dist/',
-        useProxy: false
-      };
-    } else {
-      gulpOptions = {
-        useTwig: false,
-        publicDistPath: '/',
-        rootDistPath: 'dist',
-        templateSrc: './',
-        templateDist: './',
-        distCopyPath: '// web/',
-        serverBaseDir: './',
-        useProxy: false
-      };
-    }
+    let gulpOptions = {
+      useTwig: true,
+      publicDistPath: '/',
+      rootDistPath: 'dist',
+      templateSrc: 'src/templates/',
+      templateDist: 'dist/',
+      distCopyPath: 'src/templates/web/',
+      serverBaseDir: 'dist/',
+      useProxy: false,
+    };
 
     // Currently only supports gulp for building
     this.composeWith(require.resolve('../gulp'), gulpOptions);
@@ -88,6 +73,13 @@ module.exports = class extends Generator {
 
   writing() {
     this.log(chalk.green('Generating static app files...'));
+
+    // Twig
+    this.fs.copyTpl(
+      this.templatePath('src/templates'),
+      this.destinationPath('src/templates'),
+      this.props
+    );
 
     // Git
     if (this.fs.exists('.gitignore')) {
@@ -99,15 +91,6 @@ module.exports = class extends Generator {
       this.fs.copy(
         this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
-      );
-    }
-
-    // HTML
-    if (!this.props.useTwig) {
-      this.fs.copyTpl(
-        this.templatePath('index.html'),
-        this.destinationPath('index.html'),
-        extend(this.props, { rootDistPath: 'dist' })
       );
     }
 

@@ -9,7 +9,6 @@ describe('generator-base:static', () => {
       projectTitle: 'Static Project',
       projectName: 'static-project',
       projectDescription: 'Static project description',
-      useTwig: false
     };
 
     before(() => {
@@ -21,7 +20,7 @@ describe('generator-base:static', () => {
     it('Sets up git', () => {
       assert.file([
         '.gitignore',
-        '.git/'
+        '.git/',
       ]);
     });
 
@@ -42,16 +41,32 @@ describe('generator-base:static', () => {
       assert.file('src/styles/');
     });
 
-    it('creates index.html', () => {
-      assert.file('index.html');
+    it('creates Twig templates', () => {
+      assert.file('src/templates/index.twig');
+      assert.file('src/templates/_layout.twig');
+      assert.fileContent('src/templates/_partials/head.twig', `siteName: 'Static Project'`);
+      assert.fileContent('src/templates/_partials/head.twig', `title: 'Static Project'`);
+      assert.fileContent('src/templates/_partials/head.twig', `description: 'Static project description'`);
+      assert.fileContent('src/templates/_partials/head.twig', `url: 'https://static-project.com'`);
+    });
+
+    it('sets favicon data', () => {
+      assert.fileContent('src/templates/web/favicons/manifest.json', `"name": "Static Project"`);
     });
 
     it('configures Gulp correctly', () => {
       assert.file(['gulpfile.js', 'gulp']);
       assert.fileContent('gulp/config.js', `dist: 'dist/'`);
-      assert.fileContent('gulp/config.js', `templateSrc: './'`);
-      assert.fileContent('gulp/config.js', `useProxy: false`);
-      assert.fileContent('gulp/config.js', `serverBaseDir: './'`);
+      assert.fileContent('gulp/config.js', `styleSrc: 'src/styles/'`);
+      assert.fileContent('gulp/config.js', `styleDist: 'dist/styles/'`);
+      assert.fileContent('gulp/config.js', `scriptSrc: 'src/scripts/'`);
+      assert.fileContent('gulp/config.js', `scriptDist: 'dist/scripts/'`);
+      assert.fileContent('gulp/config.js', `scriptPublic: '/scripts/'`);
+      assert.fileContent('gulp/config.js', `templateSrc: 'src/templates/'`);
+      assert.fileContent('gulp/config.js', `templateDist: 'dist/'`);
+      assert.fileContent('gulp/config.js', `imageSrc: 'src/images/'`);
+      assert.fileContent('gulp/config.js', `imageDist: 'dist/images/'`);
+      assert.fileContent('gulp/config.js', `serverBaseDir: 'dist/'`);
     });
   });
 });

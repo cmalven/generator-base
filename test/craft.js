@@ -102,5 +102,9 @@ describe('generator-base:craft', () => {
       assert.fileContent('gulp/config.js', `useProxy: true`);
       assert.fileContent('gulp/config.js', `serverBaseDir: './'`);
     });
+
+    it('sets favicon data', () => {
+      assert.fileContent('web/favicons/manifest.json', `"name": "Test Project Craft"`);
+    });
   });
 });
