@@ -1,9 +1,5 @@
 # Craft 3
 # ---------------------------
-/craft/plugins/*
-/craft/rev-manifest.json
-/craft/storage/*
-!/craft/storage/.htaccess
 /storage/*
 /templates/_svg/**/*
 
