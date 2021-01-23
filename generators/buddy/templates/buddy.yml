@@ -3,6 +3,7 @@
   ref_name: "master"
   ref_type: "BRANCH"
   target_site_url: "http://<%= projectName %>-staging.malven.co"
+  fetch_all_refs: true
   trigger_condition: "ALWAYS"
   actions:
   - action: "Execute: build"
@@ -20,9 +21,10 @@
     - "# Popular use case: install packages required by your Run Commands"
     - "# Changing the image in the Environment tab will run the commands again"
     - ""
-    mount_filesystem_path: "/buddy/<%= projectName %>"
-    shell: "SH"
+    volume_mappings:
+    - "/:/buddy/<%= projectName %>"
     trigger_condition: "ALWAYS"
+    shell: "SH"
   - action: "Execute: composer install"
     type: "BUILD"
     working_directory: "/buddy/<%= projectName %>"
@@ -42,9 +44,10 @@
     - "docker-php-ext-install gd"
     - "apt-get update && apt-get install git -y"
     - ""
-    mount_filesystem_path: "/buddy/<%= projectName %>"
-    shell: "SH"
+    volume_mappings:
+    - "/:/buddy/<%= projectName %>"
     trigger_condition: "ALWAYS"
+    shell: "SH"
   - action: "Rsync Files"
     type: "RSYNC"
     local_path: "/"
@@ -52,7 +55,7 @@
     login: "${server_user}"
     host: "${server_host}"
     port: "22"
-    env_key: "secure!uhJC5TiOOBBs101zu87x3g=="
+    env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
     authentication_mode: "ENV_KEY"
     archive: true
     delete_extra_files: true
@@ -112,64 +115,60 @@
     login: "${server_user}"
     host: "${server_host}"
     port: "22"
-    env_key: "secure!uhJC5TiOOBBs101zu87x3g=="
+    env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
     - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
+    trigger_condition: "ALWAYS"
     run_as_script: true
     shell: "BASH"
-    trigger_condition: "ALWAYS"
   - action: "Send notification to Pushover"
     type: "PUSHOVER"
     title: "Buddy - <%= projectTitle %> Staging"
-    content: "${execution.pipeline.name} execution #${execution.id}"
-    link: "${execution.html_url}"
+    content: "$BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID"
+    link: "$BUDDY_EXECUTION_URL"
     link_title: "Show execution details"
     device: "desktop-imac"
     priority: "HIGH"
     trigger_condition: "ALWAYS"
-    integration_id: 20934
+    integration_hash: "5dde343b422f5a6e5bb6ab1a"
   - action: "Send notification to slack channel on failure"
     type: "SLACK"
     trigger_time: "ON_FAILURE"
-    content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>"
+    blocks: "[{\"type\":\"section\",\"fields\":[{\"type\":\"mrkdwn\",\"text\":\"*Failed execution:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"},{\"type\":\"mrkdwn\",\"text\":\"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"},{\"type\":\"mrkdwn\",\"text\":\"*Branch:* $BUDDY_EXECUTION_BRANCH\"},{\"type\":\"mrkdwn\",\"text\":\"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"}]}]"
     channel: "D4BAU65FF"
-    attachments:
-    - "{\"fallback\":\"${execution.pipeline.name} execution #${execution.id}\",\"color\":\"danger\",\"fields\":[{\"title\":\"Failed execution\",\"value\":\"<${execution.html_url}|Execution #${execution.id} ${execution.comment}>\",\"short\":true},{\"title\":\"Pipeline\",\"value\":\"<${execution.pipeline.html_url}|${execution.pipeline.name}>\",\"short\":true},{\"title\":\"Branch\",\"value\":\"${execution.branch.name}\",\"short\":true},{\"title\":\"Project\",\"value\":\"<${project.html_url}|${project.name}>\",\"short\":true}]}"
+    channel_name: "Personal"
     trigger_condition: "ALWAYS"
-    integration_id: 10282
+    integration_hash: "5dde3439422f5a6e5bb68514"
   - action: "Send notification to slack channel on success"
     type: "SLACK"
     trigger_time: "ON_BACK_TO_SUCCESS"
-    content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>"
+    blocks: "[{\"type\":\"section\",\"fields\":[{\"type\":\"mrkdwn\",\"text\":\"*Successful execution:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"},{\"type\":\"mrkdwn\",\"text\":\"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"},{\"type\":\"mrkdwn\",\"text\":\"*Branch:* $BUDDY_EXECUTION_BRANCH\"},{\"type\":\"mrkdwn\",\"text\":\"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"}]}]"
     channel: "D4BAU65FF"
-    attachments:
-    - "{\"fallback\":\"${execution.pipeline.name} execution #${execution.id}\",\"color\":\"good\",\"fields\":[{\"title\":\"Successful execution\",\"value\":\"<${execution.html_url}|Execution #${execution.id} ${execution.comment}>\",\"short\":true},{\"title\":\"Pipeline\",\"value\":\"<${execution.pipeline.html_url}|${execution.pipeline.name}>\",\"short\":true},{\"title\":\"Branch\",\"value\":\"${execution.branch.name}\",\"short\":true},{\"title\":\"Project\",\"value\":\"<${project.html_url}|${project.name}>\",\"short\":true}]}"
+    channel_name: "Personal"
     trigger_condition: "ALWAYS"
-    integration_id: 10282
+    integration_hash: "5dde3439422f5a6e5bb68514"
   variables:
   - key: "server_host"
     value: "104.236.66.159"
-    id: 153177
-    settable: true
-    description: ""
+    settable: false
   - key: "server_path"
     value: "/srv/users/serverpilot/apps/<%= projectName %>"
-    id: 153178
-    settable: true
-    description: ""
+    settable: false
   - key: "server_user"
     value: "serverpilot"
-    id: 153179
-    settable: true
-    description: ""
+    settable: false
 - pipeline: "Production"
   trigger_mode: "MANUAL"
   ref_name: "master"
   ref_type: "BRANCH"
+  priority: "NORMAL"
   target_site_url: "https://<%= projectName %>.com"
+  fetch_all_refs: true
   trigger_condition: "ALWAYS"
   actions:
   - action: "Frontend Build"
@@ -210,9 +209,10 @@
     - "docker-php-ext-install gd"
     - "apt-get update && apt-get install git -y"
     - ""
-    mount_filesystem_path: "/buddy/<%= projectName %>"
-    shell: "SH"
+    volume_mappings:
+    - "/:/buddy/<%= projectName %>"
     trigger_condition: "ALWAYS"
+    shell: "SH"
   - action: "Rsync Files"
     type: "RSYNC"
     local_path: "/"
@@ -220,7 +220,7 @@
     login: "${server_user}"
     host: "${server_host}"
     port: "22"
-    env_key: "secure!uhJC5TiOOBBs101zu87x3g=="
+    env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
     authentication_mode: "ENV_KEY"
     archive: true
     delete_extra_files: true
@@ -280,53 +280,47 @@
     login: "${server_user}"
     host: "${server_host}"
     port: "22"
-    env_key: "secure!uhJC5TiOOBBs101zu87x3g=="
+    env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
     - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
+    trigger_condition: "ALWAYS"
     run_as_script: true
     shell: "BASH"
-    trigger_condition: "ALWAYS"
   - action: "Send notification to Pushover"
     type: "PUSHOVER"
     title: "Buddy - <%= projectTitle %> Production"
-    content: "${execution.pipeline.name} execution #${execution.id}"
-    link: "${execution.html_url}"
+    content: "$BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID"
+    link: "$BUDDY_EXECUTION_URL"
     link_title: "Show execution details"
     device: "desktop-imac"
     priority: "HIGH"
     trigger_condition: "ALWAYS"
     integration_hash: "5dde343b422f5a6e5bb6ab1a"
-  - action: "Send notification to onebot channel on failure"
+  - action: "Send notification to slack channel on failure"
     type: "SLACK"
     trigger_time: "ON_FAILURE"
-    content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>"
+    blocks: "[{\"type\":\"section\",\"fields\":[{\"type\":\"mrkdwn\",\"text\":\"*Failed execution:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"},{\"type\":\"mrkdwn\",\"text\":\"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"},{\"type\":\"mrkdwn\",\"text\":\"*Branch:* $BUDDY_EXECUTION_BRANCH\"},{\"type\":\"mrkdwn\",\"text\":\"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"}]}]"
     channel: "D4BAU65FF"
-    attachments:
-    - "{\"fallback\":\"${execution.pipeline.name} execution #${execution.id}\",\"color\":\"danger\",\"fields\":[{\"title\":\"Failed execution\",\"value\":\"<${execution.html_url}|Execution #${execution.id} ${execution.comment}>\",\"short\":true},{\"title\":\"Pipeline\",\"value\":\"<${execution.pipeline.html_url}|${execution.pipeline.name}>\",\"short\":true},{\"title\":\"Branch\",\"value\":\"${execution.branch.name}\",\"short\":true},{\"title\":\"Project\",\"value\":\"<${project.html_url}|${project.name}>\",\"short\":true}]}"
+    channel_name: "Personal"
     trigger_condition: "ALWAYS"
     integration_hash: "5dde3439422f5a6e5bb68514"
-  - action: "Send notification to onebot channel on success"
+  - action: "Send notification to slack channel on success"
     type: "SLACK"
     trigger_time: "ON_BACK_TO_SUCCESS"
-    content: "[#${execution.id}] ${execution.pipeline.name} execution by <${invoker.html_url}|${invoker.name}>"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>"
+    blocks: "[{\"type\":\"section\",\"fields\":[{\"type\":\"mrkdwn\",\"text\":\"*Successful execution:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"},{\"type\":\"mrkdwn\",\"text\":\"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"},{\"type\":\"mrkdwn\",\"text\":\"*Branch:* $BUDDY_EXECUTION_BRANCH\"},{\"type\":\"mrkdwn\",\"text\":\"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"}]}]"
     channel: "D4BAU65FF"
-    attachments:
-    - "{\"fallback\":\"${execution.pipeline.name} execution #${execution.id}\",\"color\":\"good\",\"fields\":[{\"title\":\"Successful execution\",\"value\":\"<${execution.html_url}|Execution #${execution.id} ${execution.comment}>\",\"short\":true},{\"title\":\"Pipeline\",\"value\":\"<${execution.pipeline.html_url}|${execution.pipeline.name}>\",\"short\":true},{\"title\":\"Branch\",\"value\":\"${execution.branch.name}\",\"short\":true},{\"title\":\"Project\",\"value\":\"<${project.html_url}|${project.name}>\",\"short\":true}]}"
+    channel_name: "Personal"
     trigger_condition: "ALWAYS"
     integration_hash: "5dde3439422f5a6e5bb68514"
   variables:
   - key: "server_host"
     value: "XXX.XXX.XXX.XX"
-    id: 376005
-    description: ""
   - key: "server_path"
     value: "/storage/avXXXXX/www/public_html"
-    id: 376008
-    description: ""
   - key: "server_user"
     value: "avXXXXX"
-    id: 376007
-    description: ""
