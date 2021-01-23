@@ -138,9 +138,10 @@ module.exports = class extends Generator {
       this.props
     );
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('web/favicons'),
-      this.destinationPath('web/favicons')
+      this.destinationPath('web/favicons'),
+      this.props
     );
 
     this.fs.copyTpl(
@@ -163,6 +164,11 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('config/db.php'),
       this.destinationPath('config/db.php')
+    );
+
+    this.fs.copy(
+      this.templatePath('FauxTwigExtension.php'),
+      this.destinationPath('FauxTwigExtension.php')
     );
 
     this.fs.copy(

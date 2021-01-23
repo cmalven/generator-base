@@ -1,12 +1,9 @@
 require('dotenv').config();
 const config = require('../config');
 const gulp = require('gulp');
-var twig = require('gulp-twig');
-var twigMarkdown = require('twig-markdown');
-// const htmlmin = require('gulp-htmlmin');
-
-const Notifier = require('../utils/notifier')();
-const stripAnsi = require('strip-ansi');
+const twig = require('gulp-twig');
+const twigMarkdown = require('twig-markdown');
+const htmlmin = require('gulp-htmlmin');
 
 //
 //   Twig
@@ -19,7 +16,6 @@ Compiles templates using twig
 
 module.exports = gulp.task('twig', function() {
   function swallowError(error) {
-    Notifier.queue('twig', stripAnsi(error.toString()));
     console.log(error.toString()); // eslint-disable-line
     this.emit('end');
   }
@@ -27,7 +23,7 @@ module.exports = gulp.task('twig', function() {
   return gulp.src([
     config.paths.templateSrc + '**/[^_]*.twig',
     '!' + config.paths.templateSrc + '**/_*/[^_]*.twig',
-    '!' + config.paths.templateSrc + '**/_*/**/[^_]*.twig'
+    '!' + config.paths.templateSrc + '**/_*/**/[^_]*.twig',
   ])
     .pipe(twig({
       base: config.paths.templateSrc,
@@ -36,12 +32,15 @@ module.exports = gulp.task('twig', function() {
         // Anything defined in `content` will be available in Twig at `{{ content.foo }}`
         // You can also define additional keys that will be available in Twig.
         // For instance, `siteName: 'My Site'` would be available at `{{ siteName }}`
-        content: {}
+        content: {},
       },
-      extend: twigMarkdown
+      extend: (Twig) => {
+        // Add Markdown support
+        twigMarkdown(Twig);
+      },
     }))
     .on('error', swallowError)
-    // .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest(config.paths.templateDist))
     .pipe(global.browserSync.reload({ stream: true, once: true }));
 });

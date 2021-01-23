@@ -8,13 +8,13 @@ describe('generator-base:stylelint', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/stylelint'))
         .withOptions({
-          skipInstall: false
+          skipInstall: false,
         });
     });
 
     it('creates files', () => {
       assert.file([
-        '.stylelintrc'
+        '.stylelintrc',
       ]);
     });
   });

@@ -46,6 +46,10 @@ describe('generator-base:craft', () => {
       assert.file('web/favicons/favicon.ico');
     });
 
+    it('adds FauxTwigExtension', () => {
+      assert.file('FauxTwigExtension.php');
+    });
+
     it('installs plugins with composer', () => {
       assert.fileContent('composer.json', `"${promptAnswers.craftPlugins[0]}":`);
     });
@@ -97,6 +101,10 @@ describe('generator-base:craft', () => {
       assert.fileContent('gulp/config.js', `templateSrc: 'templates/'`);
       assert.fileContent('gulp/config.js', `useProxy: true`);
       assert.fileContent('gulp/config.js', `serverBaseDir: './'`);
+    });
+
+    it('sets favicon data', () => {
+      assert.fileContent('web/favicons/manifest.json', `"name": "Test Project Craft"`);
     });
   });
 });

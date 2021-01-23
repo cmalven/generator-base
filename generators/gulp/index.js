@@ -67,6 +67,7 @@ module.exports = class extends Generator {
       this.templatePath('src/images/svg/icon/gitkeep'),
       this.destinationPath('src/images/svg/icon/.gitkeep')
     );
+
     this.fs.copy(
       this.templatePath('src/images/svg/full/gitkeep'),
       this.destinationPath('src/images/svg/full/.gitkeep')
@@ -81,14 +82,6 @@ module.exports = class extends Generator {
       this.destinationPath('gulp/config.js'),
       this.options
     );
-
-    if (this.options.useTwig) {
-      this.fs.copyTpl(
-        this.templatePath('src/templates'),
-        this.destinationPath('src/templates'),
-        this.options
-      );
-    }
   }
 
   install() {
@@ -119,6 +112,7 @@ module.exports = class extends Generator {
       'gulp-svg-sprite',
       'jsonfile',
       'node-libs-browser',
+      'postcss',
       'postcss-import',
       'require-dir',
       'script-loader',

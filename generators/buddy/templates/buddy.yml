@@ -1,6 +1,6 @@
 - pipeline: "Staging"
   trigger_mode: "ON_EVERY_PUSH"
-  ref_name: "master"
+  ref_name: "main"
   ref_type: "BRANCH"
   target_site_url: "http://<%= projectName %>-staging.malven.co"
   fetch_all_refs: true
@@ -121,6 +121,7 @@
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
+    - "./craft project-config/apply"
     - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
     trigger_condition: "ALWAYS"
@@ -166,7 +167,7 @@
     settable: false
 - pipeline: "Production"
   trigger_mode: "MANUAL"
-  ref_name: "master"
+  ref_name: "main"
   ref_type: "BRANCH"
   priority: "NORMAL"
   target_site_url: "https://<%= projectName %>.com"
@@ -288,6 +289,7 @@
     authentication_mode: "ENV_KEY"
     commands:
     - "./craft migrate/all"
+    - "./craft project-config/apply"
     - "./craft invalidate-tags/template"
     - "./craft blitz/cache/refresh"
     trigger_condition: "ALWAYS"

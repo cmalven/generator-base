@@ -18,7 +18,7 @@ module.exports = class extends Generator {
         validate: value => {
           return isEmpty(value) ? 'Please enter a project title.' : true;
         },
-        default: options.projectTitle || 'My Project'
+        default: options.projectTitle || 'My Project',
       },
       {
         type: 'input',
@@ -29,8 +29,8 @@ module.exports = class extends Generator {
         },
         default(answers) {
           return options.projectName || kebab(answers.projectTitle);
-        }
-      }
+        },
+      },
     ]).then(props => {
       this.props = props;
     });
