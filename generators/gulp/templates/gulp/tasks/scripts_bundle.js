@@ -90,7 +90,7 @@ gulp.task('scripts:bundle', function(done) {
       splitChunks: {
         cacheGroups: {
           default: false,
-          vendors: false,
+          defaultVendors: false,
         },
       },
     },
