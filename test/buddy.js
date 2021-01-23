@@ -22,7 +22,7 @@ describe('generator-base:buddy', () => {
 
       assert.fileContent('buddy.yml', `title: "Buddy - ${promptAnswers.projectTitle} Production"`);
       assert.fileContent('buddy.yml', `title: "Buddy - ${promptAnswers.projectTitle} Staging"`);
-      assert.fileContent('buddy.yml', `mount_filesystem_path: "/buddy/${promptAnswers.projectName}"`);
+      assert.fileContent('buddy.yml', `working_directory: "/buddy/${promptAnswers.projectName}"`);
       assert.fileContent('buddy.yml', `target_site_url: "http://${promptAnswers.projectName}-staging.malven.co"`);
       assert.fileContent('buddy.yml', `target_site_url: "https://${promptAnswers.projectName}.com"`);
       assert.fileContent('buddy.yml', `value: "/srv/users/serverpilot/apps/${promptAnswers.projectName}"`);
