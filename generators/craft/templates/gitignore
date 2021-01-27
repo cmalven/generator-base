@@ -1,6 +1,7 @@
 # Craft 3
 # ---------------------------
 /storage/*
+!/storage/rebrand
 /templates/_svg/**/*
 
 /web/*
