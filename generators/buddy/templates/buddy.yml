@@ -55,8 +55,7 @@
     login: "${server_user}"
     host: "${server_host}"
     port: "22"
-    env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
-    authentication_mode: "ENV_KEY"
+    authentication_mode: "WORKSPACE_KEY"
     archive: true
     delete_extra_files: true
     recursive: true
@@ -285,8 +284,7 @@
     login: "${server_user}"
     host: "${server_host}"
     port: "22"
-    env_key: "secure!IkFRB46U73Msb/zSPo0+DA==.Y26b2+ZqmMUGGQpRHo7r3w=="
-    authentication_mode: "ENV_KEY"
+    authentication_mode: "WORKSPACE_KEY"
     commands:
     - "./craft migrate/all"
     - "./craft project-config/apply"
