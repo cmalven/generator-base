@@ -64,7 +64,7 @@
 #}
 
 {%- macro bgSet(asset, options) -%}
-{% spaceless %}
+{% apply spaceless %}
   {% import _self as image %}
 
   {# Animated GIFs #}
@@ -92,7 +92,7 @@
 
   style="background-position: {{ fpX * 100 }}% {{ fpY * 100 }}%;"
   data-bgset="{{ image.srcset(asset, params) }}" data-sizes="auto"
-{% endspaceless %}
+{% endapply %}
 {%- endmacro -%}
 
 
