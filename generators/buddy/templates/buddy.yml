@@ -61,7 +61,7 @@
     recursive: true
     compress: true
     deployment_excludes:
-    - "babel.config.json"
+    - ".babelrc"
     - ".browserslistrc"
     - ".dockerignore"
     - ".editorconfig"
@@ -91,6 +91,7 @@
     - "/tmp/"
     - "/web/assets/"
     - "auth.json"
+    - "babel.config.json"
     - "bower.json"
     - "buddy.yml"
     - "composer.json"
@@ -229,7 +230,7 @@
     recursive: true
     compress: true
     deployment_excludes:
-    - "babel.config.json"
+    - ".babelrc"
     - ".browserslistrc"
     - ".dockerignore"
     - ".editorconfig"
@@ -259,6 +260,7 @@
     - "/tmp/"
     - "/web/assets/"
     - "auth.json"
+    - "babel.config.json"
     - "bower.json"
     - "buddy.yml"
     - "composer.json"
