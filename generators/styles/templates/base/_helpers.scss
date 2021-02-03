@@ -118,5 +118,5 @@ $h-transition-delay-increment: 0.05;
 // Remove all transitions
 .h-no-transition {
   transition: none !important;
-  transition-delay: 0 !important;
+  transition-delay: 0s !important;
 }
