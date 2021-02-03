@@ -13,7 +13,7 @@
       docker_image_tag: "10.16.3"
       execute_commands:
         - "# CMDs working directory is the pipeline's filesystem with cloned repo "
-        - "npm i"
+        - "npm i --prefer-offline --no-audit --progress=false"
         - "NODE_ENV=production npm run build"
         - ""
       setup_commands:
@@ -180,7 +180,7 @@
       docker_image_tag: "10.16.3"
       execute_commands:
         - "# CMDs working directory is the pipeline's filesystem with cloned repo "
-        - "npm i"
+        - "npm i --prefer-offline --no-audit --progress=false"
         - "NODE_ENV=production npm run build"
         - ""
       setup_commands:
