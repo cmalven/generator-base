@@ -12,7 +12,7 @@ module.exports = function() {
     dirPath: path.resolve('./tmp'),
     filePath: path.resolve('./tmp/errors.json'),
     defaultContents: { errors: [] },
-    divider: '<br/>--------------------------------------------------------------------------------<br/>'
+    divider: '<br/>--------------------------------------------------------------------------------<br/>',
   };
 
 
@@ -116,7 +116,7 @@ module.exports = function() {
 
   /**
    * Broadcasts all messages in the current queue and clears the queue
-   * @param  {integer} duration The number of ms to show the message for
+   * @param  {number} duration The number of ms to show the message for
    */
   self.notify = function(duration) {
     if (!global.messageQueue.length) return;

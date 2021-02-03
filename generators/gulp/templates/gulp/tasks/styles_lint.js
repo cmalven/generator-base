@@ -19,7 +19,7 @@ const _resultNotifications = function(results) {
       msg += '<br/>';
       msg += [
         [warning.line, warning.column].join(':'),
-        warning.text
+        warning.text,
       ].join('   ');
     });
     if (result.warnings.length) {
@@ -33,18 +33,18 @@ module.exports = gulp.task('styles:lint', function() {
     .src([
       config.paths.styleSrc + '**/*.scss',
       '!' + config.paths.styleSrc + 'vendor/**/*.scss',
-      '!' + config.paths.styleSrc + 'vendor-customization/**/*.scss'
+      '!' + config.paths.styleSrc + 'vendor-customization/**/*.scss',
     ])
     .pipe(styleLint({
       failAfterError: false,
       reporters: [
         {
           formatter: 'string',
-          console: true
+          console: true,
         },
         {
-          formatter: _resultNotifications
-        }
-      ]
+          formatter: _resultNotifications,
+        },
+      ],
     }));
 });

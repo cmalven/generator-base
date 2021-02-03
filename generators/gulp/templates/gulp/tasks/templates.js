@@ -14,7 +14,7 @@ module.exports = gulp.task('templates', function() {
   return gulp.src([
     config.paths.templateSrc + '**/*.html',
     config.paths.templateSrc + '**/*.php',
-    config.paths.templateSrc + '**/*.twig'
+    config.paths.templateSrc + '**/*.twig',
   ])
     .pipe(global.browserSync.reload({ stream: true, once: true }));
 });

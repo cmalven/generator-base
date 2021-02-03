@@ -14,12 +14,12 @@ Lossless optimization of image files
 
 module.exports = gulp.task('images', function() {
   return gulp.src([
-    config.paths.imageSrc + '**/*'
+    config.paths.imageSrc + '**/*',
   ])
     .pipe(changedInPlace({ firstPass: true }))
     .pipe(imagemin([
       imagemin.mozjpeg({
-        progressive: true
+        progressive: true,
       }),
       imagemin.svgo({
         plugins: [
@@ -29,11 +29,11 @@ module.exports = gulp.task('images', function() {
           { moveElemsAttrsToGroup: false },
           { moveGroupAttrsToElems: false },
           { removeUselessStrokeAndFill: false },
-          { removeViewBox: false }
-        ]
+          { removeViewBox: false },
+        ],
       }),
       imagemin.gifsicle(),
-      imagemin.optipng()
+      imagemin.optipng(),
     ]))
     .pipe(gulp.dest(config.paths.imageDist));
 });

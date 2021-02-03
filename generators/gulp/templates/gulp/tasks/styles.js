@@ -28,16 +28,16 @@ module.exports = gulp.task('styles', function() {
   const postCssProcessors = [
     importCss(),
     autoprefixer(),
-    cssnano()
+    cssnano(),
   ];
 
   return gulp.src([
-    config.paths.styleSrc + 'main.scss'
+    config.paths.styleSrc + 'main.scss',
   ])
     .pipe(sassGlob())
     .pipe(sass({
       outputStyle: 'nested',
-      includePaths: ['./node_modules']
+      includePaths: ['./node_modules'],
     }).on('error', function(error) {
       Notifier.queue('styles', error.message);
       sass.logError.call(this, error);

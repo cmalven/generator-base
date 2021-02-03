@@ -10,7 +10,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'rootDistPath',
       message: 'Root path for all output files',
-      default: 'dist'
+      default: 'dist',
     });
   }
 
@@ -19,7 +19,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'publicDistPath',
       message: 'Path from web root to all public dist files',
-      default: '/'
+      default: '/',
     });
   }
 
@@ -28,7 +28,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'templateSrc',
       message: 'Templates source path',
-      default: 'src/templates/'
+      default: 'src/templates/',
     });
   }
 
@@ -37,7 +37,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'templateDist',
       message: 'Templates output path',
-      default: 'dist/'
+      default: 'dist/',
     });
   }
 
@@ -46,7 +46,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'distCopyPath',
       message: 'Paths to copy to dist',
-      default: ''
+      default: '',
     });
   }
 
@@ -59,7 +59,7 @@ module.exports = function(options) {
       type: 'confirm',
       name: 'useProxy',
       message: 'Use a proxy URL for Browsersync?',
-      default: false
+      default: false,
     });
   }
 
@@ -68,7 +68,7 @@ module.exports = function(options) {
       type: 'input',
       name: 'serverBaseDir',
       message: 'Base directory for Browsersync server',
-      default: 'dist/'
+      default: 'dist/',
     });
   }
 
@@ -81,7 +81,7 @@ module.exports = function(options) {
       type: 'confirm',
       name: 'useTwig',
       message: 'Add support for twig template engine to gulp build process?',
-      default: false
+      default: false,
     });
   }
 

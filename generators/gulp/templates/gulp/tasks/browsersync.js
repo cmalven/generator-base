@@ -34,16 +34,16 @@ module.exports = gulp.task('browserSync', function() {
         'bottom: 0px;',
         'color: rgb(74, 74, 74);',
         'background-color: rgb(20, 20, 20);',
-        'color: rgb(255, 255, 255);'
-      ]
-    }
+        'color: rgb(255, 255, 255);',
+      ],
+    },
   };
 
   if (config.useProxy) {
     options.proxy = config.proxyUrl;
   } else {
     options.server = {
-      baseDir: config.serverBaseDir
+      baseDir: config.serverBaseDir,
     };
   }
 
