@@ -96,7 +96,7 @@ module.exports = function() {
   };
 
   /**
-   * Applys consistent formatting to a message
+   * Applies consistent formatting to a message
    * @param  {string} title The title or subject of the message
    * @param  {string} msg   The body of the message
    * @return {string}       A nicely formatted version of the message
