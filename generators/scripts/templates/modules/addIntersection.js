@@ -56,6 +56,9 @@ export default (el, options = {}) => {
     let observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
+          // If it isn't actually in the viewport, we're not concerned with it
+          if (!entry.isIntersecting) return;
+
           const uid = entry.target.getAttribute('data-intersection-id');
           if (!positions[uid]) return;
           const currentY = entry.boundingClientRect.y;
