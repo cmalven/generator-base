@@ -1,18 +1,21 @@
-import $ from 'cash-dom';
 import addIntersection from './addIntersection';
 
 /**
- * Handles global transitions for all site content.
+ * Handles global transitions for all site content using Intersection Observer.
  *
  * To transition in a piece of content, add one of the
  * `h-transition-{direction}` helper classes found in
  * /src/styles/base/_helpers.scss
  *
  * @class    Transitioner
- * @param    {object}  options  Options for the object
- * @return   {object}  The object
+ * @param    {object}  options               Options for the object
+ * @param    {string}  options.visibleClass  Class to apply when an element enters the viewport
+ * @return   {object}  The Transitioner object
+ *
+ * @example
+ * const myTransitioner = new Transitioner();
  */
-const Transitioner = function(options) {
+const Transitioner = function(options = {}) {
   //
   //   Private Vars
   //
@@ -60,15 +63,41 @@ const Transitioner = function(options) {
   //
   //////////////////////////////////////////////////////////////////////
 
-  self.add = (els, transitionImmediately = false) => {
+  /**
+   * Add viewport intersection detection to a collection of elements.
+   * @param {string} parentSelector          Parent element selector to search for intersecting children.
+   * @param {boolean} transitionImmediately  If set, the element(s) will immediately transition on page load
+   *
+   * @example
+   * myTransitioner.add(
+   *   document.querySelectorAll('.body'),
+   *   false
+   * );
+   */
+  self.add = (parentSelector= 'body', transitionImmediately = false) => {
     const selectors = getTransitionEls().join(', ');
 
-    if (typeof els === 'undefined') {
-      els = document.querySelector('body');
-    }
+    // Create an empty element collection
+    let elCollection = [];
 
-    const $collection = $(els).filter(selectors);
-    $collection.add($(els).find(selectors)).get().forEach(element => {
+    // Find all parent elements
+    const parentEls = document.querySelectorAll(parentSelector);
+
+    // Any parent element that matches our selectors is eligible for revealing
+    elCollection.concat(Array.prototype.filter.call(document.querySelectorAll(parentSelector), parentEl => {
+      return !!parentEl.querySelectorAll(selectors).length;
+    }));
+
+    // Add every child of the parent that matches our selectors
+    parentEls.forEach(parentEl => {
+      parentEl.querySelectorAll(selectors).forEach(matchingChild => {
+        elCollection.push(matchingChild);
+      });
+    });
+
+    // Add intersection listeners to all machine elements
+    elCollection.forEach(element => {
+      // Immediately transition all elements if applicable
       if (transitionImmediately) {
         return element.classList.add(self.visibleClass);
       }
@@ -79,8 +108,9 @@ const Transitioner = function(options) {
         ? customRootMargin
         : '0px 0px -70px 0px';
 
+      // Add intersections
       const observer = addIntersection(
-        $(element).get(),
+        element,
         {
           rootMargin: rootMargin,
           inHandler: (el, direction) => {
@@ -95,10 +125,14 @@ const Transitioner = function(options) {
         }
       );
 
+      // Add to our collection of all observers
       observers.push(observer);
     });
   };
 
+  /**
+   * Destroys all previously added intersection observers.
+   */
   self.destroyObservers = () => {
     observers.forEach(observer => {
       observer.disconnect();
@@ -130,6 +164,7 @@ const getTransitionEls = () => {
     '.h-transition-scale',
     '.h-transition-animate',
     '.h-transition-stagger-children',
+    '.l-section',
   ];
 };
 

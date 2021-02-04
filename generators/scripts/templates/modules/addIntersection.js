@@ -7,7 +7,7 @@
  *
  * https://caniuse.com/#feat=intersectionobserver
  *
- * @param {NodeList} el - List of elements to observe
+ * @param {Element} el - DOM element to observe
  * @param {object} options - Available options
  * @param {string} options.rootMargin - Margins to apply to the viewport
  * @param {function} options.inHandler - Callback to fire when entering viewport
@@ -33,15 +33,10 @@
  */
 
 export default (el, options = {}) => {
-  let positions = {};
-  el.forEach(element => {
-    const uid = Math.floor(Math.random() * 1000000);
-    element.setAttribute('data-intersection-id', uid);
-    positions[uid] = {
-      previousY: 0,
-      previousRatio: 0,
-    };
-  });
+  let position = {
+    previousY: 0,
+    previousRatio: 0,
+  };
 
   // Defaults
   const {
@@ -59,12 +54,10 @@ export default (el, options = {}) => {
           // If it isn't actually in the viewport, we're not concerned with it
           if (!entry.isIntersecting) return;
 
-          const uid = entry.target.getAttribute('data-intersection-id');
-          if (!positions[uid]) return;
           const currentY = entry.boundingClientRect.y;
-          const previousY = positions[uid].previousY;
+          const previousY = position.previousY;
           const currentRatio = entry.intersectionRatio;
-          const previousRatio = positions[uid].previousRatio;
+          const previousRatio = position.previousRatio;
 
           const dir = currentY < previousY
             ? 'down'
@@ -89,8 +82,8 @@ export default (el, options = {}) => {
             atHandler.call(this, entry.target, dir);
           }
 
-          positions[uid].previousY = currentY;
-          positions[uid].previousRatio = currentRatio;
+          position.previousY = currentY;
+          position.previousRatio = currentRatio;
         });
       },
       {
@@ -99,9 +92,7 @@ export default (el, options = {}) => {
       }
     );
 
-    el.forEach(element => {
-      observer.observe(element);
-    });
+    observer.observe(el);
 
     return observer;
   };

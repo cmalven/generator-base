@@ -1,20 +1,19 @@
-import $ from 'cash-dom';
-
 /**
- * Nicely transitions images via lazy sizes hooks
+ * Nicely transitions images via lazy sizes hooks. Applies a class to the parent of a lazy loaded image when that image has been successfully loaded.
  *
  * @class    LazyImageTransitioner
- * @param    {object}  options  Options for the object
- * @return   {object}  The object
+ * @param    {string}  options.selector    Selector for the parent of the lazy loaded image.
+ * @param    {string}  options.readyClass  The class that will be applied to the parent when the image is loaded.
+ * @return   {object}  The LazyImageTransitioner object
  */
-const LazyImageTransitioner = function(options) {
+const LazyImageTransitioner = function(options = {}) {
   //
   //   Public Vars
   //
   //////////////////////////////////////////////////////////////////////
 
   let self = Object.assign({}, {
-    selector: '.image-wipe',
+    selector: '.image',
     readyClass: 'is-ready',
   }, options);
 
@@ -36,9 +35,9 @@ const LazyImageTransitioner = function(options) {
   };
 
   const _makeParentVisible = (evt) => {
-    const $parentEl = $(evt.target).closest(self.selector);
-    if ($parentEl) {
-      $parentEl.addClass(self.readyClass);
+    const parentEl = evt.target.closest(self.selector);
+    if (parentEl) {
+      parentEl.classList.add(self.readyClass);
     }
   };
 
