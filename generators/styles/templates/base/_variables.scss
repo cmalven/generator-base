@@ -37,6 +37,13 @@ $mq-breakpoints: (
   content-max: 1400px,
   max: 1600px
 );
+
+// Add breakpoints as CSS variables so they're available to Javascript
+:root {
+  @each $name, $size in $mq-breakpoints {
+    --mq-bp-#{$name}: #{$size};
+  }
+}
 <%_ } _%>
 <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
 
