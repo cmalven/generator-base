@@ -121,7 +121,7 @@ $font-stacks: (
 $type-styles: (
   a: (
     stack: helvetica,
-    font-smoothing: false,
+    font-smoothing: true,
     sizes: (
       default: 13,
       medium: 27
