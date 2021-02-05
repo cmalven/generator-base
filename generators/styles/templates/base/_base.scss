@@ -6,6 +6,10 @@
   General styling to provide a clean, solid base
 */
 
+:root {
+  --100vh: 100vh;
+}
+
 html,
 body {
   <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>

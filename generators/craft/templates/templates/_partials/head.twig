@@ -21,15 +21,25 @@
   window.devMode = {{ craft.config.devMode ? 'true' : 'false' }};
 </script>
 
-{# Main stylesheet #}
-<link rel="stylesheet" href="{{ rev('styles/main.css') }}">
-
 {# Add a styling hook for devices with touch support #}
 <script>
   window.addEventListener('touchstart', function() {
     document.getElementsByTagName('html')[0].classList.add('is-touch');
     window.isTouch = true;
   });
+</script>
+
+{# Account for iOS Safari tab bar in viewport height #}
+<script>
+  const updateVh = function() {
+    const vh = window.innerHeight;
+    document.documentElement.style.setProperty('--100vh', `${vh}px`);
+  };
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', updateVh);
+    updateVh();
+  }
 </script>
 
 {# Lazy Sizes #}
@@ -45,3 +55,6 @@
     }
   };
 </script>
+
+{# Main stylesheet #}
+<link rel="stylesheet" href="{{ rev('styles/main.css') }}">
