@@ -74,7 +74,7 @@ describe('generator-base:gulp', () => {
         'gulp/tasks/twig.js',
       ]);
       assert.fileContent('gulp/tasks/base.js', `'twig',`);
-      assert.fileContent('gulp/tasks/watch.js', `gulp.series('twig', 'notify'))`);
+      assert.fileContent('gulp/tasks/watch.js', `gulp.series('twig'))`);
     });
   });
 });
