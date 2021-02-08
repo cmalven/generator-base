@@ -59,11 +59,6 @@ module.exports = class extends Generator {
     }
 
     this.fs.copy(
-      this.templatePath('gulp/utils'),
-      this.destinationPath('gulp/utils')
-    );
-
-    this.fs.copy(
       this.templatePath('src/images/svg/icon/gitkeep'),
       this.destinationPath('src/images/svg/icon/.gitkeep')
     );
@@ -97,6 +92,7 @@ module.exports = class extends Generator {
       'del',
       'dotenv',
       'eslint-loader',
+      'glslify-loader',
       'gulp',
       'autoprefixer',
       'gulp-changed-in-place',
@@ -114,6 +110,7 @@ module.exports = class extends Generator {
       'node-libs-browser',
       'postcss',
       'postcss-import',
+      'raw-loader',
       'require-dir',
       'script-loader',
       'strip-ansi',

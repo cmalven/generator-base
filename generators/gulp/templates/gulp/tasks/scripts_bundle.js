@@ -76,6 +76,14 @@ gulp.task('scripts:bundle', function(done) {
           },
         },
         {
+          test: /\.(glsl|frag|vert)$/,
+          exclude: /node_modules/,
+          use: [
+            'raw-loader',
+            'glslify-loader',
+          ],
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
