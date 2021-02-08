@@ -29,9 +29,9 @@ const paths = {
     'vendor',
   ],
 
-  distCopyPaths: [
+  distCopyPaths: [<% if (distCopyPath) { %>
     '<%= distCopyPath %>',
-  ],
+  <% } %>],
 };
 
 module.exports = {

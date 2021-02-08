@@ -90,7 +90,7 @@ module.exports = class extends Generator {
       rootDistPath: 'web/dist',
       templateSrc: 'templates/',
       templateDist: 'templates/',
-      distCopyPath: 'web/',
+      distCopyPath: null,
       useProxy: true,
       serverBaseDir: './',
       useTwig: false,

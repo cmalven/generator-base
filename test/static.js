@@ -67,6 +67,9 @@ describe('generator-base:static', () => {
       assert.fileContent('gulp/config.js', `imageSrc: 'src/images/'`);
       assert.fileContent('gulp/config.js', `imageDist: 'dist/images/'`);
       assert.fileContent('gulp/config.js', `serverBaseDir: 'dist/'`);
+      assert.fileContent('gulp/config.js', `distCopyPaths: [
+    'src/templates/web/',
+  ],`);
     });
   });
 });

@@ -62,7 +62,7 @@ describe('generator-base:gulp', () => {
           rootDistPath: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',
-          distCopyPath: 'src/templates/web/',
+          distCopyPath: null,
           serverBaseDir: 'dist/',
           useProxy: false,
           useTwig: true,
