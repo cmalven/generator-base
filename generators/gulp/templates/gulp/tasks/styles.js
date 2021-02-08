@@ -7,7 +7,6 @@ const pixrem = require('gulp-pixrem');
 const postcss = require('gulp-postcss');
 const importCss = require('postcss-import');
 const cssnano = require('cssnano');
-const Notifier = require('../utils/notifier')();
 
 //
 //   Styles
@@ -39,7 +38,6 @@ module.exports = gulp.task('styles', function() {
       outputStyle: 'nested',
       includePaths: ['./node_modules'],
     }).on('error', function(error) {
-      Notifier.queue('styles', error.message);
       sass.logError.call(this, error);
     }))
     .pipe(postcss(postCssProcessors, {}))

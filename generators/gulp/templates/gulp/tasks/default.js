@@ -19,7 +19,6 @@ module.exports = gulp.task('default',
       'images',
       'svg'
     ),
-    'notify',
     'reload',
     function(done) {
       done();
