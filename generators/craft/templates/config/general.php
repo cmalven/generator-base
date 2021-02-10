@@ -51,7 +51,6 @@ return [
 
         // URLS
         'omitScriptNameInUrls'               => true,
-        'siteUrl'                            => getenv('SITE_URL'),
         'cpTrigger'                          => getenv('CP_TRIGGER'),
 
         // CACHING
