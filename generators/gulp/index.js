@@ -114,6 +114,7 @@ module.exports = class extends Generator {
       'require-dir',
       'script-loader',
       'strip-ansi',
+      'terser-webpack-plugin',
       'uglifyjs-webpack-plugin',
       'undertaker-forward-reference',
       'webpack-bundle-analyzer',

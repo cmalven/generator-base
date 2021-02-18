@@ -1,6 +1,5 @@
 const config = require('../config');
 const gulp = require('gulp');
-const _ = require('lodash');
 const path = require('path');
 const webpack = require('webpack');
 const util = require('util');
