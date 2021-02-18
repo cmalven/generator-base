@@ -156,7 +156,7 @@
       integration_hash: "5dde3439422f5a6e5bb68514"
   variables:
     - key: "server_host"
-      value: "104.236.66.159"
+      value: "142.93.120.186"
       settable: false
     - key: "server_path"
       value: "/srv/users/serverpilot/apps/<%= projectName %>"
