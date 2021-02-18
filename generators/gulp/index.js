@@ -91,7 +91,7 @@ module.exports = class extends Generator {
       'cssnano',
       'del',
       'dotenv',
-      'eslint-loader',
+      'eslint-webpack-plugin',
       'glslify-loader',
       'gulp',
       'autoprefixer',
@@ -113,9 +113,7 @@ module.exports = class extends Generator {
       'raw-loader',
       'require-dir',
       'script-loader',
-      'strip-ansi',
       'terser-webpack-plugin',
-      'uglifyjs-webpack-plugin',
       'undertaker-forward-reference',
       'webpack-bundle-analyzer',
     ];

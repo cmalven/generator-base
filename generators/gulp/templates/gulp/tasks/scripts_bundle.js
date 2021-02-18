@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const path = require('path');
 const webpack = require('webpack');
 const util = require('util');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const UglifyJsPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 require('core-js/stable');
@@ -23,7 +24,9 @@ gulp.task('scripts:bundle', function(done) {
   //---------------------------------------------------------------
   // Plugins
   //---------------------------------------------------------------
-  let plugins = [];
+  let plugins = [
+    new ESLintPlugin(),
+  ];
 
   // Bundle analyzer if requested
   if (process.env.ANALYZE_BUNDLE === 'true') {
@@ -43,7 +46,7 @@ gulp.task('scripts:bundle', function(done) {
   const webpackConfig = {
     mode: ENV,
 
-    entry: _.reduce(config.scripts.entryFiles, function(result, name) {
+    entry: config.scripts.entryFiles.reduce(function(result, name) {
       result[name] = path.resolve('./' + config.paths.scriptSrc + name);
       return result;
     }, {}),
@@ -65,15 +68,6 @@ gulp.task('scripts:bundle', function(done) {
 
     module: {
       rules: [
-        {
-          enforce: 'pre',
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-          options: {
-            emitWarning: true,
-          },
-        },
         {
           test: /\.(glsl|frag|vert)$/,
           exclude: /node_modules/,

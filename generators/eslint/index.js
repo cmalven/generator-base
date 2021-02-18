@@ -22,7 +22,7 @@ module.exports = class extends Generator {
       'eslint',
       '@malven/eslint-config',
       'eslint-plugin-react', // dependency of @malven/eslint-config
-      'babel-eslint' // dependency of @malven/eslint-config
+      '@babel/eslint-parser', // dependency of @malven/eslint-config
     ];
 
     // Display a message
