@@ -18,7 +18,7 @@
 
 {# Set global variable for Craft devMode #}
 <script>
-  window.devMode = {{ craft.config.devMode ? 'true' : 'false' }};
+  window.devMode = {{ craft.app.config.general.devMode ? 'true' : 'false' }};
 </script>
 
 {# Add a styling hook for devices with touch support #}
