@@ -37,7 +37,9 @@
 // ---------------------------------------------------------------
 // Transitions
 // ---------------------------------------------------------------
-$h-transition-offset: 2rem;
+$h-transition-duration: 2s;
+$h-transition-offset: 1rem;
+$h-transition-delay-increment: 0.05 * $h-transition-duration;
 
 .js .h-transition,
 .js .h-transition-up,
@@ -46,7 +48,7 @@ $h-transition-offset: 2rem;
 .js .h-transition-left,
 .js .h-transition-scale,
 .js .h-transition-right {
-  transition: 1.5s ease(out-quint);
+  transition: $h-transition-duration ease(out-quint);
   transition-property: opacity, transform;
   opacity: 0;
 
@@ -101,17 +103,16 @@ $h-transition-offset: 2rem;
 .js .h-transition-stagger-children {}
 
 // Automatically staggered delays on children based on :nth-child
-@for $i from 1 through 30 {
+@for $i from 1 through 50 {
   .js .h-transition-delay:nth-child(#{$i}) {
-    transition-delay: $i * 0.1 * 1s;
+    transition-delay: $i * $h-transition-delay-increment;
   }
 }
 
 // Manual delays
-$h-transition-delay-increment: 0.05;
 @for $i from 1 through 50 {
   .js .h-transition-delay-#{$i} {
-    transition-delay: #{$i * $h-transition-delay-increment * 1s};
+    transition-delay: $i * $h-transition-delay-increment;
   }
 }
 
