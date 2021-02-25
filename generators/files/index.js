@@ -30,6 +30,12 @@ module.exports = class extends Generator {
       },
       {
         type: 'input',
+        name: 'twigSubdirectory',
+        message: 'Enter a Twig sub-directory to creat the Twig file there',
+        default: '',
+      },
+      {
+        type: 'input',
         name: 'filename',
         message: 'What would you like to call this file?',
         default: 'my-file',
@@ -79,6 +85,12 @@ module.exports = class extends Generator {
     const twigFile = this.props.type === 'twig-include'
       ? { template: 'twig-include', dir: '_partials' }
       : { template: 'twig-embed', dir: '_embeds' };
+
+    // Add a Twig sub-directory
+    if (this.props.twigSubdirectory) {
+      twigFile.dir += '/' + this.props.twigSubdirectory.replace(/^\/|\/$/g, '');
+    }
+
     this.fs.copyTpl(
       this.templatePath(`twig/${twigFile.template}.twig.ejs`),
       this.destinationPath(`templates/${twigFile.dir}/${filename}.twig`),
