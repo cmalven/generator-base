@@ -107,3 +107,51 @@ This new file does some extraordinary things.
 
   });
 });
+
+describe('block', () => {
+  const promptAnswers = {
+    type: 'twig-block',
+    filename: 'test-file',
+    rootElement: 'section',
+    emmet: 'p.-text{My text content}',
+  };
+
+  before(() => {
+    return helpers
+      .run(path.join(__dirname, '../generators/files'))
+      .withPrompts(promptAnswers);
+  });
+
+  it('adds Twig block file', () => {
+    const content = `
+{# =============================================================== #}
+{# Block - Test File
+{# =============================================================== #}
+
+<section class="test-file">
+  <p class="test-file__text">My text content</p>
+</section>
+`;
+    assert.fileContent('templates/_partials/blocks/test-file.twig', content.trim());
+
+    // Style object
+    const styleContent = `
+/*
+Test File
+
+This new file does some extraordinary things.
+*/
+
+.test-file {
+
+}
+
+.test-file__text {
+
+}
+`;
+    assert.fileContent('src/styles/objects/_test-file.scss', styleContent.trim());
+
+  });
+});
+

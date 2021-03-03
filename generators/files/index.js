@@ -26,13 +26,11 @@ module.exports = class extends Generator {
             name: 'Twig Embed (Twig embed, SCSS layout)',
             value: 'twig-embed',
           },
+          {
+            name: 'Twig Block (Twig include, SCSS object)',
+            value: 'twig-block',
+          },
         ],
-      },
-      {
-        type: 'input',
-        name: 'twigSubdirectory',
-        message: 'Enter a Twig sub-directory to create the Twig file there',
-        default: '',
       },
       {
         type: 'input',
@@ -71,7 +69,6 @@ module.exports = class extends Generator {
     const name = toTitleCase(filename);
 
     const emmet = `${this.props.rootElement}.${filename}>${this.props.emmet}`;
-    console.log(emmet);
     const markup = expand(emmet, {
       options: {
         'bem.enabled': true,
@@ -82,13 +79,12 @@ module.exports = class extends Generator {
     });
 
     // Twig File
-    const twigFile = this.props.type === 'twig-include'
-      ? { template: 'twig-include', dir: '_partials' }
-      : { template: 'twig-embed', dir: '_embeds' };
-
-    // Add a Twig sub-directory
-    if (this.props.twigSubdirectory) {
-      twigFile.dir += '/' + this.props.twigSubdirectory.replace(/^\/|\/$/g, '');
+    let twigFile = { template: 'twig-include', dir: '_partials' };
+    if (this.props.type === 'twig-embed') {
+      twigFile = { template: 'twig-embed', dir: '_embeds' };
+    }
+    if (this.props.type === 'twig-block') {
+      twigFile = { template: 'twig-block', dir: '_partials/blocks' };
     }
 
     this.fs.copyTpl(
@@ -103,9 +99,13 @@ module.exports = class extends Generator {
 
     // SCSS File
     const classList = markup ? getClassListFromMarkup(markup) : null;
-    const styleFile = this.props.type === 'twig-include'
-      ? { template: 'scss-object', dir: 'objects' }
-      : { template: 'scss-object', dir: 'layout' };
+
+    // Set style file templates based on type
+    let styleFile = { template: 'scss-object', dir: 'objects' };
+    if (this.props.type === 'twig-embed') {
+      styleFile = { template: 'scss-object', dir: 'layout' };
+    }
+
     this.fs.copyTpl(
       this.templatePath(`scss/${styleFile.template}.scss.ejs`),
       this.destinationPath(`src/styles/${styleFile.dir}/_${filename}.scss`),
