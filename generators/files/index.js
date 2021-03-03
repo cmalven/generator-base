@@ -31,7 +31,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'twigSubdirectory',
-        message: 'Enter a Twig sub-directory to creat the Twig file there',
+        message: 'Enter a Twig sub-directory to create the Twig file there',
         default: '',
       },
       {
