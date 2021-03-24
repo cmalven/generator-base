@@ -84,33 +84,15 @@ module.exports = [
     checked: true,
   },
   {
-    name: 'Twig Profiler',
-    src: 'nystudio107/craft-twigprofiler',
-    handle: 'twig-profiler',
-    checked: true,
-  },
-  {
     name: 'Typed Link Field',
     src: 'sebastianlenz/linkfield',
     handle: 'linkfield',
     checked: true,
   },
   {
-    name: 'Bits',
-    src: 'malven/craft-bits',
-    handle: 'bits',
-    checked: true,
-  },
-  {
     name: 'CP Field Inspect',
     src: 'mmikkel/cp-field-inspect',
     handle: 'cp-field-inspect',
-    checked: true,
-  },
-  {
-    name: 'Minify',
-    src: 'nystudio107/craft-minify',
-    handle: 'minify',
     checked: true,
   },
   {
