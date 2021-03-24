@@ -18,6 +18,12 @@ module.exports = [
     checked: true,
   },
   {
+    name: 'Wordsmith',
+    src: 'topshelfcraft/wordsmith',
+    handle: 'wordsmith',
+    checked: true,
+  },
+  {
     name: 'Asset Rev',
     src: 'clubstudioltd/craft-asset-rev',
     handle: 'assetrev',
@@ -84,9 +90,9 @@ module.exports = [
     checked: true,
   },
   {
-    name: 'LinkIt',
-    src: 'fruitstudios/linkit',
-    handle: 'linkit',
+    name: 'Typed Link Field',
+    src: 'sebastianlenz/linkfield',
+    handle: 'linkfield',
     checked: true,
   },
   {
