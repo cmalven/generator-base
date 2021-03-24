@@ -28,6 +28,9 @@ describe('generator-base:gulp', () => {
         'src/images',
         'gulp/tasks/base.js',
         'gulp/tasks/build.js',
+        'src/images/svg/icon/README.md',
+        'src/images/svg/full/README.md',
+        'src/images/svg/inline/README.md',
       ]);
     });
 

@@ -59,17 +59,8 @@ module.exports = class extends Generator {
     }
 
     this.fs.copy(
-      this.templatePath('src/images/svg/icon/gitkeep'),
-      this.destinationPath('src/images/svg/icon/.gitkeep')
-    );
-
-    this.fs.copy(
-      this.templatePath('src/images/svg/full/gitkeep'),
-      this.destinationPath('src/images/svg/full/.gitkeep')
-    );
-    this.fs.copy(
-      this.templatePath('src/images/svg/inline/gitkeep'),
-      this.destinationPath('src/images/svg/inline/.gitkeep')
+      this.templatePath('src/images/svg'),
+      this.destinationPath('src/images/svg')
     );
 
     this.fs.copyTpl(
