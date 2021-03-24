@@ -66,6 +66,8 @@ gulp.task('scripts:bundle', function(done) {
       alias: config.scripts.aliases,
     },
 
+    devtool: ENV === DEV ? 'eval-cheap-source-map': false,
+
     module: {
       rules: [
         {
