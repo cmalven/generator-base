@@ -83,6 +83,7 @@ module.exports = class extends Generator {
     const devDependencies = [
       'webpack',
       '@babel/core',
+      '@babel/plugin-proposal-class-properties',
       '@babel/preset-env',
       '@babel/preset-react',
       'babel-loader',
