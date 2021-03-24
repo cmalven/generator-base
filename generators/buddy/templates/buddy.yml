@@ -2,7 +2,7 @@
   trigger_mode: "ON_EVERY_PUSH"
   ref_name: "main"
   ref_type: "BRANCH"
-  target_site_url: "http://<%= projectName %>-staging.malven.co"
+  target_site_url: "http://<%= projectName %>-staging.malven.dev"
   fetch_all_refs: true
   trigger_condition: "ALWAYS"
   actions:
