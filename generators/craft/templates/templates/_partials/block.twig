@@ -13,6 +13,8 @@
 
 {% import '_macros/matrix' as matrix %}
 
+{% set handle = handle | dasherize %}
+
 {% embed '_embeds/l-section' with {
   classes: "js-block-#{handle} " ~ (classes ?? ''),
   modifiers: [handle] | merge(matrix.blockClasses(handle, block))
