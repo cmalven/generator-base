@@ -3,14 +3,24 @@
 // ===============================================================
 
 /*
-  Colors are at the top so they're available to other variables
-  below. All other categories are listed in alphabetical order.
+  Variables that help define the design system across the site,
+  including things like colors, spacing, typography,
+  transitions, ratios, z-index, and more.
 */
 
 
+<%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
 // ---------------------------------------------------------------
 // Colors
 // ---------------------------------------------------------------
+/*
+  Each color will be available to use via the `color(black)` mixin
+  or via the auto-generated `h-color-bg-black` or `h-color-text-black`
+  helper classes in your markup.
+
+  https://github.com/cmalven/sass-toolkit#color
+*/
+
 $colors: (
   black: #333,
   white: #fff
@@ -20,12 +30,27 @@ $colors: (
 $colors: map-merge($colors, (
   gray: mix(white, map-get($colors, black), 50)
 ));
+
+// Add colors as CSS variables
+:root {
+  @each $name, $value in $colors {
+    --color-#{$name}: #{$value};
+  }
+}
+
+
+<%_ } _%>
 <%_ if (deps.indexOf('sass-mq') > -1) { _%>
-
-
 // ---------------------------------------------------------------
 // Media Queries
 // ---------------------------------------------------------------
+/*
+  Each breakpoint can be used by the `mq` provided by sass-mq,
+  most commonly used as `@include mq(medium) { … }`
+
+  https://sass-mq.github.io/sass-mq/
+*/
+
 $mq-responsive: true;
 $mq-static-breakpoint: large;
 $mq-breakpoints: (
@@ -38,19 +63,33 @@ $mq-breakpoints: (
   max: 1600px
 );
 
-// Add breakpoints as CSS variables so they're available to Javascript
+// Add breakpoints as CSS variables
 :root {
   @each $name, $size in $mq-breakpoints {
     --mq-bp-#{$name}: #{$size};
   }
 }
+
+
 <%_ } _%>
 <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
-
-
 // ---------------------------------------------------------------
 // Spacing
 // ---------------------------------------------------------------
+/*
+  Fluid sizes smoothly adjust a value across a range of breakpoints,
+  with precise control over the value at each breakpoint. Most often
+  used for `margin` and `padding`..
+
+  Only the `default` key for each set is required, so you can
+  store static spacing values here as well and apply spacing consistently
+  across the site.
+
+  Most commonly used as `@include fluid-size(section-vertical, margin-top);`
+
+  https://github.com/cmalven/sass-toolkit#fluid-size
+*/
+
 $fluid-sizes: (
   none: (
     default: 0px,
@@ -65,25 +104,34 @@ $fluid-sizes: (
     max: 100px
   )
 );
+
+
 <%_ } _%>
-
-
 // ---------------------------------------------------------------
 // Z-Index
 // ---------------------------------------------------------------
+
 $z-index-site-header: 100;
-<%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
 
 
 // ---------------------------------------------------------------
 // Transitions
 // ---------------------------------------------------------------
+
 $transition-hover-color: 0.5s ease(out-quint);
 
 
+<%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
 // ---------------------------------------------------------------
 // Type – Font Stacks
 // ---------------------------------------------------------------
+/*
+  Font stacks are a collection of font family, weight, and style
+  that can be easily reused by the `$type-styles` below.
+
+  https://github.com/cmalven/sass-toolkit#type-styles
+*/
+
 $font-stacks: (
   helvetica: (
     font-family: ('Helvetica Neue', arial, sans-serif),
@@ -97,29 +145,19 @@ $font-stacks: (
 // Type – Styles
 // ---------------------------------------------------------------
 /*
-  Map that contains all of the type styles used across the site,
-  intended to be used with the one-sass-tolkit type-related
-  utilities (https://github.com/cmalven/sass-toolkit)
-  such as `type-style()`. New styles should always be added
-  to this map and never as one off instances elsewhere
-  in the codebase.
+  Type styles are combinations of font, responsive sizing, and
+  other text styles that can be easily reused across the site.
+  Most commonly used as `@include type-style(body-1)`
 
-  The name for the top level keys can be anything, but should
-  generally help you identify the style as this will be the value
-  you refer to throughout your styles.
+  At very large font sizes, it can be helpful to use the `fluid: true`
+  and `px` values to fluidly scale the font size across breakpoints
+  rather than the default of jumping immediately to the new size.
 
-  The 'stack' key correlates to the $font-stacks map above.
-
-  `sizes` map: The nested 'sizes' map corelates to the sizes across breakpoints.
-  The 'default' being the base size and others being defined across
-  breakpoints. The names (small, medium, large, etc.) correlate to
-  the $mq-breakpoints map defined in the _base/_variables.scss file.
-
-  The 'properties' map can contain any standard CSS properties
+  https://github.com/cmalven/sass-toolkit#type-styles
 */
 
 $type-styles: (
-  a: (
+  body-1: (
     stack: helvetica,
     font-smoothing: true,
     sizes: (

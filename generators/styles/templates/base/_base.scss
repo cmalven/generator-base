@@ -24,7 +24,7 @@ html {
 
 body {
   <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
-  @include get-type-style(a);
+  @include get-type-style(body-1);
   color: color(black);
   <%_ } _%>
 }
