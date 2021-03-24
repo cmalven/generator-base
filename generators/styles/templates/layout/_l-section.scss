@@ -1,7 +1,8 @@
 /*
 Layout - Section
 
-Reusable content container.
+Reusable content container, primarily responsible for managing common
+spacing and relationships between various vertical sections of the site.
 */
 
 @mixin l-section-max {
@@ -12,12 +13,12 @@ Reusable content container.
   }
 }
 
-@mixin pad-top {
-  @include fluid-size(section-vertical, padding-top);
+@mixin space-top {
+  @include fluid-size(section-vertical, margin-top);
 }
 
-@mixin pad-bottom {
-  @include fluid-size(section-vertical, padding-bottom);
+@mixin space-bottom {
+  @include fluid-size(section-vertical, margin-bottom);
 }
 
 
@@ -43,39 +44,17 @@ Reusable content container.
 // Modifier - Padding
 // ---------------------------------------------------------------
 
-.l-section--pad-top {
-  @include pad-top;
+.l-section--space-top {
+  @include space-top;
 }
 
-.l-section--pad-bottom {
-  @include pad-bottom;
+.l-section--space-bottom {
+  @include space-bottom;
 }
 
-.l-section--pad-vert {
-  @include pad-top;
-  @include pad-bottom;
-}
-
-
-// ---------------------------------------------------------------
-// Modifier - Background Color
-// ---------------------------------------------------------------
-
-$section-bg-colors: (
-  default: false,
-  gray: color(gray)
-);
-
-@each $label, $color in $section-bg-colors {
-  .l-section--bg-#{$label} {
-    @if $color {
-      background-color: $color;
-    }
-
-    &.l-section--pad-bottom + &.l-section--pad-top {
-      @include fluid-size(section-vertical, margin-top, $negative: true);
-    }
-  }
+.l-section--space-vert {
+  @include space-top;
+  @include space-bottom;
 }
 
 
