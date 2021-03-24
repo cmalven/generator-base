@@ -48,6 +48,7 @@ return [
         'overridePhpSessionLocation'         => getenv('OVERRIDE_PHP_SESSION_LOCATION'),
         'allowUpdates'                       => false,
         'allowAdminChanges'                  => false,
+        'maxRevisions'                       => 15,
 
         // URLS
         'omitScriptNameInUrls'               => true,
