@@ -56,6 +56,12 @@ module.exports = class extends Generator {
         message: 'Enter an emmet string to use for the markup',
         default: 'div.-some-child+p.-another-child',
       },
+      {
+        type: 'input',
+        name: 'templatePathPrefix',
+        message: 'Set an optional prefix for the template path',
+        default: '',
+      },
     ];
 
     return this.prompt(prompts).then(props => {
@@ -89,7 +95,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath(`twig/${twigFile.template}.twig.ejs`),
-      this.destinationPath(`templates/${twigFile.dir}/${filename}.twig`),
+      this.destinationPath(`${this.props.templatePathPrefix}templates/${twigFile.dir}/${filename}.twig`),
       {
         name,
         filename,
