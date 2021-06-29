@@ -4,6 +4,8 @@
 
 {% extends "_layout" %}
 
+{% do seomatic.meta.robots('none') %}
+
 {% set sections = [
   'Typography',
   'Color',
@@ -23,7 +25,7 @@
   </section>
 
   <link rel="stylesheet" href="https://unpkg.com/notie@4.3.1/dist/notie.min.css">
-  <script src="https://unpkg.com/clipboard@2.0.1/dist/clipboard.min.js"></script>
+  <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
   <script src="https://unpkg.com/notie@4.3.1/dist/notie.min.js"></script>
 
   <style>
@@ -38,13 +40,13 @@
         }
       });
 
-      clipboard.on('success', function(evt) {
+      clipboard.on('success', function() {
         notie.alert({
           text: 'The code has been copied to your clipboard.',
           time: 1
         });
       });
-    };
+    }
   </script>
 {% endblock %}
 
