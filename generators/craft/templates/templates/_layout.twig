@@ -25,11 +25,11 @@
 <body class="{{ bodyClass | default('') }}">
   {% block content %}{% endblock %}
 
-  <script src="{{ rev('scripts/main.bundle.js') }}"></script>
-
   <span class="h-hide-visually">
     {{ source('_svg/symbol/icon.symbol.svg', ignore_missing = true) }}
     {{ source('_svg/symbol/full.symbol.svg', ignore_missing = true) }}
   </span>
+
+  {% js rev('scripts/main.bundle.js') %}
 </body>
 </html>
