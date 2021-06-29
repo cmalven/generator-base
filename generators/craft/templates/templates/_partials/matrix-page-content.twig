@@ -3,18 +3,19 @@
 {# =============================================================== #}
 {#
   {% include '_partials/matrix-page-content' with {
-    matrixBlock: 'pageContent',
+    field: 'pageContent',
     debug: false
   } %}
 #}
 
-{% set matrixBlock = matrixBlock ?? 'pageContent' %}
+{% set field = field ?? 'pageContent' %}
 
 {% set element = element ?? entry %}
 
 {% if element %}
-  {% if element[matrixBlock] is defined and element[matrixBlock] | length %}
-    {% for block in element[matrixBlock].all() %}
+  {% set blocks = element[field] ??? null %}
+  {% if blocks %}
+    {% for block in blocks.all() %}
       {% include '_partials/block' with {
         handle: block.type.handle,
         block: block,
