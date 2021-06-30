@@ -1,7 +1,7 @@
 const config = require('../config');
 const gulp = require('gulp');
 const sassGlob = require('gulp-sass-glob');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('node-sass'));
 const autoprefixer = require('autoprefixer');
 const pixrem = require('gulp-pixrem');
 const postcss = require('gulp-postcss');
@@ -35,7 +35,7 @@ module.exports = gulp.task('styles', function() {
   ])
     .pipe(sassGlob())
     .pipe(sass({
-      outputStyle: 'nested',
+      outputStyle: 'expanded',
       includePaths: ['./node_modules'],
     }).on('error', function(error) {
       sass.logError.call(this, error);
