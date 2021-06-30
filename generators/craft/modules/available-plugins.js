@@ -86,7 +86,7 @@ module.exports = [
   {
     name: 'Typed Link Field',
     src: 'sebastianlenz/linkfield',
-    handle: 'linkfield',
+    handle: 'typedlinkfield',
     checked: true,
   },
   {
