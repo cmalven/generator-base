@@ -14,7 +14,7 @@ if (!('object-fit' in document.createElement('a').style)) {
 import { App } from '@malven/modu';
 
 const app = new App({
-    importMethod: module => import(/* webpackChunkName: "[request]" */ './modules/' + module + '.js'),
-  });
+  importMethod: module => import(/* webpackChunkName: "[request]" */ './modules/' + module + '.js'),
+});
 app.init();
 <%_ } _%>

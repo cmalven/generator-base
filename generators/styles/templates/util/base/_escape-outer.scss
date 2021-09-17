@@ -7,11 +7,11 @@ Escape the common outer spacing for the site
 @mixin escape-outer($prop: left, $outer-amount: outer) {
   $outer-calc: var(--fluid-size-#{$outer-amount});
 
-  @include mq($until: max) {
+  @include media('<max') {
     #{$prop}: calc(#{$outer-calc} * -1);
   }
 
-  @include mq(max) {
-    #{$prop}: calc(#{$outer-calc} * -1 + #{outer-padding-max(-1)});
+  @include media('>=max') {
+    #{$prop}: calc(#{outer-padding-max(-1)});
   }
 }

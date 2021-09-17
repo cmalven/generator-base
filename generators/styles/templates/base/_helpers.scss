@@ -77,7 +77,7 @@ $h-transition-delay-increment: 0.05 * $h-transition-duration;
 .js .h-transition-left {
   transform: translateX($h-transition-offset);
 
-  @include mq(medium) {
+  @include media('>=medium') {
     transform: translateX($h-transition-offset * 2);
   }
 }
@@ -89,7 +89,7 @@ $h-transition-delay-increment: 0.05 * $h-transition-duration;
 .js .h-transition-right {
   transform: translateX(-$h-transition-offset);
 
-  @include mq(medium) {
+  @include media('>=medium') {
     transform: translateX(-$h-transition-offset * 2);
   }
 }

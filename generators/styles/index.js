@@ -17,8 +17,8 @@ module.exports = class extends Generator {
         message: 'Which optional style dependencies do you want installed?',
         choices: [
           {
-            name: 'Sass MQ',
-            value: 'sass-mq',
+            name: 'Include Media',
+            value: 'include-media',
             checked: true,
           },
           {

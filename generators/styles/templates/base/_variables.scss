@@ -40,20 +40,18 @@ $colors: map-merge($colors, (
 
 
 <%_ } _%>
-<%_ if (deps.indexOf('sass-mq') > -1) { _%>
+<%_ if (deps.indexOf('include-media') > -1) { _%>
 // ---------------------------------------------------------------
 // Media Queries
 // ---------------------------------------------------------------
 /*
-  Each breakpoint can be used by the `mq` provided by sass-mq,
-  most commonly used as `@include mq(medium) { … }`
+  Each breakpoint can be used by the `media` provided by include-media,
+  most commonly used as `@include media('>=medium') { … }`
 
-  https://sass-mq.github.io/sass-mq/
+  https://www.npmjs.com/package/include-media
 */
 
-$mq-responsive: true;
-$mq-static-breakpoint: large;
-$mq-breakpoints: (
+$breakpoints: (
   small: 500px,
   medium: 768px,
   large: 1024px,
@@ -65,7 +63,7 @@ $mq-breakpoints: (
 
 // Add breakpoints as CSS variables
 :root {
-  @each $name, $size in $mq-breakpoints {
+  @each $name, $size in $breakpoints {
     --mq-bp-#{$name}: #{$size};
   }
 }
@@ -97,7 +95,7 @@ $fluid-sizes: (
   ),
   outer: (
     default: 25px,
-    max: (map-get($mq-breakpoints, max) - map-get($mq-breakpoints, content-max)) / 2
+    max: (map-get($breakpoints, max) - map-get($breakpoints, content-max)) / 2
   ),
   section-vertical: (
     default: 50px,

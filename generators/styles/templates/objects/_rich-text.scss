@@ -51,7 +51,7 @@ Styling for common HTML text elements
   ul {
     text-align: left;
 
-    @include mq(medium) {
+    @include media('>=medium') {
       margin-left: 0;
     }
 

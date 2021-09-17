@@ -29,7 +29,7 @@ export default class extends Modu {
         if (!isAlreadyRevealed) {
           this.el.classList.add(this.visibleClass);
         }
-      }
+      },
     });
   };
 

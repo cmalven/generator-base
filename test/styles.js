@@ -30,12 +30,12 @@ describe('generator-base:styles', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/styles'))
         .withPrompts({
-          deps: ['sass-mq'],
+          deps: ['include-media'],
         });
     });
 
     it('adds Sass MQ', () => {
-      assert.fileContent('src/styles/main.scss', 'sass-mq/');
+      assert.fileContent('src/styles/main.scss', 'include-media/');
       assert.fileContent('src/styles/base/_variables.scss', '// Media Queries');
     });
   });

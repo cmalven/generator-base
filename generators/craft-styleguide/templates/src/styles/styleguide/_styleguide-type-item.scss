@@ -17,7 +17,7 @@ An individual styleguide item for typography
 .styleguide-type-item__code {
   width: 100%;
 
-  @include mq(medium) {
+  @include media('>=medium') {
     width: 300px;
     margin-right: 40px;
   }

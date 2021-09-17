@@ -4,7 +4,7 @@ Max Width
 Apply max-width to an element and center it within its parent container
 */
 
-@mixin max-width($max: map-get($mq-breakpoints, content-max)) {
+@mixin max-width($max: map-get($breakpoints, content-max)) {
   max-width: $max;
   margin-left: auto;
   margin-right: auto;

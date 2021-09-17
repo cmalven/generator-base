@@ -5,8 +5,8 @@
 // Vendor
 @import 'normalize.css/normalize.css';
 @import 'reset.css/reset.css';
-<%_ if (deps.indexOf('sass-mq') > -1) { _%>
-@import 'sass-mq/mq';
+<%_ if (deps.indexOf('include-media') > -1) { _%>
+@import 'include-media/dist/include-media';
 <%_ } _%>
 
 // Fonts

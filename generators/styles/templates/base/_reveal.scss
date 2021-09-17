@@ -44,7 +44,7 @@ $h-reveal-delay-increment: 0.05 * $h-reveal-duration;
 .js [data-module-reveal = 'left'] {
   transform: translateX($h-reveal-offset);
 
-  @include mq(medium) {
+  @include media('>=medium') {
     transform: translateX($h-reveal-offset * 2);
   }
 }
@@ -56,7 +56,7 @@ $h-reveal-delay-increment: 0.05 * $h-reveal-duration;
 .js [data-module-reveal = 'right'] {
   transform: translateX(-$h-reveal-offset);
 
-  @include mq(medium) {
+  @include media('>=medium') {
     transform: translateX(-$h-reveal-offset * 2);
   }
 }

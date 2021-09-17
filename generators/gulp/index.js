@@ -100,7 +100,7 @@ module.exports = class extends Generator {
       'gulp-svg-sprite',
       'jsonfile',
       'node-libs-browser',
-      'node-sass',
+      'sass',
       'postcss',
       'postcss-import',
       'raw-loader',

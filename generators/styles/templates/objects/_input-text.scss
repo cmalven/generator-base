@@ -32,7 +32,7 @@ Common text input
     border-color: rgba(color(black), 0.5);
   }
 
-  @include mq($until: medium) {
+  @include media('<medium') {
     font-size: 1.6rem;
   }
 }
