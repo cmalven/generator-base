@@ -221,42 +221,16 @@ style="background-image: url({{ imageUrl }});"
   {% set assetRatio = asset.height / asset.width %}
   {% set placeholderHeight = fullParams.h ? fullParams.h : assetRatio * placeholderWidth %}
 
-  {#
-    If an alternate small image is supplied as a field on the asset
-    output a <picture> element, otherwise use a standard <img> element.
-  #}
-  {% set smallVersion = asset['smallVersion'] is defined and asset['smallVersion'] | length %}
-  {% set useSmall = options.smallTransform ?? false or smallVersion %}
-  {% if useSmall %}
-    {# By default, use the same asset for large and small versions #}
-    {% set smallAsset = asset %}
-
-    {# Use an alternate small image supplied as a field on the asset #}
-    {% if smallVersion %}
-      {% set smallAsset = asset['smallVersion'][0] %}
-    {% endif %}
-
-    {% set smallParams = image.getParams(options.smallTransform ?? 'scale') %}
-    {% set img %}
-      <picture class="{{ options.class }}">
-        <source
-          data-srcset="{{ image.srcset(smallAsset, smallParams) }}"
-          media="--small" />
-        <source
-          data-srcset="{{ image.srcset(asset, fullParams) }}" />
-        <img
-          data-src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}"
-          class="lazyload"
-          src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
-          data-sizes="auto"
-          alt="{{ options.alt }}" />
-      </picture>
-    {% endset %}
-  {% else %}
-    {% set img %}
-      <img class="{{ options.class }} lazyload" alt="{{ options.alt }}" src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}" data-sizes="auto" data-srcset="{{ image.srcset(asset, fullParams) }}">
-    {% endset %}
-  {% endif %}
+  {% set img %}
+    <img
+      class="{{ options.class }} lazyload"
+      alt="{{ options.alt }}"
+      src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
+      data-sizes="auto"
+      data-srcset="{{ image.srcset(asset, fullParams) }}"
+      data-module-reveal="animate"
+    >
+  {% endset %}
 
   {# Return the element #}
   {% if options.wrap %}
@@ -285,17 +259,11 @@ style="background-image: url({{ imageUrl }});"
 {%- macro wrap(image, asset, options = {}) -%}
   {% import _self as image %}
 {% set wrappedImg %}
-<div class="image {{ options.wrapperClasses ?? '' }}"
-  {% if asset.dominantColor is defined and asset.dominantColor | length
-    and asset.extension | lower not in ['png', 'gif', 'svg']
-  %}
-    style="background-color: {{ asset.dominantColor }};"
-  {% endif %}
->
+<div class="image {{ options.wrapperClasses ?? '' }}">
   <div class="image__inner">
     {{ image | raw }}
     <noscript>
-      <img class="noscript" src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}" />
+      <img class="noscript" src="{{ image.imgUrl(asset, { transform: options.transform }, 50) }}" alt="" />
     </noscript>
   </div>
 </div>
