@@ -6,7 +6,7 @@ spacing and relationships between various vertical sections of the site.
 */
 
 @mixin l-section-max {
-  @include fluid-size(outer, padding-left padding-right);
+  @include outer-padding;
 
   .l-section__inner {
     @include max-width;

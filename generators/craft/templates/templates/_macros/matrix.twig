@@ -20,16 +20,16 @@
 {% macro blockClasses(handle, block) %}
   {% set classes = [] %}
 
-  {# All padding #}
+  {# All spacing #}
   {% if handle not in [] %}
     {# Top padding #}
     {% if handle not in [] %}
-      {% set classes = classes | merge(['pad-top']) %}
+      {% set classes = classes | merge(['space-top']) %}
     {% endif %}
 
-    {# Bottom padding #}
+    {# Bottom spacing #}
     {% if handle not in [] %}
-      {% set classes = classes | merge(['pad-bottom']) %}
+      {% set classes = classes | merge(['space-bottom']) %}
     {% endif %}
   {% endif %}
 
