@@ -28,10 +28,18 @@ module.exports = class extends Generator {
     this.log(chalk.green('Writing scripts files...'));
     const { deps = [] } = this.props;
 
-    // Modules
+    // Modu Modules
+    if (deps.indexOf('@malven/modu') > -1) {
+      this.fs.copy(
+        this.templatePath('modules/'),
+        this.destinationPath('src/scripts/modules')
+      );
+    }
+
+    // Utils
     this.fs.copy(
-      this.templatePath('modules/'),
-      this.destinationPath('src/scripts/modules')
+      this.templatePath('utils/'),
+      this.destinationPath('src/scripts/utils')
     );
 
     // Main
@@ -42,14 +50,6 @@ module.exports = class extends Generator {
         deps,
       }
     );
-
-    // Lazy sizes
-    if (deps.indexOf('lazysizes') > -1) {
-      this.fs.copy(
-        this.templatePath('optional-modules/LazyImageTransitioner.js'),
-        this.destinationPath('src/scripts/modules/LazyImageTransitioner.js')
-      );
-    }
   }
 
   install() {

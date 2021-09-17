@@ -1,0 +1,90 @@
+/*
+Reveal
+
+Styles for revealed elements
+*/
+
+@function reveal-delay($idx) {
+  @return $idx * $h-reveal-delay-increment;
+}
+
+$h-reveal-duration: 1.5s;
+$h-reveal-offset: 0.8rem;
+$h-reveal-delay-increment: 0.05 * $h-reveal-duration;
+
+.js [data-module-reveal = 'fade'],
+.js [data-module-reveal = 'up'],
+.js [data-module-reveal = 'up-less'],
+.js [data-module-reveal = 'down'],
+.js [data-module-reveal = 'left'],
+.js [data-module-reveal = 'scale'],
+.js [data-module-reveal = 'right'] {
+  transition: $h-reveal-duration ease(out-quint);
+  transition-property: opacity, transform;
+  opacity: 0;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+
+.js [data-module-reveal = 'up'] {
+  transform: translateY($h-reveal-offset);
+}
+
+.js [data-module-reveal = 'up-less'] {
+  transform: translateY(1rem);
+}
+
+.js [data-module-reveal = 'down'] {
+  transform: translateY(-$h-reveal-offset);
+}
+
+.js [data-module-reveal = 'left'] {
+  transform: translateX($h-reveal-offset);
+
+  @include mq(medium) {
+    transform: translateX($h-reveal-offset * 2);
+  }
+}
+
+.js [data-module-reveal = 'scale'] {
+  transform: scale(0.9);
+}
+
+.js [data-module-reveal = 'right'] {
+  transform: translateX(-$h-reveal-offset);
+
+  @include mq(medium) {
+    transform: translateX(-$h-reveal-offset * 2);
+  }
+}
+
+// Does nothing on its on, but will trigger the addition of a .is-visible
+// class on the element which can be use to implement custom animation.
+.js [data-module-reveal = 'animate'] {}
+
+// Does nothing on its on, but if set all children will animate in
+// when this element animates in.
+.js [data-module-reveal = 'stagger-children'] {}
+
+// Automatically staggered delays on children based on :nth-child
+@for $idx from 1 through 50 {
+  .js [data-reveal-delay]:nth-child(#{$idx}) {
+    transition-delay: reveal-delay($idx);
+  }
+}
+
+// Manual delays
+@for $idx from 1 through 50 {
+  .js [data-reveal-delay = "#{$idx}"]:nth-child(1n) {
+    transition-delay: reveal-delay($idx);
+  }
+}
+
+// Remove all reveals
+.h-no-reveal {
+  transition: none !important;
+  transition-delay: 0s !important;
+}

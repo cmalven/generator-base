@@ -3,7 +3,6 @@ import 'lazysizes';
 import 'lazysizes/plugins/bgset/ls.bgset.js';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import 'lazysizes/plugins/respimg/ls.respimg';
-import LazyImageTransitioner from './modules/LazyImageTransitioner';
 
 // Conditionally load object fit polyfill if needed
 if (!('object-fit' in document.createElement('a').style)) {
@@ -11,41 +10,11 @@ if (!('object-fit' in document.createElement('a').style)) {
 }
 
 <%_ } _%>
-import { Transitioner } from './modules/Transitioner';
+<%_ if (deps.includes('@malven/modu')) { _%>
+import { App } from '@malven/modu';
 
-//
-//   Global App Variable
-//
-//////////////////////////////////////////////////////////////////////
-
-window.APP = window.APP || {};
-
-
-//
-//   App Initiation
-//
-//////////////////////////////////////////////////////////////////////
-
-APP.init = function() {
-  //
-  //   Transition content on scroll
-  //
-
-  new Transitioner();
-  <%_ if (deps.includes('lazysizes')) { _%>
-
-  //
-  //   Image Transitions
-  //
-
-  new LazyImageTransitioner();
-  <%_ } _%>
-};
-
-
-//
-//   Kickoff
-//
-//////////////////////////////////////////////////////////////////////
-
-APP.init();
+const app = new App({
+    importMethod: module => import(/* webpackChunkName: "[request]" */ './modules/' + module + '.js'),
+  });
+app.init();
+<%_ } _%>

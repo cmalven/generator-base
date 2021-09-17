@@ -1,5 +1,5 @@
 /**
- * Creates basic "waypoint" functionality using the
+ * Creates basic 'waypoint' functionality using the
  * Intersection Observer API.
  *
  * An Intersection Observer polyfill may be necessary
@@ -33,6 +33,8 @@
  */
 
 export default (el, options = {}) => {
+  let isTriggered = false;
+
   let position = {
     previousY: 0,
     previousRatio: 0,
@@ -59,22 +61,19 @@ export default (el, options = {}) => {
           const currentRatio = entry.intersectionRatio;
           const previousRatio = position.previousRatio;
 
-          const dir = currentY < previousY
-            ? 'down'
-            : 'up';
+          const dir = currentY < previousY ? 'down' : 'up';
 
-          const status = currentRatio < previousRatio
-            ? 'exiting'
-            : 'entering';
+          const status = currentRatio < previousRatio ? 'exiting' : 'entering';
 
           // Exiting top or bottom
-          if (currentRatio <= 0 && status === 'exiting') {
-            outHandler.call(this, entry.target, dir);
+          if (currentRatio <= 1 && status === 'exiting') {
+            outHandler.call(this, entry.target, dir, currentRatio);
           }
 
           // Entering top or bottom
           if (currentRatio > 0 && status === 'entering') {
-            inHandler.call(this, entry.target, dir);
+            inHandler.call(this, entry.target, dir, isTriggered, currentRatio);
+            isTriggered = true;
           }
 
           // Fully visible
@@ -88,7 +87,9 @@ export default (el, options = {}) => {
       },
       {
         rootMargin: rootMargin,
-        threshold: Array(ratioSteps + 1).fill(0).map((_, idx) => idx / ratioSteps || 0),
+        threshold: Array(ratioSteps + 1)
+          .fill(0)
+          .map((_, idx) => idx / ratioSteps || 0),
       }
     );
 
