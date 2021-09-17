@@ -22,7 +22,9 @@
 </head>
 
 <body class="{{ bodyClass | default('') }}">
-  {% block content %}{% endblock %}
+  <main class="l-container" tabindex="-1" role="main">
+    {% block content %}{% endblock %}
+  </main>
 
   <span class="h-hide-visually">
     {{ source('_svg/symbol/icon.symbol.svg', ignore_missing = true) }}
