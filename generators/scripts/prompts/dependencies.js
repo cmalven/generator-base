@@ -1,17 +1,12 @@
 module.exports = [
   {
-    name: 'Cash',
-    value: 'cash-dom',
-    checked: true
-  },
-  {
-    name: 'LoDash',
-    value: 'lodash',
-    checked: false
+    name: 'Modu',
+    value: '@malven/modu',
+    checked: true,
   },
   {
     name: 'lazysizes',
     value: 'lazysizes',
-    checked: false
-  }
+    checked: true,
+  },
 ];
