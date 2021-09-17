@@ -167,11 +167,6 @@ module.exports = class extends Generator {
     );
 
     this.fs.copy(
-      this.templatePath('FauxTwigExtension.php'),
-      this.destinationPath('FauxTwigExtension.php')
-    );
-
-    this.fs.copy(
       this.templatePath('config/project/.gitkeep'),
       this.destinationPath('config/project/.gitkeep')
     );

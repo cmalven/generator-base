@@ -113,4 +113,10 @@ module.exports = [
     handle: 'matrixmate',
     checked: true,
   },
+  {
+    name: 'Autocomplete',
+    src: 'putyourlightson/craft-autocomplete',
+    handle: 'autocomplete',
+    checked: true,
+  },
 ];
