@@ -1,10 +1,12 @@
+
 /*
 Image
 
 Wraps all images
 
 .image--fade             - Transitions image in with fade
-.image--fit              - Allow image to fit to container
+.image--cover            - Scales image to entirely cover element
+.image--contain          - Scales max dimension to fill element while preserving ratio
 .image--wipe             - Transitions image in with wipe
 */
 
@@ -56,25 +58,42 @@ class when the image is loaded.
     opacity: 0;
   }
 
-  .image__img.is-loaded,
-  img.is-loaded {
+  .image__img.is-loaded.is-visible,
+  img.is-loaded.is-visible {
     opacity: 1;
   }
 }
 
 
 // ---------------------------------------------------------------
-// Modifier - Fit
+// Modifier - Contain
 // ---------------------------------------------------------------
 
-.image--fit {
+.image--contain {
   @include absolute;
 
   .image__inner {
     @include absolute;
 
     .js & > img {
-      @include bg-cover;
+      @include bg-cover(contain, 100% 50%);
+    }
+  }
+}
+
+
+// ---------------------------------------------------------------
+// Modifier - Cover
+// ---------------------------------------------------------------
+
+.image--cover {
+  @include absolute;
+
+  .image__inner {
+    @include absolute;
+
+    .js & > img {
+      @include bg-cover(cover);
     }
   }
 }
