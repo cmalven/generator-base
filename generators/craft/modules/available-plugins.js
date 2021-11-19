@@ -115,7 +115,7 @@ module.exports = [
   },
   {
     name: 'Autocomplete',
-    src: 'putyourlightson/craft-autocomplete',
+    src: 'nystudio107/craft-autocomplete',
     handle: 'autocomplete',
     checked: true,
   },
