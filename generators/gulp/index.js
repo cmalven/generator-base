@@ -89,7 +89,7 @@ module.exports = class extends Generator {
       'autoprefixer',
       'gulp-changed-in-place',
       'gulp-postcss',
-      'gulp-imagemin',
+      'gulp-libsquoosh',
       'gulp-pixrem',
       'gulp-replace',
       'gulp-rev',

@@ -117,6 +117,7 @@ module.exports = [
     name: 'Autocomplete',
     src: 'nystudio107/craft-autocomplete',
     handle: 'autocomplete',
+    installable: false,
     checked: true,
   },
 ];

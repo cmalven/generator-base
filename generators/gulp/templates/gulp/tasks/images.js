@@ -1,6 +1,6 @@
 const config = require('../config');
 const gulp = require('gulp');
-const imagemin = require('gulp-imagemin');
+const squoosh = require('gulp-libsquoosh');
 const changedInPlace = require('gulp-changed-in-place');
 
 //
@@ -14,26 +14,11 @@ Lossless optimization of image files
 
 module.exports = gulp.task('images', function() {
   return gulp.src([
-    config.paths.imageSrc + '**/*',
+    config.paths.imageSrc + '**/*.jpg',
+    config.paths.imageSrc + '**/*.png',
+    config.paths.imageSrc + '**/*.gif',
   ])
     .pipe(changedInPlace({ firstPass: true }))
-    .pipe(imagemin([
-      imagemin.mozjpeg({
-        progressive: true,
-      }),
-      imagemin.svgo({
-        plugins: [
-          { cleanupIDs: false },
-          { collapseGroups: false },
-          { mergePaths: false },
-          { moveElemsAttrsToGroup: false },
-          { moveGroupAttrsToElems: false },
-          { removeUselessStrokeAndFill: false },
-          { removeViewBox: false },
-        ],
-      }),
-      imagemin.gifsicle(),
-      imagemin.optipng(),
-    ]))
+    .pipe(squoosh())
     .pipe(gulp.dest(config.paths.imageDist));
 });
