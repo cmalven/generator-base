@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // ===============================================================
 // Site Wide Variables
 // ===============================================================
@@ -95,7 +97,7 @@ $fluid-sizes: (
   ),
   outer: (
     default: 25px,
-    max: (map-get($breakpoints, max) - map-get($breakpoints, content-max)) / 2
+    max: math.div(map-get($breakpoints, max) - map-get($breakpoints, content-max), 2)
   ),
   section-vertical: (
     default: 50px,
