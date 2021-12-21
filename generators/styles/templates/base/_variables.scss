@@ -36,7 +36,7 @@ $colors: map-merge($colors, (
 // Add colors as CSS variables
 :root {
   @each $name, $value in $colors {
-    --color-#{$name}: #{$value};
+    --color-#{'' + $name}: #{$value};
   }
 }
 
