@@ -2,8 +2,8 @@
   "repositories": [],
 
   "require": {
-    "craftcms/cms": "^3.6.0",
-    "vlucas/phpdotenv": "^3.4.0"
+    "craftcms/cms": "^3.7.0",
+    "vlucas/phpdotenv": "^5.4.0"
   },
 
   "require-dev": {
