@@ -85,9 +85,9 @@ gulp.task('scripts:bundle', function(done) {
     },
 
     optimization: {
-      minimizer: [
-        new UglifyJsPlugin(),
-      ],
+      minimizer: ENV === DEV
+        ? []
+        : [new UglifyJsPlugin()],
       splitChunks: {
         cacheGroups: {
           default: false,
