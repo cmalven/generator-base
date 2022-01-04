@@ -84,7 +84,6 @@ module.exports = class extends Generator {
       'del',
       'dotenv',
       'eslint-webpack-plugin',
-      'glslify-loader',
       'gulp',
       'autoprefixer',
       'gulp-changed-in-place',

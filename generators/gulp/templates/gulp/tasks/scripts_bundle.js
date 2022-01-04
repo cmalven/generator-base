@@ -75,7 +75,6 @@ gulp.task('scripts:bundle', function(done) {
           exclude: /node_modules/,
           use: [
             'raw-loader',
-            'glslify-loader',
           ],
         },
         {
