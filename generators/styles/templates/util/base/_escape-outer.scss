@@ -12,6 +12,8 @@ Escape the common outer spacing for the site
   }
 
   @include media('>=max') {
+    /* There's currently a bug in stylelint when processing Sass variables within interpolation */
+    /* stylelint-disable function-calc-no-unspaced-operator */
     #{$prop}: calc(#{outer-padding-max(-1)});
   }
 }
