@@ -3,7 +3,6 @@ const gulp = require('gulp');
 const path = require('path');
 const webpack = require('webpack');
 const util = require('util');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const UglifyJsPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 require('core-js/stable');
@@ -25,7 +24,7 @@ gulp.task('scripts:bundle', function(done) {
   // Plugins
   //---------------------------------------------------------------
   let plugins = [
-    new ESLintPlugin(),
+
   ];
 
   // Bundle analyzer if requested
