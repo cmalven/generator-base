@@ -5,6 +5,7 @@ Removes the default appearance set by some browsers.
 */
 
 @mixin reset-input {
+  color: inherit;
   appearance: none;
   border-radius: 0;
   border: none;
