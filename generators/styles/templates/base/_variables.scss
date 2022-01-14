@@ -171,4 +171,18 @@ $type-styles: (
     )
   )
 );
+
+
+// ---------------------------------------------------------------
+// Sass Toolkit Helper Classes
+// ---------------------------------------------------------------
+/*
+  If you'd like to output helper classes for applying Sass Toolkit
+  styles in your markup.
+
+  https://github.com/cmalven/sass-toolkit#outputting-helpers
+*/
+$output-color-helpers: false;
+$output-type-helpers: false;
+$output-fluid-size-helpers: false;
 <%_ } _%>
