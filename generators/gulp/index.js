@@ -88,7 +88,6 @@ module.exports = class extends Generator {
       'gulp-changed-in-place',
       'gulp-postcss',
       'gulp-libsquoosh',
-      'gulp-pixrem',
       'gulp-replace',
       'gulp-rev',
       'gulp-sass',
