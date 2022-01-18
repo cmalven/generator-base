@@ -22,9 +22,10 @@ module.exports = class extends Generator {
   writing() {
     this.log(chalk.green('Writing gulp files...'));
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('gulpfile.js'),
-      this.destinationPath('gulpfile.js')
+      this.destinationPath('gulpfile.js'),
+      this.options,
     );
 
     this.fs.copy(
@@ -33,17 +34,8 @@ module.exports = class extends Generator {
     );
 
     this.fs.copy(
-      this.templatePath('babel.config.json'),
-      this.destinationPath('babel.config.json')
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('gulp/tasks'),
-      this.destinationPath('gulp/tasks'), this.options, {}, {
-        globOptions: {
-          ignore: this.options.useTwig ? [] : ['**/twig.js'],
-        },
-      }
+      this.templatePath('.swcrc'),
+      this.destinationPath('.swcrc')
     );
 
     if (this.fs.exists('.gitignore')) {
@@ -62,56 +54,15 @@ module.exports = class extends Generator {
       this.templatePath('src/images/svg'),
       this.destinationPath('src/images/svg')
     );
-
-    this.fs.copyTpl(
-      this.templatePath('gulp/config.js'),
-      this.destinationPath('gulp/config.js'),
-      this.options
-    );
   }
 
   install() {
     const devDependencies = [
-      'webpack',
-      '@babel/core',
-      '@babel/plugin-proposal-class-properties',
-      '@babel/preset-env',
-      '@babel/preset-react',
-      'babel-loader',
-      'browser-sync',
+      '@malven/gulp-tasks',
       'core-js@3',
-      'cssnano',
-      'del',
       'dotenv',
       'gulp',
-      'autoprefixer',
-      'gulp-changed-in-place',
-      'gulp-postcss',
-      'gulp-libsquoosh',
-      'gulp-replace',
-      'gulp-rev',
-      'gulp-sass',
-      'gulp-sass-glob',
-      'gulp-shell',
-      'gulp-stylelint',
-      'gulp-svg-sprite',
-      'node-libs-browser',
-      'sass',
-      'postcss',
-      'postcss-import',
-      'raw-loader',
-      'require-dir',
-      'terser-webpack-plugin',
-      'undertaker-forward-reference',
-      'webpack-bundle-analyzer',
     ];
-
-    // Add twig if desired
-    if (this.options.useTwig) {
-      devDependencies.push('gulp-htmlmin');
-      devDependencies.push('gulp-twig');
-      devDependencies.push('twig-markdown');
-    }
 
     // Display a message
     this.log(chalk.yellow('\nInstalling gulp-related dependencies…'));

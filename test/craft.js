@@ -106,11 +106,11 @@ describe('generator-base:craft', () => {
     });
 
     it('configures Gulp correctly', () => {
-      assert.fileContent('gulp/config.js', `dist: 'web/dist/'`);
-      assert.fileContent('gulp/config.js', `templateSrc: 'templates/'`);
-      assert.fileContent('gulp/config.js', `useProxy: true`);
-      assert.fileContent('gulp/config.js', `serverBaseDir: './'`);
-      assert.fileContent('gulp/config.js', `distCopyPaths: []`);
+      assert.fileContent('gulpfile.js', `dist: 'web/dist/'`);
+      assert.fileContent('gulpfile.js', `templateSrc: 'templates/'`);
+      assert.fileContent('gulpfile.js', `useProxy: true`);
+      assert.fileContent('gulpfile.js', `serverBaseDir: './'`);
+      assert.fileContent('gulpfile.js', `distCopyPaths: []`);
     });
 
     it('sets favicon data', () => {

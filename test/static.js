@@ -55,21 +55,21 @@ describe('generator-base:static', () => {
     });
 
     it('configures Gulp correctly', () => {
-      assert.file(['gulpfile.js', 'gulp']);
-      assert.fileContent('gulp/config.js', `dist: 'dist/'`);
-      assert.fileContent('gulp/config.js', `styleSrc: 'src/styles/'`);
-      assert.fileContent('gulp/config.js', `styleDist: 'dist/styles/'`);
-      assert.fileContent('gulp/config.js', `scriptSrc: 'src/scripts/'`);
-      assert.fileContent('gulp/config.js', `scriptDist: 'dist/scripts/'`);
-      assert.fileContent('gulp/config.js', `scriptPublic: '/scripts/'`);
-      assert.fileContent('gulp/config.js', `templateSrc: 'src/templates/'`);
-      assert.fileContent('gulp/config.js', `templateDist: 'dist/'`);
-      assert.fileContent('gulp/config.js', `imageSrc: 'src/images/'`);
-      assert.fileContent('gulp/config.js', `imageDist: 'dist/images/'`);
-      assert.fileContent('gulp/config.js', `serverBaseDir: 'dist/'`);
-      assert.fileContent('gulp/config.js', `distCopyPaths: [
-    'src/templates/web/',
-  ],`);
+      assert.file('gulpfile.js');
+      assert.fileContent('gulpfile.js', `dist: 'dist/'`);
+      assert.fileContent('gulpfile.js', `styleSrc: 'src/styles/'`);
+      assert.fileContent('gulpfile.js', `styleDist: 'dist/styles/'`);
+      assert.fileContent('gulpfile.js', `scriptSrc: 'src/scripts/'`);
+      assert.fileContent('gulpfile.js', `scriptDist: 'dist/scripts/'`);
+      assert.fileContent('gulpfile.js', `scriptPublic: '/scripts/'`);
+      assert.fileContent('gulpfile.js', `templateSrc: 'src/templates/'`);
+      assert.fileContent('gulpfile.js', `templateDist: 'dist/'`);
+      assert.fileContent('gulpfile.js', `imageSrc: 'src/images/'`);
+      assert.fileContent('gulpfile.js', `imageDist: 'dist/images/'`);
+      assert.fileContent('gulpfile.js', `serverBaseDir: 'dist/'`);
+      assert.fileContent('gulpfile.js', `distCopyPaths: [
+      'src/templates/web/',
+    ],`);
     });
   });
 });

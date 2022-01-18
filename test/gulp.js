@@ -22,12 +22,12 @@ describe('generator-base:gulp', () => {
 
     it('creates files', () => {
       assert.file([
-        'gulpfile.js',
+        '.browserslistrc',
+        '.eslintrc',
         '.stylelintrc',
-        'gulp/tasks',
+        '.swcrc',
+        'gulpfile.js',
         'src/images',
-        'gulp/tasks/base.js',
-        'gulp/tasks/build.js',
         'src/images/svg/icon/README.md',
         'src/images/svg/full/README.md',
         'src/images/svg/inline/README.md',
@@ -42,17 +42,13 @@ describe('generator-base:gulp', () => {
       assert.fileContent('.gitignore', '/dist');
     });
 
-    it("doesn't create twig build files", () => {
-      assert.noFile([
-        'gulp/tasks/twig.js',
-      ]);
-      assert.noFileContent('gulp/tasks/base.js', "'twig',");
-      assert.noFileContent('gulp/tasks/watch.js', "runSequence('twig'");
-      assert.fileContent('gulp/tasks/watch.js', `gulp.series('templates')`);
+    it("doesn't enable twig in config", () => {
+      assert.noFileContent('gulpfile.js', `twig: {`);
+      assert.noFileContent('gulpfile.js', `enable: true`);
     });
 
     it('sets valid random browsersync port', () => {
-      assert.fileContent('gulp/tasks/browsersync.js', /port: 3\d\d\d,/);
+      assert.fileContent('gulpfile.js', /port: 3\d\d\d,/);
     });
   });
 
@@ -72,12 +68,12 @@ describe('generator-base:gulp', () => {
         });
     });
 
-    it('creates twig build files', () => {
-      assert.file([
-        'gulp/tasks/twig.js',
-      ]);
-      assert.fileContent('gulp/tasks/base.js', `'twig',`);
-      assert.fileContent('gulp/tasks/watch.js', `gulp.series('twig'))`);
+    it('enables twig in config', () => {
+      assert.fileContent('gulpfile.js', `twig: {`);
+      assert.fileContent('gulpfile.js', `enable: true`);
+      assert.fileContent('gulpfile.js', `twig: {
+    enable: true,
+  },`);
     });
   });
 });
