@@ -225,10 +225,11 @@ style="background-image: url({{ imageUrl }});"
     <img
       class="{{ options.class }} lazyload"
       alt="{{ options.alt }}"
+      width="{{ placeholderWidth }}"
+      height="{{ placeholderHeight }}"
       src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
       data-sizes="auto"
       data-srcset="{{ image.srcset(asset, fullParams) }}"
-      data-module-reveal="animate"
     >
   {% endset %}
 
@@ -259,7 +260,7 @@ style="background-image: url({{ imageUrl }});"
 {%- macro wrap(image, asset, options = {}) -%}
   {% import _self as image %}
 {% set wrappedImg %}
-<div class="image {{ options.wrapperClasses ?? '' }}">
+<div class="image {{ options.wrapperClasses ?? '' }}" data-module-reveal>
   <div class="image__inner">
     {{ image | raw }}
     <noscript>

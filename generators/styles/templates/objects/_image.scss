@@ -57,9 +57,12 @@ class when the image is loaded.
     will-change: opacity;
     opacity: 0;
   }
+}
 
-  .image__img.is-loaded.is-visible,
-  img.is-loaded.is-visible {
+.js .image--fade.is-ready.is-visible {
+  .image__inner,
+  .image__img,
+  img {
     opacity: 1;
   }
 }
