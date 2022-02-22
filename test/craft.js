@@ -39,6 +39,11 @@ describe('generator-base:craft', () => {
         .withPrompts(promptAnswers);
     });
 
+    it('installs craft', () => {
+      assert.file('craft');
+      assert.file('bootstrap.php');
+    });
+
     it('configures craft', () => {
       assert.fileContent('config/general.php', "getenv('SITE_URL')");
       assert.fileContent('config/db.php', "getenv('DB_SERVER')");

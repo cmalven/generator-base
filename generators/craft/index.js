@@ -111,7 +111,6 @@ module.exports = class extends Generator {
     del.sync([
       this.destinationPath('LICENSE.md'),
       this.destinationPath('README.md'),
-      this.destinationPath('craft.bat'),
       this.destinationPath('web/.htaccess'),
       this.destinationPath('.env'),
       this.destinationPath('.env.example'),
