@@ -18,8 +18,11 @@ export default class extends Modu {
     let triggerEl = this.el;
 
     // Change the trigger element based on settings
-    if (this.getData('trigger') === 'parent') {
+    const trigger = this.getData('trigger');
+    if (trigger === 'parent') {
       triggerEl = this.el.parentNode;
+    } else if (trigger) {
+      triggerEl = this.el.closest(trigger);
     }
 
     this.observer = addIntersection(triggerEl, {
