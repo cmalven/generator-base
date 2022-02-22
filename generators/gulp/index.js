@@ -38,6 +38,11 @@ module.exports = class extends Generator {
       this.destinationPath('.swcrc')
     );
 
+    this.fs.copy(
+      this.templatePath('.nvmrc'),
+      this.destinationPath('.nvmrc')
+    );
+
     if (this.fs.exists('.gitignore')) {
       this.fs.append(
         this.destinationPath('.gitignore'),
