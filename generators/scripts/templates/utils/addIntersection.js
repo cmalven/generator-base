@@ -90,7 +90,7 @@ export default (el, options = {}) => {
         threshold: Array(ratioSteps + 1)
           .fill(0)
           .map((_, idx) => idx / ratioSteps || 0),
-      }
+      },
     );
 
     observer.observe(el);
