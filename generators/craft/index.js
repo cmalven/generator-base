@@ -161,6 +161,11 @@ module.exports = class extends Generator {
     );
 
     this.fs.copy(
+      this.templatePath('web/favicon.ico'),
+      this.destinationPath('web/favicon.ico')
+    );
+
+    this.fs.copy(
       this.templatePath('config/db.php'),
       this.destinationPath('config/db.php')
     );

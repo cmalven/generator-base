@@ -61,7 +61,8 @@ describe('generator-base:craft', () => {
     });
 
     it('adds favicons', () => {
-      assert.file('web/favicons/favicon.ico');
+      assert.file('web/favicons/icon.svg');
+      assert.file('web/favicon.ico');
     });
 
     it('installs plugins with composer', () => {
