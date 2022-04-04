@@ -193,7 +193,7 @@ style="background-image: url({{ imageUrl }});"
   {# Animated GIFs #}
   {% if asset | length and asset.extension == 'gif' %}
     {% set img %}
-      <img src="{{ asset.url }}" alt="{{ options.alt ?? '' }}">
+      <img src="{{ asset.url }}" alt="{{ options.alt ??? asset.title ??? '' }}">
     {% endset %}
     {% return img %}
   {% endif %}
@@ -224,7 +224,7 @@ style="background-image: url({{ imageUrl }});"
   {% set img %}
     <img
       class="{{ options.class }} lazyload"
-      alt="{{ options.alt }}"
+      alt="{{ options.alt ??? asset.title ??? '' }}"
       width="{{ placeholderWidth }}"
       height="{{ placeholderHeight }}"
       src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
