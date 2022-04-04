@@ -9,12 +9,14 @@
 {# Set
 {# ------------------------------------------------------------------ #}
 {#
-{{ classModifiers.set('my-base-object', ['large']) }}
+{% import '_macros/class-modifiers' as classModifiers %}
+{% set classes = classModifiers.set('my-base-object', modifiers ?? []) %}
 
 Sets the list of class modifiers.
 For the above example, you'd end up with `my-base-object--large`
 #}
 
 {%- macro set(baseClass, modifiers = []) -%}
-{{ modifiers | filter(mod => mod | length) | reduce((acc, mod) => acc ~ baseClass ~ '--' ~ mod ~ ' ', '') }}
+  {% set classes =  modifiers | filter(mod => mod | length) | reduce((acc, mod) => acc ~ baseClass ~ '--' ~ mod ~ ' ', '') %}
+  {% return classes %}
 {%- endmacro -%}
