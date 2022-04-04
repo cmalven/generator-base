@@ -8,6 +8,14 @@ Styles for revealed elements
   @return $idx * $h-reveal-delay-increment;
 }
 
+@mixin reveal-delay-cols($num) {
+  @for $idx from 1 through $num {
+    .js &:nth-child(#{$num}n + #{$idx}) {
+      transition-delay: reveal-delay($idx);
+    }
+  }
+}
+
 $h-reveal-duration: 1.5s;
 $h-reveal-offset: 0.8rem;
 $h-reveal-delay-increment: 0.05 * $h-reveal-duration;
