@@ -1,6 +1,7 @@
 {
   "env": {
     "mode": "usage",
+    "targets": ">1% in US",
     "coreJs": 3
   }
 }
