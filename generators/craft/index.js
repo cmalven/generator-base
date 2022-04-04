@@ -308,17 +308,19 @@ module.exports = class extends Generator {
     this.closingStatements.push('Install Craft: ' + chalk.yellow(`Finish your Craft installation by visiting ` + chalk.cyan(`/admin`) + ' or by running ' + chalk.cyan(`./craft install/craft`)));
 
     this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at ' + chalk.cyan(`/admin/settings/plugins`) + ' after you install Craft, or via the command line using the command below:'));
-    this.closingStatements.push(chalk.cyan(this.props.craftPlugins.map(pluginSrc => {
-      const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
-      return pluginDetails.installable ?? true
-        ? `./craft plugin/install ` + pluginDetails.handle
-        : '';
-    }).join(' && ')));
+    this.closingStatements.push(chalk.cyan(
+      this.props.craftPlugins.reduce((pluginMessages, pluginSrc) => {
+        const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
+        if (pluginDetails.installable ?? true) {
+          pluginMessages.push(`./craft plugin/install ` + pluginDetails.handle);
+        }
+        return pluginMessages;
+      }, []).join(' && '))
+    );
 
-    const that = this;
     // Output all closing statements
-    this.closingStatements.forEach(function(statement) {
-      that.log('\n' + statement);
+    this.closingStatements.forEach(statement => {
+      this.log('\n' + statement);
     });
 
     this.log('\n\n\n');
