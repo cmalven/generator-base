@@ -36,12 +36,6 @@ module.exports = [
     checked: true,
   },
   {
-    name: 'CP Nav',
-    src: 'verbb/cp-nav',
-    handle: 'cp-nav',
-    checked: true,
-  },
-  {
     name: 'Blitz',
     src: 'putyourlightson/craft-blitz',
     handle: 'blitz',
@@ -60,9 +54,9 @@ module.exports = [
     checked: true,
   },
   {
-    name: 'Dumper',
-    src: 'studioespresso/craft-dumper',
-    handle: 'dumper',
+    name: 'Ray',
+    src: 'spatie/craft-ray',
+    handle: 'craft-ray',
     checked: true,
   },
   {
