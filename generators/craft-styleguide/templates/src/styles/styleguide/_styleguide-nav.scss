@@ -16,9 +16,13 @@ Navigation for the styleguide
   font-size: 15px;
   line-height: 60px;
   margin-right: 10px;
+  transition: text-decoration-color 0.15s;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.1em;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration-color: inherit;
   }
 
   &.is-active {
