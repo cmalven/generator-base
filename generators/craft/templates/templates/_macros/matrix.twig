@@ -33,6 +33,11 @@
     {% endif %}
   {% endif %}
 
+  {# Max #}
+  {% if handle in [] %}
+    {% set classes = classes | merge(['max']) %}
+  {% endif %}
+
   {# Background Color #}
   {% set hasBgColor = block.backgroundColor ??? false and block.backgroundColor.value != 'white' %}
   {% if
