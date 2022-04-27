@@ -12,9 +12,6 @@
   <link rel="preload" href="/fonts/{{ font }}.woff2" as="font" type="font/woff2" crossorigin>
 {% endfor %}
 
-{# SEO #}
-{% hook 'seomaticRender' %}
-
 {# Add styling hook class to <html> if javascript enabled #}
 <script>
   var root = document.getElementsByTagName('html')[0];
