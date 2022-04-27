@@ -20,11 +20,5 @@ module.exports = class extends Generator {
 
     this.spawnCommandSync('git', ['init', '--quiet']);
     this.log(chalk.green('Initialized git repo.'));
-
-    this.fs.copy(
-      this.templatePath('.github'),
-      this.destinationPath('.github')
-    );
-    this.log(chalk.green(`Created .github folder.`));
   }
 };
