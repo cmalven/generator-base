@@ -286,7 +286,7 @@ module.exports = class extends Generator {
 
   install() {
     const pluginList = this.props.craftPlugins.concat([
-      'squizlabs/php_codesniffer',
+
     ]).join(' ');
     childProcess.execSync(`composer require --no-progress ${pluginList} --quiet`);
   }
