@@ -1,0 +1,72 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pull repository into the current pipeline
+      - name: Pull repository
+        uses: actions/checkout@v2
+
+      # Setup container with private SSH Key (used by rsync)
+      - name: Load private SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      # Use a specific version of Node
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.18.2"
+
+      # Install PHP dependencies
+      - name: Composer install
+        run: composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
+
+      # Install NPM dependencies
+      - name: NPM install
+        run: npm i --prefer-offline --no-audit --progress=false
+
+      # Build assets
+      - name: Build assets
+        run: NODE_ENV=production npm run build
+
+      # rsync
+      - name: Deploy with rsync
+        run: |
+          rsync -v -a -z --delete --recursive --exclude={".babelrc",".browserslistrc",".dockerignore",".editorconfig",".env*",".eslintignore",".eslintrc",".git",".gitignore",".nvmrc",".stylelintrc",".swcrc","/.cache/","/.composer/","/.config/","/.local/","/.npm/","/.github/","/.swc/","/bin/","/bower_components/","/cypress/","/docker/","/gulp/","/log/","/node_modules/","/resources/","/src/","/storage/","/tmp/","/web/assets/","auth.json","babel.config.json","bower.json","buddy.yml","composer.json","composer.lock","cypress.json","docker-compose.yml","Dockerfile","env.sample","FauxTwigExtension.php","gsap-bonus.tgz","gulpfile.js","package.json","package-lock.json","public","README.md","vite.config.js","yarn.lock"} -e "ssh -o StrictHostKeyChecking=no" ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}
+
+      # execute Craft commands on remote server
+      - name: Execute SSH commmands on remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.SSH_DEPLOY_PATH }}
+            ln -s web ${{ secrets.SSH_DEPLOY_PATH }}/public
+            chmod a+x craft
+            php craft db/backup
+            php craft migrate/all
+            php craft project-config/apply
+            php craft invalidate-tags/template
+            php craft blitz/cache/refresh
+
+      # Pushover notification
+      - name: Push Build Status Notifications
+        if: ${{ always() }}
+        uses: desiderati/github-action-pushover@v1
+        with:
+          job-status: ${{ job.status }}
+          pushover-api-token: ${{ secrets.PUSHOVER_API_TOKEN }}
+          pushover-user-key: ${{ secrets.PUSHOVER_USER_KEY }}
