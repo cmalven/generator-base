@@ -16,7 +16,7 @@ module.exports = class extends Generator {
     const devDependencies = [
       'stylelint',
       '@malven/stylelint-config',
-      'stylelint-scss'
+      'stylelint-scss',
     ];
 
     // Display a message
