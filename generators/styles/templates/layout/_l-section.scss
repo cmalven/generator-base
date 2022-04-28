@@ -14,11 +14,11 @@ spacing and relationships between various vertical sections of the site.
 }
 
 @mixin space-top {
-  @include fluid-size(section-vertical, margin-top);
+  @include fluid-size(section-vertical, padding-top);
 }
 
 @mixin space-bottom {
-  @include fluid-size(section-vertical, margin-bottom);
+  @include fluid-size(section-vertical, padding-bottom);
 }
 
 
@@ -55,6 +55,41 @@ spacing and relationships between various vertical sections of the site.
 .l-section--space-vert {
   @include space-top;
   @include space-bottom;
+}
+
+
+// ---------------------------------------------------------------
+// Background Color
+// ---------------------------------------------------------------
+
+.l-section--bg-light {
+  @include theme-light;
+}
+
+.l-section--bg-dark {
+  @include theme-dark;
+  background-color: var(--theme-bg);
+}
+
+
+// ---------------------------------------------------------------
+// Adjacent Block Spacing
+// ---------------------------------------------------------------
+
+$bg-colors: light, dark;
+
+@each $bg-color in $bg-colors {
+  @include media('<medium') {
+    .l-section--bg-#{$bg-color}:not(.l-section--block) + .l-section--bg-#{$bg-color}:not(.l-section--block):not(.l-section--block-mobile) {
+      @include fluid-size(section-vertical, margin-top, $negative: true);
+    }
+  }
+
+  @include media('>=medium') {
+    .l-section--bg-#{$bg-color}:not(.l-section--block) + .l-section--bg-#{$bg-color}:not(.l-section--block) {
+      @include fluid-size(section-vertical, margin-top, $negative: true);
+    }
+  }
 }
 
 
