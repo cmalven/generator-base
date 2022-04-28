@@ -1,0 +1,41 @@
+{# =============================================================== #}
+{# Buttons
+{# =============================================================== #}
+{#
+{% import '_macros/button' as button %}
+#}
+
+
+{# ------------------------------------------------------------------ #}
+{# Basic
+{# ------------------------------------------------------------------ #}
+{#
+{% import '_macros/button' as button %}
+{{ button.basic({
+  text: 'Lorem Ipsum Dolor',
+  url: siteUrl,
+  target: '_blank',
+}) }}
+
+OR
+
+{{ button.basic({
+  text: 'Lorem Ipsum Dolor',
+  type: 'button',
+}) }}
+
+Renders `<button>` or `<a>` depending on parameters. See `_macros/bits.twig` for additional options.
+#}
+
+{%- macro basic(options = {}) -%}
+  {% import '_macros/bits' as bits %}
+
+  {% set graphic %}{% endset %}
+
+  {% set defaults = {
+    mainClass: 'button-basic',
+    graphic: graphic ??? null,
+  } %}
+  {% set options = defaults | merge(options) %}
+  {{ bits.btn(options) }}
+{%- endmacro -%}

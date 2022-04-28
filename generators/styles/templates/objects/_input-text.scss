@@ -9,37 +9,27 @@ Common text input
 }
 
 .input-text__label {
-  display: block;
-  margin-bottom: 0.8rem;
+  @include form-common-label;
 }
 
 .input-text__input {
-  @include reset-input;
-  @include placeholder-color(rgba(color(black), 0.6));
-  color: color(black);
-  background-color: color(white);
-  line-height: 4rem;
-  height: 4rem;
-  padding: 0.2rem 1.3rem;
-  width: 100%;
-  border: 1px solid rgba(color(black), 0.25);
-  transition: 0.5s ease(out-expo);
-  transition-property: border-color;
-  will-change: border-color;
-
-  &:focus {
-    outline: none;
-    border-color: rgba(color(black), 0.5);
-  }
-
-  @include media('<medium') {
-    font-size: 1.6rem;
-  }
+  @include form-common-input;
 }
 
 .input-text__errors {
-  > * {
-    display: inline-block;
-    margin-top: 0.9rem;
+  @include form-common-errors;
+}
+
+
+// ---------------------------------------------------------------
+// Modifier - Textarea
+// ---------------------------------------------------------------
+
+.input-text--textarea {
+  .input-text__input {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 10rem;
+    line-height: 1.4;
   }
 }
