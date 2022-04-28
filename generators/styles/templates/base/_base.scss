@@ -12,9 +12,7 @@
 
 html,
 body {
-  <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
-  background-color: color(white);
-  <%_ } _%>
+  background-color: var(--theme-bg);
 }
 
 html {
@@ -23,10 +21,7 @@ html {
 }
 
 body {
-  <%_ if (deps.indexOf('@malven/sass-toolkit') > -1) { _%>
-  @include get-type-style(body-1);
-  color: color(black);
-  <%_ } _%>
+  color: var(--theme-text);
 }
 
 *, *:before, *:after {

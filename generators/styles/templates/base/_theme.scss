@@ -1,0 +1,35 @@
+// ---------------------------------------------------------------
+// Theme
+// ---------------------------------------------------------------
+
+// Mixins
+
+@mixin theme-light {
+  --theme-bg: #{color(white)};
+  --theme-bg-transparent: #{rgba(color(white), 0)};
+  --theme-text: #{color(black)};
+  --theme-text-transparent: #{rgba(color(black), 0)};
+  --theme-placeholder-text: #{rgba(color(black), 0.4)};
+}
+
+@mixin theme-dark {
+  --theme-bg: #{color(black)};
+  --theme-bg-transparent: #{rgba(color(black), 0)};
+  --theme-text: #{color(white)};
+  --theme-text-transparent: #{rgba(color(black), 0)};
+  --theme-placeholder-text: #{rgba(color(white), 0.5)};
+}
+
+// Helpers
+
+.h-theme-light {
+  @include theme-light;
+}
+
+.h-theme-dark {
+  @include theme-dark;
+}
+
+
+
+
