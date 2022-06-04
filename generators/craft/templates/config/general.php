@@ -42,7 +42,6 @@ return [
         // MISC
         'devMode'                            => filter_var(getenv('DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
         'phpMaxMemoryLimit'                  => getenv('PHP_MAX_MEMORY_LIMIT'),
-        'overridePhpSessionLocation'         => getenv('OVERRIDE_PHP_SESSION_LOCATION'),
         'allowUpdates'                       => false,
         'allowAdminChanges'                  => false,
         'maxRevisions'                       => 15,
