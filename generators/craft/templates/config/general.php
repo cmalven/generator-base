@@ -57,6 +57,8 @@ return [
         'securityKey'                        => getenv('SECURITY_KEY'),
         'cooldownDuration'                   => 'PT5M',
         'invalidLoginWindowDuration'         => 'PT1H',
+        'userSessionDuration'                => 3600,
+        'preventUserEnumeration'             => true,
         'sendPoweredByHeader'                => false,
     ],
 
