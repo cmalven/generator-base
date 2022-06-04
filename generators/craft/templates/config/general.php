@@ -18,7 +18,6 @@ return [
         // ASSETS
         'imageDriver'                        => getenv('IMAGE_DRIVER'),
         'defaultImageQuality'                => getenv('DEFAULT_IMAGE_QUALITY'),
-        'extraAllowedFileExtensions'         => getenv('EXTRA_ALLOWED_FILE_EXTENSIONS'),
         'maxUploadFileSize'                  => '4M',
         'extraFileKinds' => [
             'svg' => [
