@@ -5,23 +5,15 @@ module.exports = function(options) {
   //   Paths
   //
   //////////////////////////////////////////////////////////////////////
-  if (typeof options.rootDistPath === 'undefined') {
+  if (typeof options.dist === 'undefined') {
     questions.push({
       type: 'input',
-      name: 'rootDistPath',
+      name: 'dist',
       message: 'Root path for all output files',
       default: 'dist',
     });
   }
 
-  if (typeof options.publicDistPath === 'undefined') {
-    questions.push({
-      type: 'input',
-      name: 'publicDistPath',
-      message: 'Path from web root to all public dist files',
-      default: '/',
-    });
-  }
 
   if (typeof options.templateSrc === 'undefined') {
     questions.push({
@@ -38,50 +30,6 @@ module.exports = function(options) {
       name: 'templateDist',
       message: 'Templates output path',
       default: 'dist/',
-    });
-  }
-
-  if (typeof options.distCopyPath === 'undefined') {
-    questions.push({
-      type: 'input',
-      name: 'distCopyPath',
-      message: 'Paths to copy to dist',
-      default: '',
-    });
-  }
-
-  //
-  //   Browsersync
-  //
-  //////////////////////////////////////////////////////////////////////
-  if (typeof options.useProxy === 'undefined') {
-    questions.push({
-      type: 'confirm',
-      name: 'useProxy',
-      message: 'Use a proxy URL for Browsersync?',
-      default: false,
-    });
-  }
-
-  if (typeof options.serverBaseDir === 'undefined') {
-    questions.push({
-      type: 'input',
-      name: 'serverBaseDir',
-      message: 'Base directory for Browsersync server',
-      default: 'dist/',
-    });
-  }
-
-  //
-  //    Engines
-  //
-  //////////////////////////////////////////////////////////////////////
-  if (typeof options.useTwig === 'undefined') {
-    questions.push({
-      type: 'confirm',
-      name: 'useTwig',
-      message: 'Add support for twig template engine to gulp build process?',
-      default: false,
     });
   }
 

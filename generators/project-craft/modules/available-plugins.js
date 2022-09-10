@@ -28,6 +28,7 @@ module.exports = [
     name: 'Twig Perversion',
     src: 'marionnewlevant/twig-perversion',
     handle: 'twig-perversion',
+    checked: true,
   },
   {
     name: 'CP Field Inspect',
