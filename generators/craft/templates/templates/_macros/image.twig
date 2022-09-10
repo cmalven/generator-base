@@ -227,7 +227,7 @@ style="background-image: url({{ imageUrl }});"
       alt="{{ options.alt ??? asset.title ??? '' }}"
       width="{{ placeholderWidth }}"
       height="{{ placeholderHeight }}"
-      src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
+      src="{{ craft.imager.placeholder({ type: 'svg', width: placeholderWidth, height: placeholderHeight }) }}"
       data-sizes="auto"
       data-srcset="{{ image.srcset(asset, fullParams) }}"
     >

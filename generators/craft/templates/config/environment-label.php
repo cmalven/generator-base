@@ -1,12 +1,12 @@
 <?php
 
 return [
-  'showLabel' => filter_var(getenv('ENV_LABEL'), FILTER_VALIDATE_REGEXP,  array(
+  'showLabel' => filter_var(getenv('CRAFT_ENV_LABEL'), FILTER_VALIDATE_REGEXP,  array(
      'options' => array('regexp' => "/.*/")
   )),
-  'labelText' => getenv('ENV_LABEL'),
+  'labelText' => getenv('CRAFT_ENV_LABEL'),
   'prefix' => null,
   'suffix' => null,
-  'labelColor' => getenv('ENV_COLOR'),
+  'labelColor' => getenv('CRAFT_ENV_COLOR'),
   'textColor' => '#ffffff',
 ];

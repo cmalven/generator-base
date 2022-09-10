@@ -17,9 +17,7 @@ A flexible, reusable button.
   position: relative;
   border: 1px solid var(--theme-text);
   background: none;
-  padding: 1rem 1.6rem 0.9rem;
   z-index: 1;
-  line-height: 1;
   text-align: center;
   width: 100%;
 }
@@ -29,6 +27,8 @@ A flexible, reusable button.
   transition: var(--transition);
   transition-property: color;
   will-change: color;
+  padding: 1rem 1.6rem 0.9rem;
+  line-height: 1;
 }
 
 .button-basic__bg {

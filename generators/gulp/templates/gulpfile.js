@@ -41,7 +41,7 @@ global.GULP_CONFIG = {
   browsersync: {
     port: <%= Math.ceil(String(Math.floor(Math.random() * 999)).padStart(3, '0') / 10) * 10 + 3000 %>,
     useProxy: <%= useProxy %>,
-    proxyUrl: process.env.BROWSERSYNC_PROXY_URL || process.env.PRIMARY_SITE_URL  || process.env.SITE_URL || undefined,
+    proxyUrl: process.env.BROWSERSYNC_PROXY_URL || process.env.PRIMARY_SITE_URL || process.env.SITE_URL || undefined,
     serverBaseDir: '<%= serverBaseDir %>',
   },
 

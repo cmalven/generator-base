@@ -12,12 +12,10 @@ describe('generator-base:craft', () => {
       craftPlugins: [
         'nystudio107/craft-seomatic',
         'spacecatninja/imager-x',
-        'mblode/svgplaceholder',
         'topshelfcraft/wordsmith',
         'clubstudioltd/craft-asset-rev',
         'craftcms/aws-s3',
         'putyourlightson/craft-blitz',
-        'marionnewlevant/snitch',
         'marionnewlevant/twig-perversion',
         'spatie/craft-ray',
         'topshelfcraft/environment-label',
@@ -41,16 +39,15 @@ describe('generator-base:craft', () => {
     it('installs craft', () => {
       assert.file('craft');
       assert.file('bootstrap.php');
+      assert.file('web/index.php');
     });
 
     it('configures craft', () => {
-      assert.fileContent('config/general.php', "getenv('PRIMARY_SITE_URL')");
-      assert.fileContent('config/db.php', "getenv('DB_SERVER')");
       assert.file('config/project/.gitkeep');
     });
 
     it('adds empty storage directory', () => {
-      assert.file('storage/.gitkeep');
+      assert.file('storage/.gitignore');
     });
 
     it('adds templates', () => {

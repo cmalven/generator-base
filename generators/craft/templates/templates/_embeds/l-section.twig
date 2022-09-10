@@ -13,9 +13,14 @@
     {% endembed %}
 #}
 
-<section class="l-section {{ classes ?? '' }} {% if modifiers is defined and modifiers | length %}{% for modifier in modifiers %}l-section--{{ modifier }} {% endfor %}{% endif %}">
+{% import '_macros/class-modifiers' as classModifiers %}
+{% set modifierClasses = classModifiers.set('l-section', modifiers ?? []) %}
+
+<section class="l-section  {{ modifierClasses }} {{ classes ?? '' }}">
   {% if id ?? null %}
-    <a id="{{ id }}" class="anchor-link {{ anchorLinkClass ?? '' }}"></a>
+    {% include '_partials/anchor' with {
+      id: id,
+    } only %}
   {% endif %}
 
   <div class="l-section__inner">

@@ -102,6 +102,50 @@ $fluid-sizes: (
   section-vertical: (
     default: 50px,
     max: 100px
+  ),
+
+  8: (
+    default: 8px
+  ),
+  12: (
+    default: 12px
+  ),
+  16: (
+    default: 16px
+  ),
+  24: (
+    default: 24px
+  ),
+  32: (
+    default: 32px
+  ),
+  40: (
+    default: 40px
+  ),
+  48: (
+    default: 48px
+  ),
+  56: (
+    default: 56px
+  ),
+  64: (
+    default: 64px
+  ),
+  80: (
+    default: 64px,
+    full: 80px
+  ),
+  96: (
+    default: 64px,
+    max: 96px
+  ),
+  128: (
+    default: 64px,
+    max: 128px
+  ),
+  256: (
+    default: 64px,
+    max: 256px
   )
 );
 
@@ -188,18 +232,4 @@ $type-styles: (
     )
   )
 );
-
-
-// ---------------------------------------------------------------
-// Sass Toolkit Helper Classes
-// ---------------------------------------------------------------
-/*
-  If you'd like to output helper classes for applying Sass Toolkit
-  styles in your markup.
-
-  https://github.com/cmalven/sass-toolkit#outputting-helpers
-*/
-$output-color-helpers: false;
-$output-type-helpers: false;
-$output-fluid-size-helpers: false;
 <%_ } _%>

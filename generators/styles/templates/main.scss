@@ -25,6 +25,12 @@
 @import '@malven/sass-toolkit/fluid-size';
 @import '@malven/sass-toolkit/type-styles';
 
+// Toolkit Properties + Helpers
+@include output-fluid-size-custom-properties;
+@include output-color-helpers;
+@include output-type-helpers;
+@include output-fluid-size-helpers;
+
 <%_ } _%>
 // Helpers
 @import 'base/helpers';

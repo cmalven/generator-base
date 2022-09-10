@@ -7,6 +7,8 @@
  * list of the available settings in vendor/craftcms/cms/src/config/GeneralConfig.php.
  */
 
+use craft\helpers\App;
+
 return [
     '*' => [
         // FUZZY SEARCH
@@ -16,8 +18,8 @@ return [
         ),
 
         // ASSETS
-        'imageDriver'                        => getenv('IMAGE_DRIVER'),
-        'defaultImageQuality'                => getenv('DEFAULT_IMAGE_QUALITY'),
+        'imageDriver'                        => App::env('CRAFT_IMAGE_DRIVER'),
+        'defaultImageQuality'                => 90,
         'maxUploadFileSize'                  => '4M',
         'extraFileKinds' => [
             'svg' => [
@@ -39,22 +41,20 @@ return [
         ],
 
         // MISC
-        'devMode'                            => filter_var(getenv('DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
-        'phpMaxMemoryLimit'                  => getenv('PHP_MAX_MEMORY_LIMIT'),
+        'devMode'                            => filter_var(App::env('CRAFT_DEV_MODE'), FILTER_VALIDATE_BOOLEAN),
         'allowUpdates'                       => false,
         'allowAdminChanges'                  => false,
         'maxRevisions'                       => 15,
 
         // URLS
         'omitScriptNameInUrls'               => true,
-        'cpTrigger'                          => getenv('CP_TRIGGER'),
+        'cpTrigger'                          => App::env('CRAFT_CP_TRIGGER'),
 
         // CACHING
-        'enableTemplateCaching'              => filter_var(getenv('ENABLE_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
+        'enableTemplateCaching'              => filter_var(App::env('CRAFT_TEMPLATE_CACHING'), FILTER_VALIDATE_BOOLEAN),
         'maxCachedCloudImageSize'            => 0,
 
         // SECURITY
-        'securityKey'                        => getenv('SECURITY_KEY'),
         'cooldownDuration'                   => 'PT5M',
         'invalidLoginWindowDuration'         => 'PT1H',
         'userSessionDuration'                => 3600,

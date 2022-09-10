@@ -175,11 +175,6 @@ module.exports = class extends Generator {
       this.destinationPath('config/project/.gitkeep')
     );
 
-    this.fs.copy(
-      this.templatePath('storage/.gitkeep'),
-      this.destinationPath('storage/.gitkeep')
-    );
-
     // Craft Templates
     this.fs.copyTpl(
       this.templatePath('templates/'),

@@ -43,9 +43,9 @@ export default (el, options = {}) => {
   // Defaults
   const {
     rootMargin = '0px 0px -100px 0px',
-    inHandler = direction => {},
-    outHandler = direction => {},
-    atHandler = direction => {},
+    inHandler = _direction => {},
+    outHandler = _direction => {},
+    atHandler = _direction => {},
     ratioSteps = 20,
   } = options;
 

@@ -17,7 +17,7 @@
 #}
 
 {% macro use(id, title = '') %}
-<svg aria-hidden="true">
+<svg {% if title == '' %}aria-hidden="true"{% endif %}>
   <title>{{ title }}</title>
   <use xlink:href="#{{ id }}" />
 </svg>

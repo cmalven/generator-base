@@ -336,7 +336,7 @@ Renders a generic text input.
 {#
   {{ btn({
     mainClass: 'btn',
-    classes: '',
+    modifiers: [],
     text: 'Submit',
     type: 'button'
   }) }}
@@ -347,9 +347,9 @@ Renders a generic text input.
 
   {{ btn({
     mainClass: 'btn',
-    classes: '',
+    modifiers: [],
     text: 'Visit Our Website',
-    href: 'https://craftcms.com',
+    url: 'https://craftcms.com',
     target: '_blank',
     graphic: graphic,
   }) }}
@@ -366,13 +366,15 @@ Renders a generic text input.
   bgSuffixClass: '__bg',
   graphicSuffixClass: '__graphic',
   withGraphicModifierClass: '--with-graphic',
+  modifiers: [],
   color: null,
   classes: '',
   type: null,
-  href: null,
+  url: null,
   graphic: null,
   tabindex: null,
   attributes: null,
+  target: null,
 } %}
 
 {% set options = defaults | merge(options) %}
@@ -385,13 +387,16 @@ Renders a generic text input.
   {% set el = options.el %}
 {% endif %}
 
-{# Use a link if an href is set #}
-{% if options.href %}
+{# Use a link if an url is set #}
+{% if options.url %}
   {% set el = 'a' %}
 {% endif %}
 
+{% import '_macros/class-modifiers' as classModifiers %}
+{% set classes = classModifiers.set(options.mainClass, options.modifiers ?? []) %}
+
 <div
-  class="{{ options.mainClass }} {{ options.classes ?? '' }} {% if options.graphic %}{{ options.mainClass }}{{ options.withGraphicModifierClass }}{% endif %}"
+  class="{{ options.mainClass }} {{ classes }} {% if options.graphic %}{{ options.mainClass }}{{ options.withGraphicModifierClass }}{% endif %}"
   {% if options.color ?? null %}
     style="--color: {{ options.color }};"
   {% endif %}
@@ -399,9 +404,9 @@ Renders a generic text input.
   <{{ el }}
     class="{{ options.mainClass }}__inner"
     {% if options.tabindex %}tabindex="{{ options.tabindex }}"{% endif %}
-    {% if options.href %}href="{{ options.href }}"{% endif %}
-    {% if options.type and not options.href %}type="{{ options.type }}"{% endif %}
-    {% if options.href and options.target == '_blank' %}
+    {% if options.url %}href="{{ options.url }}"{% endif %}
+    {% if options.type and not options.url %}type="{{ options.type }}"{% endif %}
+    {% if options.url and options.target == '_blank' %}
       target="_blank"
       rel="noopener noreferrer"
     {% endif %}
