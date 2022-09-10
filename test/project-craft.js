@@ -13,8 +13,8 @@ describe('generator-base:craft', () => {
         'nystudio107/craft-seomatic',
         'spacecatninja/imager-x',
         'topshelfcraft/wordsmith',
-        'clubstudioltd/craft-asset-rev',
         'craftcms/aws-s3',
+        'verbb/cp-nav',
         'putyourlightson/craft-blitz',
         'marionnewlevant/twig-perversion',
         'spatie/craft-ray',
@@ -32,7 +32,7 @@ describe('generator-base:craft', () => {
 
     before(() => {
       return helpers
-        .run(path.join(__dirname, '../generators/craft'))
+        .run(path.join(__dirname, '../generators/project-craft'))
         .withPrompts(promptAnswers);
     });
 
@@ -43,6 +43,7 @@ describe('generator-base:craft', () => {
     });
 
     it('configures craft', () => {
+      assert.fileContent('config/general.php', '* General Configuration');
       assert.file('config/project/.gitkeep');
     });
 
@@ -63,10 +64,6 @@ describe('generator-base:craft', () => {
 
     it('installs plugins with composer', () => {
       assert.fileContent('composer.json', `"${promptAnswers.craftPlugins[0]}":`);
-    });
-
-    it('configures assetrev plugin', () => {
-      assert.file('config/assetrev.php');
     });
 
     it('configures environment label plugin', () => {

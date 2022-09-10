@@ -1,19 +1,8 @@
-{#
- # =========================================================
- # Layout template
- # =========================================================
- #
- # This template defines your site’s global layout. It can be
- # “extended” by other templates to fill in the gaps.
- #
- # See Twig’s Template Inheritance documentation for more details:
- # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+{# =============================================================== #}
+{# Layout Template
+{# =============================================================== #}
 
-
-{# --------------------------------------------------------- #}
-{# Output
-{# --------------------------------------------------------- #}
-
+{% include '_partials/vite' ignore missing %}
 {% import '_macros/theme' as theme %}
 
 <!DOCTYPE html>

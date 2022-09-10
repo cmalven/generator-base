@@ -7,8 +7,13 @@ const extend = require('lodash/extend');
 const yosay = require('yosay');
 const path = require('path');
 const mkdirp = require('mkdirp');
+const getDestinationRoot = require('../utils/getDestinationRoot');
 
 module.exports = class extends Generator {
+  paths() {
+    this.destinationRoot(getDestinationRoot());
+  }
+
   initializing() {
     this.closingStatements = [];
   }

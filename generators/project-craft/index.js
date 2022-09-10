@@ -8,11 +8,15 @@ const prompts = require('./modules/prompts');
 const plugins = require('./modules/available-plugins');
 const fs = require('fs');
 const extend = require('lodash/extend');
-const guid = require('guid');
 const path = require('path');
 const mkdirp = require('mkdirp');
+const getDestinationRoot = require('../utils/getDestinationRoot');
 
 module.exports = class extends Generator {
+  paths() {
+    this.destinationRoot(getDestinationRoot());
+  }
+
   initializing() {
     this.closingStatements = [];
     this.props = {
@@ -40,9 +44,6 @@ module.exports = class extends Generator {
         authorEmail: 'chris@malven.co',
         authorUrl: 'https://malven.co',
         githubName: 'cmalven',
-
-        // Generates a random security key to be used in .env
-        securityKey: guid.raw(),
       });
 
       // To access props use this.props.someAnswer;
@@ -116,7 +117,6 @@ module.exports = class extends Generator {
       this.destinationPath('.env.example'),
       this.destinationPath('config/general.php'),
       this.destinationPath('config/redactor'),
-      this.destinationPath('config/db.php'),
       this.destinationPath('composer.json'),
       this.destinationPath('composer.lock'),
       this.destinationPath('package.json'),
@@ -144,13 +144,13 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('env.sample'),
-      this.destinationPath('env.sample'),
+      this.templatePath('.env.example'),
+      this.destinationPath('.env.example'),
       this.props
     );
 
     this.fs.copyTpl(
-      this.templatePath('env.sample'),
+      this.templatePath('.env.example'),
       this.destinationPath('.env'),
       this.props
     );
@@ -163,11 +163,6 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('web/favicon.ico'),
       this.destinationPath('web/favicon.ico')
-    );
-
-    this.fs.copy(
-      this.templatePath('config/db.php'),
-      this.destinationPath('config/db.php')
     );
 
     this.fs.copy(
@@ -294,15 +289,25 @@ module.exports = class extends Generator {
 
     this.closingStatements.push(chalk.green('Finishing Craft Setup'));
 
-    this.closingStatements.push('Directory: ' + chalk.yellow(`If you’re not in ${chalk.cyan(this.props.projectName)} already, run ${chalk.cyan('cd ' + this.props.projectName)}`));
+    this.closingStatements.push('Directory: ' + chalk.yellow(`Your new project is in ${chalk.cyan('/output/' + this.props.projectName)}. Either run ${chalk.cyan('cd ' + this.props.projectName)} or move this directory somewhere else.`));
 
-    this.closingStatements.push('Database: ' + chalk.yellow(`Create a MySQL database named ${chalk.cyan(this.props.projectName)} if you haven’t already.`));
+    this.closingStatements.push('DDEV: ' + chalk.yellow(`To use DDEV, run ${chalk.cyan('cd output/' + this.props.projectName + ' && ddev config')}.`) + ' You can then run ' + chalk.cyan('ddev start') + ' to start the project.');
 
-    this.closingStatements.push('You may be able to create a database from the command line with:\n' + chalk.cyan(`echo 'CREATE DATABASE \`${this.props.projectName}\`' | mysql -u root -p`));
+    this.closingStatements.push('Database: ' + chalk.yellow(`Create a MySQL database named ${chalk.cyan(this.props.projectName)} if you haven’t already. If you're using DDEV, a DB will automatically be created for you when you start up the project.`));
 
-    this.closingStatements.push('Install Craft: ' + chalk.yellow(`Finish your Craft installation by visiting ` + chalk.cyan(`/admin`) + ' or by running ' + chalk.cyan(`./craft install/craft`)));
+    this.closingStatements.push('If you are not using DDEV and have mysql installed, you may be able to create a database from the command line with:\n' + chalk.cyan(`echo 'CREATE DATABASE \`${this.props.projectName}\`' | mysql -u root -p`));
+
+    this.closingStatements.push('Install Craft: ' + chalk.yellow(`Finish your Craft installation by visiting ` + chalk.cyan(`/admin`) + ' or by running ' + chalk.cyan(`ddev php craft install`)));
+
+    this.closingStatements.push('Configure Craft: ' + chalk.yellow(`Add site-specific Craft settings with  ` + chalk.cyan(`ddev php craft setup/app-id && ddev php craft setup/security-key`)));
 
     this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at ' + chalk.cyan(`/admin/settings/plugins`) + ' after you install Craft, or via the command line using the command below:'));
+    this.closingStatements.push(chalk.cyan(this.props.craftPlugins.map(pluginSrc => {
+      const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
+      return pluginDetails.installable ?? true
+        ? `ddev php craft plugin/install ` + pluginDetails.handle
+        : '';
+    }).join(' && ')));
     this.closingStatements.push(chalk.cyan(
       this.props.craftPlugins.reduce((pluginMessages, pluginSrc) => {
         const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
