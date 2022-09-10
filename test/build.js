@@ -9,14 +9,11 @@ describe('generator-base:build', () => {
       return helpers.run(path.join(__dirname, '../generators/build'))
         .withOptions({
           skipInstall: true,
-          publicDistPath: '/',
-          rootDistPath: 'dist',
+          dist: 'dist',
           templateSrc: 'src/templates/',
           templateDist: 'dist/',
-          distCopyPath: 'web/',
-          serverBaseDir: 'dist/',
-          useProxy: false,
-          useTwig: false,
+          imageSrc: 'src/images/',
+          imageDist: 'src/static/images/',
         });
     });
 
@@ -24,13 +21,14 @@ describe('generator-base:build', () => {
       assert.file([
         '.browserslistrc',
         '.eslintrc',
+        '.nvmrc',
         '.stylelintrc',
-        '.swcrc',
         'gulpfile.js',
         'src/images',
-        'src/images/svg/icon/README.md',
         'src/images/svg/full/README.md',
+        'src/images/svg/icon/README.md',
         'src/images/svg/inline/README.md',
+        'vite.config.js',
       ]);
     });
 
@@ -40,40 +38,6 @@ describe('generator-base:build', () => {
 
     it('adds .gitgnore rules', () => {
       assert.fileContent('.gitignore', '/dist');
-    });
-
-    it("doesn't enable twig in config", () => {
-      assert.noFileContent('gulpfile.js', `twig: {`);
-      assert.noFileContent('gulpfile.js', `enable: true`);
-    });
-
-    it('sets valid random browsersync port', () => {
-      assert.fileContent('gulpfile.js', /port: 3\d\d\d,/);
-    });
-  });
-
-  describe('with twig enabled', () => {
-    before(() => {
-      return helpers.run(path.join(__dirname, '../generators/build'))
-        .withOptions({
-          skipInstall: true,
-          publicDistPath: '',
-          rootDistPath: 'dist',
-          templateSrc: 'src/templates/',
-          templateDist: 'dist/',
-          distCopyPath: null,
-          serverBaseDir: 'dist/',
-          useProxy: false,
-          useTwig: true,
-        });
-    });
-
-    it('enables twig in config', () => {
-      assert.fileContent('gulpfile.js', `twig: {`);
-      assert.fileContent('gulpfile.js', `enable: true`);
-      assert.fileContent('gulpfile.js', `twig: {
-    enable: true,
-  },`);
     });
   });
 });

@@ -87,14 +87,11 @@ module.exports = class extends Generator {
   build() {
     // Currently only supports vite + gulp for building
     this.composeWith(require.resolve('../build'), {
-      publicDistPath: '/dist/',
-      rootDistPath: 'web/dist',
+      dist: 'web/dist',
       templateSrc: 'templates/',
       templateDist: 'templates/',
-      distCopyPath: null,
-      useProxy: true,
-      serverBaseDir: './',
-      useTwig: false,
+      imageSrc: 'src/images/',
+      imageDist: 'src/static/images/',
     });
   }
 
@@ -311,7 +308,6 @@ module.exports = class extends Generator {
     this.closingStatements.push(chalk.cyan(
       this.props.craftPlugins.reduce((pluginMessages, pluginSrc) => {
         const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
-        console.log(pluginDetails);
         if (pluginDetails.installable ?? true) {
           pluginMessages.push(`./craft plugin/install ` + pluginDetails.handle);
         }

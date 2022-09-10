@@ -106,9 +106,6 @@ describe('generator-base:project-craft', () => {
     it('configures Gulp correctly', () => {
       assert.fileContent('gulpfile.js', `dist: 'web/dist/'`);
       assert.fileContent('gulpfile.js', `templateSrc: 'templates/'`);
-      assert.fileContent('gulpfile.js', `useProxy: true`);
-      assert.fileContent('gulpfile.js', `serverBaseDir: './'`);
-      assert.fileContent('gulpfile.js', `distCopyPaths: []`);
     });
 
     it('sets favicon data', () => {

@@ -1,5 +1,5 @@
-require('dotenv').config();
-const { defaultTask, build } = require('@malven/gulp-tasks');
+const { images, imagesClean, svg } = require('@malven/gulp-tasks');
+const gulp = require('gulp');
 
 //
 //   Config
@@ -7,66 +7,42 @@ const { defaultTask, build } = require('@malven/gulp-tasks');
 //////////////////////////////////////////////////////////////////////
 
 global.GULP_CONFIG = {
-  env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
-
   paths: {
-    dist: '<%= rootDistPath %>/',
-
-    styleSrc: 'src/styles/',
-    styleDist: '<%= rootDistPath %>/styles/',
-
-    scriptSrc: 'src/scripts/',
-    scriptDist: '<%= rootDistPath %>/scripts/',
-    scriptPublic: '<%= publicDistPath %>scripts/',
+    dist: '<%= dist %>/',
 
     templateSrc: '<%= templateSrc %>',
     templateDist: '<%= templateDist %>',
 
-    imageSrc: 'src/images/',
-    imageDist: '<%= rootDistPath %>/images/',
-
-    styleCopyPaths: [
-
-    ],
-
-    scriptCopyPaths: [
-      'vendor',
-    ],
-
-    distCopyPaths: [<% if (distCopyPath) { %>
-      '<%= distCopyPath %>',
-    <% } %>],
+    imageSrc: '<%= imageSrc %>',
+    imageDist: '<%= imageDist %>',
   },
-
-  browsersync: {
-    port: <%= Math.ceil(String(Math.floor(Math.random() * 999)).padStart(3, '0') / 10) * 10 + 3000 %>,
-    useProxy: <%= useProxy %>,
-    proxyUrl: process.env.BROWSERSYNC_PROXY_URL || process.env.PRIMARY_SITE_URL || process.env.SITE_URL || undefined,
-    serverBaseDir: '<%= serverBaseDir %>',
-  },
-
-  scripts: {
-    entries: [
-      'main',
-    ],
-  },
-
-  styles: {
-    entries: [
-      'main',
-    ],
-  },
-
-  <%_ if (useTwig) { -%>
-  twig: {
-    enable: true,
-  },
-  <%_ } -%>
 };
 
 // Export tasks
-module.exports = {
-  default: defaultTask,
-  build,
+
+const watch = function(done) {
+  // Images
+  gulp.watch([
+    global.GULP_CONFIG.paths.imageSrc + '**/*',
+  ], gulp.series(images, svg));
+
+  done();
 };
 
+module.exports = {
+  default: gulp.series(
+    imagesClean,
+    gulp.parallel(
+      watch,
+      images,
+      svg,
+    ),
+    done => done(),
+  ),
+  build: gulp.series(
+    imagesClean,
+    images,
+    svg,
+    done => done(),
+  ),
+};

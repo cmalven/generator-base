@@ -62,14 +62,11 @@ module.exports = class extends Generator {
 
   build() {
     let buildOptions = {
-      useTwig: true,
-      publicDistPath: '/',
-      rootDistPath: 'dist',
+      dist: 'dist',
       templateSrc: 'src/templates/',
       templateDist: 'dist/',
-      distCopyPath: 'src/templates/web/',
-      serverBaseDir: 'dist/',
-      useProxy: false,
+      imageSrc: 'src/images/',
+      imageDist: 'src/static/images/',
     };
 
     // Currently only supports gulp for building

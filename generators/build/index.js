@@ -28,14 +28,15 @@ module.exports = class extends Generator {
       this.options,
     );
 
-    this.fs.copy(
-      this.templatePath('.browserslistrc'),
-      this.destinationPath('.browserslistrc')
+    this.fs.copyTpl(
+      this.templatePath('vite.config.js'),
+      this.destinationPath('vite.config.js'),
+      this.options,
     );
 
     this.fs.copy(
-      this.templatePath('.swcrc'),
-      this.destinationPath('.swcrc')
+      this.templatePath('.browserslistrc'),
+      this.destinationPath('.browserslistrc')
     );
 
     this.fs.copy(
@@ -64,9 +65,13 @@ module.exports = class extends Generator {
   install() {
     const devDependencies = [
       '@malven/gulp-tasks',
-      'core-js@3',
-      'dotenv',
       'gulp',
+      '@vitejs/plugin-legacy',
+      'vite',
+      'vite-plugin-craftcms@1.0.0-5',
+      'vite-plugin-mkcert',
+      'vite-plugin-restart',
+      'vite-plugin-sass-glob-import',
     ];
 
     // Display a message

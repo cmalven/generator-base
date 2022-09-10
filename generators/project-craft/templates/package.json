@@ -14,8 +14,8 @@
   "devDependencies": {},
   "dependencies": {},
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
+    "start": "vite & gulp",
+    "build": "gulp build && vite build",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "license": "UNLICENSED"

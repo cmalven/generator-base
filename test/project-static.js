@@ -57,19 +57,10 @@ describe('generator-base:project-static', () => {
     it('configures Gulp correctly', () => {
       assert.file('gulpfile.js');
       assert.fileContent('gulpfile.js', `dist: 'dist/'`);
-      assert.fileContent('gulpfile.js', `styleSrc: 'src/styles/'`);
-      assert.fileContent('gulpfile.js', `styleDist: 'dist/styles/'`);
-      assert.fileContent('gulpfile.js', `scriptSrc: 'src/scripts/'`);
-      assert.fileContent('gulpfile.js', `scriptDist: 'dist/scripts/'`);
-      assert.fileContent('gulpfile.js', `scriptPublic: '/scripts/'`);
       assert.fileContent('gulpfile.js', `templateSrc: 'src/templates/'`);
       assert.fileContent('gulpfile.js', `templateDist: 'dist/'`);
       assert.fileContent('gulpfile.js', `imageSrc: 'src/images/'`);
-      assert.fileContent('gulpfile.js', `imageDist: 'dist/images/'`);
-      assert.fileContent('gulpfile.js', `serverBaseDir: 'dist/'`);
-      assert.fileContent('gulpfile.js', `distCopyPaths: [
-      'src/templates/web/',
-    ],`);
+      assert.fileContent('gulpfile.js', `imageDist: 'src/static/images/'`);
     });
   });
 });
