@@ -85,8 +85,8 @@ module.exports = class extends Generator {
   }
 
   build() {
-    // Currently only supports gulp for building
-    this.composeWith(require.resolve('../gulp'), {
+    // Currently only supports vite + gulp for building
+    this.composeWith(require.resolve('../build'), {
       publicDistPath: '/dist/',
       rootDistPath: 'web/dist',
       templateSrc: 'templates/',

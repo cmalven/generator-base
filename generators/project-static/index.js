@@ -61,7 +61,7 @@ module.exports = class extends Generator {
   }
 
   build() {
-    let gulpOptions = {
+    let buildOptions = {
       useTwig: true,
       publicDistPath: '/',
       rootDistPath: 'dist',
@@ -73,7 +73,7 @@ module.exports = class extends Generator {
     };
 
     // Currently only supports gulp for building
-    this.composeWith(require.resolve('../gulp'), gulpOptions);
+    this.composeWith(require.resolve('../build'), buildOptions);
   }
 
   writing() {

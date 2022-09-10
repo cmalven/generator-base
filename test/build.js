@@ -3,10 +3,10 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-describe('generator-base:gulp', () => {
+describe('generator-base:build', () => {
   describe('default', () => {
     before(() => {
-      return helpers.run(path.join(__dirname, '../generators/gulp'))
+      return helpers.run(path.join(__dirname, '../generators/build'))
         .withOptions({
           skipInstall: true,
           publicDistPath: '/',
@@ -54,7 +54,7 @@ describe('generator-base:gulp', () => {
 
   describe('with twig enabled', () => {
     before(() => {
-      return helpers.run(path.join(__dirname, '../generators/gulp'))
+      return helpers.run(path.join(__dirname, '../generators/build'))
         .withOptions({
           skipInstall: true,
           publicDistPath: '',

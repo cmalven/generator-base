@@ -20,7 +20,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.log(chalk.green('Writing gulp files...'));
+    this.log(chalk.green('Writing build files...'));
 
     this.fs.copyTpl(
       this.templatePath('gulpfile.js'),
@@ -70,13 +70,13 @@ module.exports = class extends Generator {
     ];
 
     // Display a message
-    this.log(chalk.yellow('\nInstalling gulp-related dependencies…'));
+    this.log(chalk.yellow('\nInstalling build-related dependencies…'));
 
     // Install dev dependencies
     this.npmInstall(devDependencies, { 'save-dev': true, silent: true });
   }
 
   end() {
-    this.log(chalk.green('Installed gulp-related dependencies.'));
+    this.log(chalk.green('Installed build-related dependencies.'));
   }
 };

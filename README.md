@@ -19,7 +19,7 @@ There are many types of generators which can reference other generators.
 
 - `base:style` - installs common style modules and dependencies and sets up a main.css
 - `base:scripts` - creates the javascript structure and sets up an example main.js
-- `base:gulp` - installs a gulp build configuration
+- `base:build` - installs a vite + gulp build configuration
 
 ### Development Tools
 
