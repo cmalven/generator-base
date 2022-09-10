@@ -1,2 +1,2 @@
 src/scripts/vendor/**/*.js
-/generators/gulp/templates/gulpfile.js
+/generators/build/templates/gulpfile.js
