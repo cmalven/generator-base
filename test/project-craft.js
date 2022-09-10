@@ -3,7 +3,7 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-describe('generator-base:craft', () => {
+describe('generator-base:project-craft', () => {
   describe('default', () => {
     const promptAnswers = {
       projectTitle: 'Test Project Craft',
@@ -14,7 +14,6 @@ describe('generator-base:craft', () => {
         'spacecatninja/imager-x',
         'topshelfcraft/wordsmith',
         'craftcms/aws-s3',
-        'verbb/cp-nav',
         'putyourlightson/craft-blitz',
         'marionnewlevant/twig-perversion',
         'spatie/craft-ray',

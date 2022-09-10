@@ -3,7 +3,7 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-describe('generator-base:static', () => {
+describe('generator-base:project-static', () => {
   describe('default', () => {
     const promptAnswers = {
       projectTitle: 'Static Project',
