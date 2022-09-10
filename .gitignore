@@ -3,3 +3,6 @@ coverage
 .idea
 .DS_Store
 yarn-error.log
+output/*
+!output/.gitkeep
+```

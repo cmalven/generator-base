@@ -163,6 +163,25 @@ style="background-image: url({{ imageUrl }});"
 
 
 {# ------------------------------------------------------------------ #}
+{# Simple Lazy Image
+{# ------------------------------------------------------------------ #}
+{#
+{{ image.lazyImg(src, {
+  alt: 'My alt text',
+}) }}
+
+#}
+
+{%- macro lazyImg(src, options = {}) -%}
+  <img
+    class="lazyimage lazyload"
+    alt="{{ options.alt ??? '' }}"
+    data-src="{{ src }}"
+    src="{{ craft.imager.placeholder({ type: 'svg', width: 20, height: 20 }) }}"
+  >
+{%- endmacro -%}
+
+{# ------------------------------------------------------------------ #}
 {# Img
 {# ------------------------------------------------------------------ #}
 {#
@@ -193,7 +212,7 @@ style="background-image: url({{ imageUrl }});"
   {# Animated GIFs #}
   {% if asset | length and asset.extension == 'gif' %}
     {% set img %}
-      <img src="{{ asset.url }}" alt="{{ options.alt ?? '' }}">
+      <img src="{{ asset.url }}" alt="{{ options.alt ??? asset.title ??? '' }}">
     {% endset %}
     {% return img %}
   {% endif %}
@@ -224,10 +243,10 @@ style="background-image: url({{ imageUrl }});"
   {% set img %}
     <img
       class="{{ options.class }} lazyload"
-      alt="{{ options.alt }}"
+      alt="{{ options.alt ??? asset.title ??? '' }}"
       width="{{ placeholderWidth }}"
       height="{{ placeholderHeight }}"
-      src="{{ craft.svgplaceholder.generate({ width: placeholderWidth, height: placeholderHeight }) }}"
+      src="{{ craft.imager.placeholder({ type: 'svg', width: placeholderWidth, height: placeholderHeight }) }}"
       data-sizes="auto"
       data-srcset="{{ image.srcset(asset, fullParams) }}"
     >
@@ -284,7 +303,7 @@ style="background-image: url({{ imageUrl }});"
 
 {%- macro srcset(asset, params) -%}
   {% set srcsetItems = [] %}
-  {% set resolution = 1.2 %}
+  {% set resolution = 0.75 %}
 
   {% set transformedImages = craft.imager.transformImage(asset,
     [{ width: 300 }, { width: 2700 }],

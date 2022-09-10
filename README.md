@@ -10,10 +10,10 @@ This is a set of generators based on [yeoman-generator](https://github.com/yeoma
 
 There are many types of generators which can reference other generators.
 
-### Platforms
+### Projects
 
-- `base:craft` - generates a basic Craft app
-- `base:static` - generates a simple front end app with no back end and optional [Twig](https://twig.symfony.com) templating
+- `base:project-craft` - generates a basic Craft app
+- `base:project-static` - generates a simple front end app with no back end and optional [Twig](https://twig.symfony.com) templating
 
 ### Front End
 
@@ -31,26 +31,31 @@ There are many types of generators which can reference other generators.
 
 ### Other
 
-- `base:craft-styleguide` - used on top of a `base:craft` installation to add a simple styleguide.
+- `base:craft-styleguide` - used on top of a `base:project-craft` installation to add a simple styleguide.
 
 
 ## Installation
+
+- Install [DDEV](https://ddev.com/get-started/)
 
 Next, clone this repo and link it with npm:
 
 ```bash
 git clone git@github.com:cmalven/generator-base.git
 cd generator-base/
-npm i
-npm link
+ddev start
+ddev npm i
 ```
 
 Finally, generate your new project:
 
 ```bash
-npx yo base:craft
+ddev npm run new ./generators/project-craft
+
 # or
-npx yo base:static
+
+ddev npm run new ./generators/project-static
+
 # or ... any other included generator
 ```
 
@@ -60,13 +65,13 @@ npx yo base:static
 
 ```bash
 # Run all tests once
-npm test
+ddev npm test
 
 # Run a specific test once
-npm test -- test/craft.js
+ddev npm test -- test/project-craft.js
 
 # Run all tests whenever a file changes
-npm run test:dev
+ddev npm run test:dev
 ```
 
 ## License

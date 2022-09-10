@@ -1,5 +1,7 @@
 <?php
 
+use craft\helpers\App;
+
 /**
  * Configuration file for Imager
  *
@@ -9,13 +11,13 @@
 return array(
     'transformer' => 'imgix',
     'useForCpThumbs' => true,
-    'imgixApiKey' => 'xxxxxxxxxxxxxxxxxxxxx',
+    'imgixApiKey' => App::env('IMGIX_API_KEY'),
 
     'imgixConfig' => [
         'default' => [
-            'domain' => '<%= projectName %>.imgix.net',
+            'domain' => App::env('IMGIX_DOMAIN'),
             'useHttps' => true,
-            'signKey' => 'xxxxxxxxxxxxxxxxxxxxx',
+            'signKey' => App::env('IMGIX_SIGN_KEY'),
             'useCloudSourcePath' => true,
             'sourceIsWebProxy' => false,
             'getExternalImageDimensions' => false,

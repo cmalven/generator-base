@@ -12,21 +12,9 @@ module.exports = [
     checked: true,
   },
   {
-    name: 'SVG Placeholder',
-    src: 'mblode/svgplaceholder',
-    handle: 'svgplaceholder',
-    checked: true,
-  },
-  {
     name: 'Wordsmith',
     src: 'topshelfcraft/wordsmith',
     handle: 'wordsmith',
-    checked: true,
-  },
-  {
-    name: 'Asset Rev',
-    src: 'clubstudioltd/craft-asset-rev',
-    handle: 'assetrev',
     checked: true,
   },
   {
@@ -45,12 +33,6 @@ module.exports = [
     name: 'Blitz',
     src: 'putyourlightson/craft-blitz',
     handle: 'blitz',
-    checked: true,
-  },
-  {
-    name: 'Snitch',
-    src: 'marionnewlevant/snitch',
-    handle: 'snitch',
     checked: true,
   },
   {

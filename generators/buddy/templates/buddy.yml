@@ -10,7 +10,7 @@
       type: "BUILD"
       working_directory: "/buddy/<%= projectName %>"
       docker_image_name: "library/node"
-      docker_image_tag: "10.16.3"
+      docker_image_tag: "16.13.1"
       execute_commands:
         - "# CMDs working directory is the pipeline's filesystem with cloned repo "
         - "npm i --prefer-offline --no-audit --progress=false"
@@ -29,7 +29,7 @@
       type: "BUILD"
       working_directory: "/buddy/<%= projectName %>"
       docker_image_name: "library/php"
-      docker_image_tag: "7.3.5"
+      docker_image_tag: "8.0.2"
       execute_commands:
         - "# CMDs working directory is the pipeline's filesystem with cloned repo "
         - "composer install"
@@ -101,7 +101,7 @@
         - "cypress.json"
         - "docker-compose.yml"
         - "Dockerfile"
-        - "env.sample"
+        - ".env.example"
         - "FauxTwigExtension.php"
         - "gsap-bonus.tgz"
         - "gulpfile.js"
@@ -179,7 +179,7 @@
       type: "BUILD"
       working_directory: "/buddy/<%= projectName %>"
       docker_image_name: "library/node"
-      docker_image_tag: "10.16.3"
+      docker_image_tag: "16.13.1"
       execute_commands:
         - "# CMDs working directory is the pipeline's filesystem with cloned repo "
         - "npm i --prefer-offline --no-audit --progress=false"
@@ -198,7 +198,7 @@
       type: "BUILD"
       working_directory: "/buddy/<%= projectName %>"
       docker_image_name: "library/php"
-      docker_image_tag: "7.3.5"
+      docker_image_tag: "8.0.2"
       execute_commands:
         - "# CMDs working directory is the pipeline's filesystem with cloned repo "
         - "composer install"
@@ -270,7 +270,7 @@
         - "cypress.json"
         - "docker-compose.yml"
         - "Dockerfile"
-        - "env.sample"
+        - ".env.example"
         - "FauxTwigExtension.php"
         - "gsap-bonus.tgz"
         - "gulpfile.js"

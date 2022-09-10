@@ -13,7 +13,7 @@ describe('generator-base:static', () => {
 
     before(() => {
       return helpers
-        .run(path.join(__dirname, '../generators/static'))
+        .run(path.join(__dirname, '../generators/project-static'))
         .withPrompts(promptAnswers);
     });
 

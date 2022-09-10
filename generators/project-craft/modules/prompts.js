@@ -6,7 +6,7 @@ const pluginChoices = plugins.map(function(plugin) {
   return {
     name: plugin.name,
     value: plugin.src,
-    checked: plugin.checked
+    checked: plugin.checked,
   };
 });
 
@@ -21,7 +21,7 @@ module.exports = [
     message: 'What is the title of this project?',
     validate: value => {
       return _isEmpty(value) ? 'Please enter a project title.' : true;
-    }
+    },
   },
   {
     type: 'input',
@@ -32,7 +32,7 @@ module.exports = [
     },
     default(answers) {
       return _kebab(answers.projectTitle);
-    }
+    },
   },
   {
     type: 'input',
@@ -40,7 +40,7 @@ module.exports = [
     message: 'What is a 1 sentence description of this project?',
     validate: value => {
       return _isEmpty(value) ? 'Please enter a project description.' : true;
-    }
+    },
   },
 
   //
@@ -51,7 +51,7 @@ module.exports = [
     type: 'confirm',
     name: 'useBuddy',
     message: 'Add deployment configuration for buddy.works?',
-    default: false
+    default: false,
   },
 
   //
@@ -62,6 +62,6 @@ module.exports = [
     type: 'checkbox',
     name: 'craftPlugins',
     message: 'Which optional plugins do you want installed?',
-    choices: pluginChoices
-  }
+    choices: pluginChoices,
+  },
 ];

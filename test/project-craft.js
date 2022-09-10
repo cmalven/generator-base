@@ -12,13 +12,10 @@ describe('generator-base:craft', () => {
       craftPlugins: [
         'nystudio107/craft-seomatic',
         'spacecatninja/imager-x',
-        'mblode/svgplaceholder',
         'topshelfcraft/wordsmith',
-        'clubstudioltd/craft-asset-rev',
         'craftcms/aws-s3',
         'verbb/cp-nav',
         'putyourlightson/craft-blitz',
-        'marionnewlevant/snitch',
         'marionnewlevant/twig-perversion',
         'studioespresso/craft-dumper',
         'topshelfcraft/environment-label',
@@ -35,7 +32,7 @@ describe('generator-base:craft', () => {
 
     before(() => {
       return helpers
-        .run(path.join(__dirname, '../generators/craft'))
+        .run(path.join(__dirname, '../generators/project-craft'))
         .withPrompts(promptAnswers);
     });
 
@@ -45,8 +42,7 @@ describe('generator-base:craft', () => {
     });
 
     it('configures craft', () => {
-      assert.fileContent('config/general.php', "getenv('SITE_URL')");
-      assert.fileContent('config/db.php', "getenv('DB_SERVER')");
+      assert.fileContent('config/general.php', '* General Configuration');
       assert.file('config/project/.gitkeep');
     });
 
@@ -67,10 +63,6 @@ describe('generator-base:craft', () => {
 
     it('installs plugins with composer', () => {
       assert.fileContent('composer.json', `"${promptAnswers.craftPlugins[0]}":`);
-    });
-
-    it('configures assetrev plugin', () => {
-      assert.file('config/assetrev.php');
     });
 
     it('configures environment label plugin', () => {

@@ -35,20 +35,22 @@
     "download": "^8.0.0",
     "emmet": "^2.2.1",
     "eslint-plugin-ejs": "0.0.2",
-    "guid": "^0.0.12",
     "install": "^0.13.0",
     "jsonfile": "^6.0.1",
     "lodash": "^4.17.15",
+    "mkdirp": "^1.0.4",
     "npm": "^6.14.5",
     "pascalcase": "^1.0.0",
     "watch": "^1.0.2",
     "yeoman-generator": "^4.12.0",
+    "yo": "^4.3.0",
     "yosay": "^2.0.2"
   },
   "scripts": {
     "test": "mocha --parallel",
     "test:dev": "watch 'mocha --parallel' ./test",
-    "lint-scripts": "eslint --fix"
+    "lint-scripts": "eslint --fix",
+    "new": "yo"
   },
   "repository": "git@github.com:cmalven/generator-base.git",
   "license": "MIT",
