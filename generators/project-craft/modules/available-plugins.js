@@ -86,7 +86,7 @@ module.exports = [
   },
   {
     name: 'Sherlock',
-    src: 'composer require putyourlightson/craft-sherlock',
+    src: 'putyourlightson/craft-sherlock',
     handle: 'sherlock',
     checked: true,
   },
