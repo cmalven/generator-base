@@ -296,20 +296,14 @@ module.exports = class extends Generator {
 
     this.closingStatements.push('Install Craft: ' + chalk.yellow(`Finish your Craft installation by visiting ` + chalk.cyan(`/admin`) + ' or by running ' + chalk.cyan(`ddev php craft install`)));
 
-    this.closingStatements.push('Configure Craft: ' + chalk.yellow(`Add site-specific Craft settings with  ` + chalk.cyan(`ddev php craft setup/app-id && ddev php craft setup/security-key`)));
+    this.closingStatements.push('Configure Craft: ' + chalk.yellow(`Add site-specific Craft settings with ` + chalk.cyan(`ddev php craft setup/app-id && ddev php craft setup/security-key`)));
 
     this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at ' + chalk.cyan(`/admin/settings/plugins`) + ' after you install Craft, or via the command line using the command below:'));
-    this.closingStatements.push(chalk.cyan(this.props.craftPlugins.map(pluginSrc => {
-      const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
-      return pluginDetails.installable ?? true
-        ? `ddev php craft plugin/install ` + pluginDetails.handle
-        : '';
-    }).join(' && ')));
     this.closingStatements.push(chalk.cyan(
       this.props.craftPlugins.reduce((pluginMessages, pluginSrc) => {
         const pluginDetails = plugins.find(obj => obj.src === pluginSrc);
         if (pluginDetails.installable ?? true) {
-          pluginMessages.push(`./craft plugin/install ` + pluginDetails.handle);
+          pluginMessages.push(`ddev php craft plugin/install ` + pluginDetails.handle);
         }
         return pluginMessages;
       }, []).join(' && '))
