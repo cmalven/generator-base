@@ -85,6 +85,10 @@ describe('generator-base:project-craft', () => {
       assert.file('config/matrixmate.php');
     });
 
+    it('configures Ray plugin', () => {
+      assert.file('config/craft-ray.php');
+    });
+
     it('configures Redactor plugin', () => {
       assert.file('config/redactor/Simple.json');
       assert.file('config/redactor/Standard.json');

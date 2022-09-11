@@ -231,6 +231,14 @@ module.exports = class extends Generator {
       );
     }
 
+    // Ray
+    if (this.props.craftPlugins.includes('spatie/craft-ray')) {
+      this.fs.copy(
+        this.templatePath('config/craft-ray.php'),
+        this.destinationPath('config/craft-ray.php')
+      );
+    }
+
     // Git
     if (this.fs.exists('.gitignore')) {
       this.fs.append(
