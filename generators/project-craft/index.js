@@ -231,6 +231,14 @@ module.exports = class extends Generator {
       );
     }
 
+    // Sherlock
+    if (this.props.craftPlugins.includes('putyourlightson/craft-sherlock')) {
+      this.fs.copy(
+        this.templatePath('config/sherlock.php'),
+        this.destinationPath('config/sherlock.php')
+      );
+    }
+
     // Ray
     if (this.props.craftPlugins.includes('spatie/craft-ray')) {
       this.fs.copy(

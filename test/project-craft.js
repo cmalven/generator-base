@@ -10,22 +10,23 @@ describe('generator-base:project-craft', () => {
       projectName: 'test-craft',
       projectDescription: 'Craft production description',
       craftPlugins: [
-        'nystudio107/craft-seomatic',
-        'spacecatninja/imager-x',
-        'topshelfcraft/wordsmith',
         'craftcms/aws-s3',
-        'putyourlightson/craft-blitz',
+        'craftcms/redactor',
         'marionnewlevant/twig-perversion',
+        'mmikkel/cp-field-inspect',
+        'nystudio107/craft-autocomplete',
+        'nystudio107/craft-emptycoalesce',
+        'nystudio107/craft-seomatic',
+        'putyourlightson/craft-blitz',
+        'putyourlightson/craft-sherlock',
+        'sebastianlenz/linkfield',
+        'spacecatninja/imager-x',
         'spatie/craft-ray',
         'topshelfcraft/environment-label',
-        'verbb/expanded-singles',
-        'craftcms/redactor',
-        'sebastianlenz/linkfield',
-        'mmikkel/cp-field-inspect',
-        'verbb/super-table',
-        'nystudio107/craft-emptycoalesce',
+        'topshelfcraft/wordsmith',
         'vaersaagod/matrixmate',
-        'nystudio107/craft-autocomplete',
+        'verbb/expanded-singles',
+        'verbb/super-table',
       ],
     };
 
@@ -87,6 +88,10 @@ describe('generator-base:project-craft', () => {
 
     it('configures Ray plugin', () => {
       assert.file('config/craft-ray.php');
+    });
+
+    it('configures Sherlock plugin', () => {
+      assert.file('config/sherlock.php');
     });
 
     it('configures Redactor plugin', () => {
