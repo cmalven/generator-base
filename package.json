@@ -39,7 +39,7 @@
     "jsonfile": "^6.0.1",
     "lodash": "^4.17.15",
     "mkdirp": "^1.0.4",
-    "npm": "^6.14.5",
+    "npm": "^6.14.6",
     "pascalcase": "^1.0.0",
     "watch": "^1.0.2",
     "yeoman-generator": "^4.12.0",
