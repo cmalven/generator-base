@@ -36,6 +36,10 @@ describe('generator-base:build', () => {
       assert.noFile('src/templates/index.twig');
     });
 
+    it('creates Vite entry file', () => {
+      assert.file('src/entry.html');
+    });
+
     it('adds .gitgnore rules', () => {
       assert.fileContent('.gitignore', '/dist');
     });

@@ -1,6 +1,6 @@
 # Scripts Generator
 
-This is a yeoman generator to add the Malven Co. standard javascripts structure.
+This is a yeoman generator to add the Malven Co. standard typescript structure.
 
 ## What it does
 

@@ -6,7 +6,7 @@
 - Install [DDEV](https://ddev.com/get-started/)
 - `ddev start`
 - `ddev composer install`
-- `cp env.example .env` and modify the contents of `.env` to match your setup
+- `cp .env.example .env` and modify the contents of `.env` to match your setup
 - `ddev import-db`
 
 ### Front End Dependencies

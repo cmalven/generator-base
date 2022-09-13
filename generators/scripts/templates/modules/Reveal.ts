@@ -1,4 +1,4 @@
-import { Modu } from '@malven/modu';
+import { Modu, ModuOptions } from '@malven/modu';
 
 import addIntersection from '../utils/addIntersection';
 
@@ -8,9 +8,9 @@ import addIntersection from '../utils/addIntersection';
 
 export default class extends Modu {
   visibleClass = 'is-visible';
-  observer;
+  observer?: IntersectionObserver;
 
-  constructor(m) {
+  constructor(m: ModuOptions) {
     super(m);
   }
 
@@ -20,9 +20,10 @@ export default class extends Modu {
     // Change the trigger element based on settings
     const trigger = this.getData('trigger');
     if (trigger === 'parent') {
-      triggerEl = this.el.parentNode;
+      triggerEl = this.el.parentNode as Element;
     } else if (trigger) {
-      triggerEl = this.el.closest(trigger);
+      const closestTrigger = this.el.closest(trigger);
+      if (closestTrigger) triggerEl = closestTrigger;
     }
 
     this.observer = addIntersection(triggerEl, {
@@ -37,6 +38,6 @@ export default class extends Modu {
   };
 
   cleanup = () => {
-    this.observer.disconnect();
+    if (this.observer) this.observer.disconnect();
   };
 }

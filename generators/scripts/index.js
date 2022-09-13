@@ -32,23 +32,29 @@ module.exports = class extends Generator {
     if (deps.indexOf('@malven/modu') > -1) {
       this.fs.copy(
         this.templatePath('modules/'),
-        this.destinationPath('src/scripts/modules')
+        this.destinationPath('src/scripts/modules'),
       );
     }
 
     // Utils
     this.fs.copy(
       this.templatePath('utils/'),
-      this.destinationPath('src/scripts/utils')
+      this.destinationPath('src/scripts/utils'),
+    );
+
+    // Typescript Config
+    this.fs.copy(
+      this.templatePath('tsconfig.json'),
+      this.destinationPath('tsconfig.json'),
     );
 
     // Main
     this.fs.copyTpl(
-      this.templatePath('main.js'),
-      this.destinationPath('src/scripts/main.js'),
+      this.templatePath('main.ts'),
+      this.destinationPath('src/scripts/main.ts'),
       {
         deps,
-      }
+      },
     );
   }
 

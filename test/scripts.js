@@ -9,10 +9,14 @@ describe('generator-base:scripts', () => {
       return helpers.run(path.join(__dirname, '../generators/scripts'));
     });
 
-    it('creates main.js', () => {
+    it('creates main.ts', () => {
       assert.file([
-        'src/scripts/main.js',
+        'src/scripts/main.ts',
       ]);
+    });
+
+    it('Adds typescript config', () => {
+      assert.file('tsconfig.json');
     });
   });
 
@@ -25,10 +29,10 @@ describe('generator-base:scripts', () => {
     });
 
     it('adds lazysizes init code', () => {
-      assert.fileContent('src/scripts/main.js', "import 'lazysizes'");
-      assert.file('src/scripts/utils/LazyImageTransitioner.js');
-      assert.fileContent('src/scripts/main.js', "import LazyImageTransitioner from './utils/LazyImageTransitioner'");
-      assert.fileContent('src/scripts/main.js', 'new LazyImageTransitioner();');
+      assert.fileContent('src/scripts/main.ts', "import 'lazysizes'");
+      assert.file('src/scripts/utils/LazyImageTransitioner.ts');
+      assert.fileContent('src/scripts/main.ts', "import LazyImageTransitioner from './utils/LazyImageTransitioner'");
+      assert.fileContent('src/scripts/main.ts', 'new LazyImageTransitioner();');
     });
   });
 
@@ -41,14 +45,14 @@ describe('generator-base:scripts', () => {
     });
 
     it('adds modu init code', () => {
-      assert.fileContent('src/scripts/main.js', "import { App } from '@malven/modu';");
-      assert.fileContent('src/scripts/main.js', 'const app = new App({');
-      assert.fileContent('src/scripts/main.js', 'app.init();');
+      assert.fileContent('src/scripts/main.ts', "import { App } from '@malven/modu';");
+      assert.fileContent('src/scripts/main.ts', 'const app = new App({');
+      assert.fileContent('src/scripts/main.ts', 'app.init();');
     });
 
     it('adds optional modules', () => {
       assert.file([
-        'src/scripts/modules/Reveal.js',
+        'src/scripts/modules/Reveal.ts',
       ]);
     });
   });

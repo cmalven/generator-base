@@ -15,6 +15,7 @@ describe('generator-base:eslint', () => {
     it('creates files', () => {
       assert.file([
         '.eslintrc',
+        '.eslintignore',
       ]);
     });
   });

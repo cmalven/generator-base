@@ -32,10 +32,18 @@
  *    );
  */
 
-export default (el, options = {}) => {
+type Options = {
+  rootMargin?: string;
+  inHandler?: (el: Element, direction: string, isTriggered: boolean, currentRatio: number) => void;
+  outHandler?: (el: Element, direction: string, currentRatio: number) => void;
+  atHandler?: (el: Element, direction: string) => void;
+  ratioSteps?: number;
+}
+
+export default (el: Element, options: Options = {}) => {
   let isTriggered = false;
 
-  let position = {
+  const position = {
     previousY: 0,
     previousRatio: 0,
   };
@@ -43,14 +51,14 @@ export default (el, options = {}) => {
   // Defaults
   const {
     rootMargin = '0px 0px -100px 0px',
-    inHandler = _direction => {},
-    outHandler = _direction => {},
-    atHandler = _direction => {},
+    inHandler = (_element, _direction) => null,
+    outHandler = (_element, _direction) => null,
+    atHandler = (_element, _direction) => null,
     ratioSteps = 20,
-  } = options;
+  }: Options = options;
 
   const add = () => {
-    let observer = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
           // If it isn't actually in the viewport, we're not concerned with it

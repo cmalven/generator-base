@@ -18,10 +18,12 @@ new LazyImageTransitioner();
 
 <%_ } _%>
 <%_ if (deps.includes('@malven/modu')) { _%>
+import * as initialModules from './modules/initial';
 import { App } from '@malven/modu';
 
 const app = new App({
-  importMethod: module => import(/* webpackChunkName: "[request]" */ './modules/' + module + '.js'),
+  initialModules,
+  importMethod: module => import('./modules/' + module + '.js'),
 });
 app.init();
 <%_ } _%>

@@ -8,19 +8,24 @@ module.exports = class extends Generator {
 
     this.fs.copy(
       this.templatePath('.eslintrc'),
-      this.destinationPath('.eslintrc')
+      this.destinationPath('.eslintrc'),
     );
 
     this.fs.copy(
       this.templatePath('.eslintignore'),
-      this.destinationPath('.eslintignore')
+      this.destinationPath('.eslintignore'),
     );
   }
 
   install() {
     const devDependencies = [
-      'eslint',
       '@malven/eslint-config',
+      '@malven/eslint-config-typescript',
+      '@types/node',
+      '@typescript-eslint/eslint-plugin',
+      '@typescript-eslint/parser',
+      'eslint@8.22.0', // TODO: Pinned version for now to avoid issues with ESLint in Jetbrains IDEs
+      'typescript',
     ];
 
     // Display a message

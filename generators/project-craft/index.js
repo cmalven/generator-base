@@ -33,7 +33,7 @@ module.exports = class extends Generator {
 
   prompting() {
     this.log(yosay(
-      'Welcome to the impressive ' + chalk.red('Craft') + ' generator!'
+      'Welcome to the impressive ' + chalk.red('Craft') + ' generator!',
     ));
 
     console.log(chalk.yellow('Craft Config'));
@@ -131,62 +131,54 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('web/htaccess'),
       this.destinationPath('web/.htaccess'),
-      this.props
+      this.props,
     );
 
     this.fs.copyTpl(
       this.templatePath('web/favicons'),
       this.destinationPath('web/favicons'),
-      this.props
+      this.props,
     );
 
     this.fs.copyTpl(
       this.templatePath('.env.example'),
       this.destinationPath('.env.example'),
-      this.props
+      this.props,
     );
 
     this.fs.copyTpl(
       this.templatePath('.env.example'),
       this.destinationPath('.env'),
-      this.props
+      this.props,
     );
 
     this.fs.copy(
       this.templatePath('config/general.php'),
-      this.destinationPath('config/general.php')
+      this.destinationPath('config/general.php'),
     );
 
     this.fs.copy(
       this.templatePath('web/favicon.ico'),
-      this.destinationPath('web/favicon.ico')
+      this.destinationPath('web/favicon.ico'),
     );
 
     this.fs.copy(
       this.templatePath('config/project/.gitkeep'),
-      this.destinationPath('config/project/.gitkeep')
+      this.destinationPath('config/project/.gitkeep'),
     );
 
     // Craft Templates
     this.fs.copyTpl(
       this.templatePath('templates/'),
       this.destinationPath('templates/'),
-      this.props
+      this.props,
     );
-
-    // Asset Rev
-    if (this.props.craftPlugins.includes('clubstudioltd/craft-asset-rev')) {
-      this.fs.copy(
-        this.templatePath('config/assetrev.php'),
-        this.destinationPath('config/assetrev.php')
-      );
-    }
 
     // SEOmatic
     if (this.props.craftPlugins.includes('nystudio107/craft-seomatic')) {
       this.fs.copy(
         this.templatePath('config/seomatic.php'),
-        this.destinationPath('config/seomatic.php')
+        this.destinationPath('config/seomatic.php'),
       );
     }
 
@@ -194,7 +186,7 @@ module.exports = class extends Generator {
     if (this.props.craftPlugins.includes('putyourlightson/craft-blitz')) {
       this.fs.copy(
         this.templatePath('config/blitz.php'),
-        this.destinationPath('config/blitz.php')
+        this.destinationPath('config/blitz.php'),
       );
     }
 
@@ -202,7 +194,7 @@ module.exports = class extends Generator {
     if (this.props.craftPlugins.includes('vaersaagod/matrixmate')) {
       this.fs.copy(
         this.templatePath('config/matrixmate.php'),
-        this.destinationPath('config/matrixmate.php')
+        this.destinationPath('config/matrixmate.php'),
       );
     }
 
@@ -211,7 +203,7 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('config/imager-x.php'),
         this.destinationPath('config/imager-x.php'),
-        this.props
+        this.props,
       );
     }
 
@@ -219,7 +211,7 @@ module.exports = class extends Generator {
     if (this.props.craftPlugins.includes('topshelfcraft/environment-label')) {
       this.fs.copy(
         this.templatePath('config/environment-label.php'),
-        this.destinationPath('config/environment-label.php')
+        this.destinationPath('config/environment-label.php'),
       );
     }
 
@@ -227,7 +219,7 @@ module.exports = class extends Generator {
     if (this.props.craftPlugins.includes('craftcms/redactor')) {
       this.fs.copy(
         this.templatePath('config/redactor'),
-        this.destinationPath('config/redactor')
+        this.destinationPath('config/redactor'),
       );
     }
 
@@ -235,7 +227,7 @@ module.exports = class extends Generator {
     if (this.props.craftPlugins.includes('putyourlightson/craft-sherlock')) {
       this.fs.copy(
         this.templatePath('config/sherlock.php'),
-        this.destinationPath('config/sherlock.php')
+        this.destinationPath('config/sherlock.php'),
       );
     }
 
@@ -243,7 +235,7 @@ module.exports = class extends Generator {
     if (this.props.craftPlugins.includes('spatie/craft-ray')) {
       this.fs.copy(
         this.templatePath('config/craft-ray.php'),
-        this.destinationPath('config/craft-ray.php')
+        this.destinationPath('config/craft-ray.php'),
       );
     }
 
@@ -251,12 +243,12 @@ module.exports = class extends Generator {
     if (this.fs.exists('.gitignore')) {
       this.fs.append(
         this.destinationPath('.gitignore'),
-        fs.readFileSync(this.templatePath('gitignore'))
+        fs.readFileSync(this.templatePath('gitignore')),
       );
     } else {
       this.fs.copy(
         this.templatePath('gitignore'),
-        this.destinationPath('.gitignore')
+        this.destinationPath('.gitignore'),
       );
     }
 
@@ -264,26 +256,26 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
-      this.props
+      this.props,
     );
 
     // README
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'),
-      this.props
+      this.props,
     );
 
     // Editor
     this.fs.copy(
       this.templatePath('.editorconfig'),
-      this.destinationPath('.editorconfig')
+      this.destinationPath('.editorconfig'),
     );
 
     // Composer
     this.fs.copyTpl(
       this.templatePath('composer.json'),
-      this.destinationPath('composer.json')
+      this.destinationPath('composer.json'),
     );
   }
 
@@ -302,17 +294,15 @@ module.exports = class extends Generator {
 
     this.closingStatements.push(chalk.green('Finishing Craft Setup'));
 
-    this.closingStatements.push('Directory: ' + chalk.yellow(`Your new project is in ${chalk.cyan('/output/' + this.props.projectName)}. Either run ${chalk.cyan('cd ' + this.props.projectName)} or move this directory somewhere else.`));
+    this.closingStatements.push('Directory: ' + chalk.yellow(`Your new project is in ${chalk.cyan('/output/' + this.props.projectName)}. You'll probably want to move the project somewhere else, e.g. ${chalk.cyan('mv ./output/' + this.props.projectName + ' ~/Code/' + this.props.projectName + ' && cd ~/Code/' + this.props.projectName)} or move this directory somewhere else.`));
 
-    this.closingStatements.push('DDEV: ' + chalk.yellow(`To use DDEV, run ${chalk.cyan('cd output/' + this.props.projectName + ' && ddev config')}.`) + ' You can then run ' + chalk.cyan('ddev start') + ' to start the project.');
+    this.closingStatements.push('DDEV: ' + chalk.yellow(`To configure and use DDEV for the project, run the following one at a time:`));
 
-    this.closingStatements.push('Database: ' + chalk.yellow(`Create a MySQL database named ${chalk.cyan(this.props.projectName)} if you haven’t already. If you're using DDEV, a DB will automatically be created for you when you start up the project.`));
-
-    this.closingStatements.push('If you are not using DDEV and have mysql installed, you may be able to create a database from the command line with:\n' + chalk.cyan(`echo 'CREATE DATABASE \`${this.props.projectName}\`' | mysql -u root -p`));
-
-    this.closingStatements.push('Install Craft: ' + chalk.yellow(`Finish your Craft installation by visiting ` + chalk.cyan(`/admin`) + ' or by running ' + chalk.cyan(`ddev php craft install`)));
-
-    this.closingStatements.push('Configure Craft: ' + chalk.yellow(`Add site-specific Craft settings with ` + chalk.cyan(`ddev php craft setup/app-id && ddev php craft setup/security-key`)));
+    this.closingStatements.push(chalk.cyan(
+      `ddev config --project-name "${this.props.projectName}" --project-type php --docroot web && ddev start\n` +
+      'ddev php craft install\n' +
+      'ddev php craft setup/app-id && ddev php craft setup/security-key\n',
+    ));
 
     this.closingStatements.push('Craft Plugins: ' + chalk.yellow('Your chosen plugins have been installed via Composer, but you’ll still need to install them in the Craft control panel at ' + chalk.cyan(`/admin/settings/plugins`) + ' after you install Craft, or via the command line using the command below:'));
     this.closingStatements.push(chalk.cyan(
@@ -322,7 +312,7 @@ module.exports = class extends Generator {
           pluginMessages.push(`ddev php craft plugin/install ` + pluginDetails.handle);
         }
         return pluginMessages;
-      }, []).join(' && '))
+      }, []).join(' && ')),
     );
 
     // Output all closing statements

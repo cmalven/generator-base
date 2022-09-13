@@ -112,7 +112,7 @@ describe('generator-base:project-craft', () => {
       assert.fileContent('package.json', `"description": "${promptAnswers.projectDescription}",`);
     });
 
-    it('configures Gulp correctly', () => {
+    it('configures build correctly', () => {
       assert.fileContent('gulpfile.js', `dist: 'web/dist/'`);
       assert.fileContent('gulpfile.js', `templateSrc: 'templates/'`);
     });
