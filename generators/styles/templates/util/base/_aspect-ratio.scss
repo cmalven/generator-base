@@ -1,0 +1,40 @@
+@use 'sass:math';
+@use 'sass:list';
+
+/*
+Aspect Ratio
+
+Native aspect ratio with a fallback. Takes a Sass list, so you can create
+common ratios in _variables.scss like so:
+
+$aspect-ratio-16x9: 16, 9;
+
+...and use them with:
+
+.my-element {
+  @include aspect-ratio($aspect-ratio-16x9);
+}
+*/
+
+@mixin aspect-ratio($values: (1, 1)) {
+  $aspect-ratio: '#{list.nth($values, 1)} / #{list.nth($values, 2)}';
+  $pct: math.div(list.nth($values, 2), list.nth($values, 1));
+
+  & {
+    aspect-ratio: #{$aspect-ratio};
+  }
+
+  @supports not (aspect-ratio: #{$aspect-ratio}) {
+    &:before {
+      float: left;
+      padding-top: $pct * 100%;
+      content: '';
+    }
+
+    &:after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+}
