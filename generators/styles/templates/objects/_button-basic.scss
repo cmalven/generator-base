@@ -68,26 +68,60 @@ A flexible, reusable button.
 
 
 // ---------------------------------------------------------------
+// Hover / Focus Mixin
+// ---------------------------------------------------------------
+
+@mixin button-hover($selector) {
+  #{not-touch-selector()} #{$selector}:hover .button-basic__inner,
+  #{not-touch-selector()} #{$selector} .button-basic__inner:focus,
+  #{not-touch-selector()} a:hover #{$selector} .button-basic__inner {
+    outline: none;
+    @content;
+  }
+}
+
+@mixin button-hover-graphic($selector) {
+  @include button-hover($selector) {
+    & + .button-basic__bg + .button-basic__graphic {
+      @content;
+    }
+  }
+}
+
+@mixin button-hover-bg($selector) {
+  @include button-hover($selector) {
+    & + .button-basic__bg {
+      @content;
+    }
+  }
+}
+
+@mixin button-hover-text($selector) {
+  @include button-hover($selector) {
+    .button-basic__text {
+      @content;
+    }
+  }
+}
+
+
+// ---------------------------------------------------------------
 // State - Focus / Hover / Active
 // ---------------------------------------------------------------
 
-.button-basic:hover .button-basic__inner,
-.button-basic__inner:focus,
-a:hover .button-basic__inner {
-  outline: none;
-
-  & + .button-basic__bg:before {
+@include button-hover-bg('.button-basic') {
+  &:before {
     opacity: 1;
     transform: scaleX(1);
     transform-origin: 0 0;
   }
+}
 
-  .button-basic__text {
-    color: var(--theme-bg);
-  }
+@include button-hover-text('.button-basic') {
+  color: var(--theme-bg);
+}
 
-  & + .button-basic__bg + .button-basic__graphic {
-    color: var(--theme-bg);
-    transform: translateX(0.3rem);
-  }
+@include button-hover-graphic('.button-basic') {
+  color: var(--theme-bg);
+  transform: translateX(0.3rem);
 }
