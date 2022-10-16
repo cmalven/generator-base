@@ -63,6 +63,11 @@ $breakpoints: (
   max: 1600px
 );
 
+// Variants
+$breakpoints: map-merge($breakpoints, (
+  nav-full: map-get($breakpoints, large)
+));
+
 // Add breakpoints as CSS variables
 :root {
   @each $name, $size in $breakpoints {
@@ -172,7 +177,7 @@ $z-index-global-header: 100;
 // Aspect Ratio
 // ---------------------------------------------------------------
 
-$aspect-ratio-4x3: 75%;
+$aspect-ratio-4x3: 4, 3;
 
 
 // ---------------------------------------------------------------
