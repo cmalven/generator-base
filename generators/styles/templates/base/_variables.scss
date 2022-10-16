@@ -108,6 +108,10 @@ $fluid-sizes: (
     default: 50px,
     max: 100px
   ),
+  grid-gutter: (
+    default: 20px,
+    max: 40px
+  ),
 
   8: (
     default: 8px
@@ -169,7 +173,7 @@ $z-index-global-header: 100;
 
 :root {
   --grid-columns: 12;
-  --grid-gutter: 24px;
+  --grid-gutter: var(--fluid-size-grid-gutter);
 }
 
 
