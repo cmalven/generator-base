@@ -1,0 +1,35 @@
+{# =============================================================== #}
+{# Image Video
+{# =============================================================== #}
+{#
+  {% include '_partials/image-video' with {
+    asset: craft.assets.filename('*.jpg').orderBy('RAND()').one(),
+    transform: '16x9',
+    modifiers: ['wipe'],
+  } only %}
+#}
+
+{% import '_macros/class-modifiers' as classModifiers %}
+{% set classes = classModifiers.set('image-video', modifiers ?? ['fade']) %}
+
+<div class="image-video {{ classes }}" data-module-reveal>
+  <div class="image-video__inner">
+    <div class="image-video__innermost">
+      {# Image #}
+      {% if asset.kind == 'image' %}
+        {% import '_macros/image' as image %}
+        {{ image.img(asset, {
+          transform: transform ?? 'scale',
+          wrapperClasses: "image--fade image--cover"
+        }) }}
+      {% endif %}
+
+      {# Video #}
+      {% if asset.kind == 'video' %}
+        {% include '_partials/video' with {
+          url: asset.url,
+        } only %}
+      {% endif %}
+    </div>
+  </div>
+</div>
