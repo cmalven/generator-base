@@ -1,0 +1,20 @@
+/*
+Text links
+
+Adds common link styling
+*/
+
+@mixin text-links {
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    transition: text-decoration-color $transition-hover-color;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration-color: currentColor;
+    }
+  }
+}
