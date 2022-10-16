@@ -1,8 +1,11 @@
 # Craft 3
 # ---------------------------
+/storage/*
+!/storage/rebrand
 /templates/_svg/**/*
-
-/web/*
+/templates/_partials/vite.twig
+/src/static/images/
+/web/**/*
 !/web/favicons/
 !/web/fonts/
 !/web/.htaccess
