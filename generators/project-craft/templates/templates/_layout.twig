@@ -13,7 +13,10 @@
   {% include '_partials/head' %}
 </head>
 
-<body class="{{ bodyClass | default('') }}">
+<body
+  class="{{ bodyClass | default('') }}"
+  data-module-debug-reveal
+>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <main class="l-container" tabindex="-1" id="main-content">
