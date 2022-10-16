@@ -75,18 +75,18 @@ export default (el: Element, options: Options = {}) => {
 
           // Exiting top or bottom
           if (currentRatio <= 1 && status === 'exiting') {
-            outHandler.call(this, entry.target, dir, currentRatio);
+            outHandler.call(undefined, entry.target, dir, currentRatio);
           }
 
           // Entering top or bottom
           if (currentRatio > 0 && status === 'entering') {
-            inHandler.call(this, entry.target, dir, isTriggered, currentRatio);
+            inHandler.call(undefined, entry.target, dir, isTriggered, currentRatio);
             isTriggered = true;
           }
 
           // Fully visible
           if (currentRatio >= 1 && status === 'entering') {
-            atHandler.call(this, entry.target, dir);
+            atHandler.call(undefined, entry.target, dir);
           }
 
           position.previousY = currentY;
