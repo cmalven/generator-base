@@ -1,0 +1,184 @@
+/*
+Layout - Dialog
+
+Wrapper for dialog content
+*/
+
+@mixin dialog-common {
+  .l-dialog__content {
+    transition-property: opacity, transform;
+    width: 100%;
+    flex: 1 1 auto;
+
+    .js & {
+      transition: 0.9s ease(out-expo);
+    }
+  }
+
+  .l-dialog__content-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+
+    > * {
+      flex: 1 1 auto;
+    }
+  }
+
+  &.is-open {
+    .l-dialog__content {
+      transform: translateX(0) !important;
+    }
+  }
+}
+
+.l-dialog {
+  .js & {
+    @include fixed;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: $z-index-dialog;
+    display: none;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    min-height: env(safe-area-inset-bottom);
+  }
+}
+
+.l-dialog__inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-dialog__close-overlay {
+  transition: opacity 0.7s ease(out-expo);
+  background-color: black;
+  opacity: 0;
+
+  .js & {
+    @include fixed;
+  }
+}
+
+.l-dialog__content {
+  display: flex;
+  flex-direction: column;
+
+  .js & {
+    // Apply transforms or opacity to content
+  }
+}
+
+.l-dialog__content-close {
+  @include fluid-size(outer, top right, $adjust: -15px);
+  color: color(white);
+  position: absolute;
+  pointer-events: auto;
+  transition: 0.8s ease(out-expo);
+  transition-property: transform, opacity;
+  transition-delay: 0s;
+
+  @include media('>=medium') {
+    @include fluid-size(50, top right);
+  }
+
+  > button {
+    @include reset-input;
+    cursor: pointer;
+    transition: opacity $transition-hover-color;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  svg {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .js & {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+}
+
+.l-dialog__content-inner {
+  position: relative;
+  pointer-events: auto;
+  min-height: min-content;
+}
+
+
+// ---------------------------------------------------------------
+// State - Opening
+// ---------------------------------------------------------------
+
+.l-dialog.is-opening {
+  display: flex;
+}
+
+
+// ---------------------------------------------------------------
+// State - Open
+// ---------------------------------------------------------------
+
+.l-dialog.is-open {
+  pointer-events: auto;
+
+  .l-dialog__close-overlay {
+    opacity: 0.1;
+  }
+
+  .l-dialog__content {
+    // Reveal content
+  }
+
+  .l-dialog__content-close {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.3s;
+    z-index: $z-index-dialog;
+  }
+}
+
+
+// ---------------------------------------------------------------
+// Modifier - Global Nav
+// ---------------------------------------------------------------
+
+.l-dialog--global-nav {
+  @include dialog-common;
+
+  .l-dialog__content {
+    margin-right: auto;
+
+    .js & {
+      opacity: 0;
+      transition-delay: 0.6s;
+    }
+  }
+
+  .l-dialog__content-close {
+    .js & {
+      transform: translateX(-1rem);
+    }
+  }
+
+  &.is-open {
+    .l-dialog__content {
+      opacity: 1;
+      transition-delay: 0s;
+    }
+
+    .l-dialog__content-close {
+      transform: translateX(0);
+    }
+  }
+}

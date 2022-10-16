@@ -1,0 +1,23 @@
+{# =============================================================== #}
+{# Global Header
+{# =============================================================== #}
+{#
+  {% include '_partials/global-header' %}
+#}
+
+<header class="global-header">
+  {# Toggle #}
+  <div class="global-header__toggle">
+    {% include '_partials/global-nav-toggle' with {
+      label: 'Menu',
+      action: 'open',
+      key: 'dialog-global-nav',
+    } %}
+  </div>
+</header>
+
+{# Dialog #}
+{% include '_partials/dialog-global-nav' with {
+  key: 'dialog-global-nav',
+} only %}
+

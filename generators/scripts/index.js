@@ -69,7 +69,11 @@ module.exports = class extends Generator {
   install() {
     if (this.props.deps && this.props.deps.length) {
       this.log(chalk.yellow('\nInstalling script-related dependencies…'));
-      this.npmInstall(this.props.deps, { silent: true });
+      console.log(this.props.deps);
+      this.npmInstall(this.props.deps.concat([
+        'a11y-dialog',
+        'body-scroll-lock',
+      ]), { silent: true });
     }
   }
 

@@ -19,12 +19,17 @@
 >
   <a class="skip-link" href="#main-content">Skip to content</a>
 
+  {# Global Header #}
+  {% include '_partials/global-nav' %}
+
+  {# Main Content Container #}
   <main class="l-container" tabindex="-1" id="main-content">
     {% block content %}{% endblock %}
 
     {% include '_partials/debug-grid' %}
   </main>
 
+  {# SVG #}
   <span class="h-hide-visually">
     {{ source('_svg/symbol/icon.symbol.svg', ignore_missing = true) }}
     {{ source('_svg/symbol/full.symbol.svg', ignore_missing = true) }}
