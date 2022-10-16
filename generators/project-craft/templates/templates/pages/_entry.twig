@@ -1,0 +1,12 @@
+{# ================================================================== #}
+{# Pages - Entry
+{# ================================================================== #}
+
+{% extends "_layout" %}
+
+{% block content %}
+  {# Matrix Page Content #}
+  {% include '_partials/matrix-page-content' with {
+    field: 'pageContent',
+  } %}
+{% endblock %}

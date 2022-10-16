@@ -55,6 +55,7 @@ describe('generator-base:project-craft', () => {
       assert.file('templates/_partials');
       assert.file('templates/_embeds');
       assert.file('templates/index.twig');
+      assert.file('templates/pages/_entry.twig');
     });
 
     it('adds favicons', () => {
