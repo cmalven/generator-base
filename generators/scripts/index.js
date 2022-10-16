@@ -56,6 +56,14 @@ module.exports = class extends Generator {
         deps,
       },
     );
+
+    // Object Fit Videos
+    if (deps.indexOf('object-fit-videos') > -1) {
+      this.fs.copy(
+        this.templatePath('types/object-fit-videos.d.ts'),
+        this.destinationPath('src/scripts/types/object-fit-videos.d.ts'),
+      );
+    }
   }
 
   install() {

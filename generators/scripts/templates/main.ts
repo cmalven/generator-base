@@ -17,7 +17,36 @@ if (!('object-fit' in document.createElement('a').style)) {
 new LazyImageTransitioner();
 
 <%_ } _%>
+<%_ if (deps.includes('smooth-scroll')) { _%>
+// ---------------------------------------------------------------
+// Smooth Scroll
+// ---------------------------------------------------------------
+
+import SmoothScroll from 'smooth-scroll';
+
+new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+  easing: 'easeInOutCubic',
+  updateURL: false,
+});
+
+<%_ } _%>
+<%_ if (deps.includes('object-fit-videos')) { _%>
+// ---------------------------------------------------------------
+// Fit Videos
+// ---------------------------------------------------------------
+
+import objectFitVideos from 'object-fit-videos';
+
+objectFitVideos();
+
+  <%_ } _%>
 <%_ if (deps.includes('@malven/modu')) { _%>
+// ---------------------------------------------------------------
+// Modu
+// ---------------------------------------------------------------
+
 import * as initialModules from './modules/initial';
 import { App } from '@malven/modu';
 

@@ -36,6 +36,36 @@ describe('generator-base:scripts', () => {
     });
   });
 
+  describe('enabling smooth-scroll', () => {
+    before(() => {
+      return helpers.run(path.join(__dirname, '../generators/scripts'))
+        .withPrompts({
+          deps: ['smooth-scroll'],
+        });
+    });
+
+    it('adds smooth-scroll init code', () => {
+      assert.fileContent('src/scripts/main.ts', "import SmoothScroll from 'smooth-scroll'");
+    });
+  });
+
+  describe('enabling object-fit-videos', () => {
+    before(() => {
+      return helpers.run(path.join(__dirname, '../generators/scripts'))
+        .withPrompts({
+          deps: ['object-fit-videos'],
+        });
+    });
+
+    it('adds object-fit-videos init code', () => {
+      assert.fileContent('src/scripts/main.ts', "import objectFitVideos from 'object-fit-videos'");
+    });
+
+    it('adds object-fit-videos typescript definition', () => {
+      assert.file('src/scripts/types/object-fit-videos.d.ts');
+    });
+  });
+
   describe('enabling modu', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/scripts'))
