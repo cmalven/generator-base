@@ -32,12 +32,21 @@
       {% set classes = classes | merge(['space-bottom']) %}
     {% endif %}
   {% else %}
-    {% set classes = classes | merge(['block']) %}
+    {% set classes = classes | merge(['block-top', 'block-bottom']) %}
+  {% endif %}
+
+  {# Block Top / Bottom #}
+  {% if handle in [] %}
+    {% set classes = classes | merge(['block-top']) %}
+  {% endif %}
+
+  {% if handle in [] %}
+    {% set classes = classes | merge(['block-bottom ']) %}
   {% endif %}
 
   {# Block Mobile (no top/bottom spacing on mobile) #}
   {% if handle in [] %}
-    {% set classes = classes | merge(['block-mobile']) %}
+    {% set classes = classes | merge(['block-top-mobile', 'block-bottom-mobile']) %}
   {% endif %}
 
   {# Max #}
@@ -46,7 +55,7 @@
   {% endif %}
 
   {# Background Color #}
-  {% set defaultBg = 'white' %}
+  {% set defaultBg = 'light' %}
   {% set hasBgColor = block.backgroundColor ??? false and block.backgroundColor.value != defaultBg %}
   {% if
     handle in [] or hasBgColor

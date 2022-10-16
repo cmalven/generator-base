@@ -59,11 +59,40 @@ spacing and relationships between various vertical sections of the site.
 
 
 // ---------------------------------------------------------------
+// Modifier - Block
+// ---------------------------------------------------------------
+
+// "Block" sections will not automatically have space before or after them.
+// This allows them to sit flush with their neighboring blocks.
+
+.l-section--block-top:not(.l-section--block-top-mobile) {
+  @include fluid-size(none, padding-top);
+}
+
+.l-section--block-bottom:not(.l-section--block-bottom-mobile) {
+  @include fluid-size(none, padding-bottom);
+}
+
+.l-section--block-top-mobile {
+  @include media('<medium') {
+    @include fluid-size(none, padding-top);
+  }
+}
+
+.l-section--block-bottom-mobile {
+  @include media('<medium') {
+    @include fluid-size(none, padding-bottom);
+  }
+}
+
+
+// ---------------------------------------------------------------
 // Background Color
 // ---------------------------------------------------------------
 
 .l-section--bg-light {
   @include theme-light;
+  background-color: var(--theme-bg);
 }
 
 .l-section--bg-dark {
@@ -80,13 +109,13 @@ $bg-colors: light, dark;
 
 @each $bg-color in $bg-colors {
   @include media('<medium') {
-    .l-section--bg-#{$bg-color}:not(.l-section--block) + .l-section--bg-#{$bg-color}:not(.l-section--block):not(.l-section--block-mobile) {
+    .l-section--bg-#{$bg-color}:not(.l-section--block-bottom) + .l-section--bg-#{$bg-color}:not(.l-section--block-top):not(.l-section--block--top-mobile) {
       @include fluid-size(section-vertical, margin-top, $negative: true);
     }
   }
 
   @include media('>=medium') {
-    .l-section--bg-#{$bg-color}:not(.l-section--block) + .l-section--bg-#{$bg-color}:not(.l-section--block) {
+    .l-section--bg-#{$bg-color}:not(.l-section--block-bottom) + .l-section--bg-#{$bg-color}:not(.l-section--block-top) {
       @include fluid-size(section-vertical, margin-top, $negative: true);
     }
   }
