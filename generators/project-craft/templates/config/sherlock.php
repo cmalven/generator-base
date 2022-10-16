@@ -45,20 +45,20 @@ return [
         // Enables a content security policy on the front-end of your site.
         // See https://content-security-policy.com/
         'contentSecurityPolicySettings' => [
-            'enabled' => true,
-            'enforce' => true,
+            'enabled' => false,
+            'enforce' => false,
             'header' => true,
             'directives' => [
-                [true, 'report-uri',                "https://o199825.ingest.sentry.io/api/6688350/security/?sentry_key=768e9aaf789540c196b9840a5f12ece6"],
+                [true, 'report-uri',                "https://xxxxx.ingest.sentry.io/api/xxxxx/security/?sentry_key=768e9aaf789540c196b9840a5f12ece6"],
                 [true, 'default-src',               "'self' https"],
                 [true, 'script-src',                "'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://unpkg.com https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://www.bugherd.com https://sidebar.bugherd.com"],
                 [true, 'style-src',                 "'self' 'unsafe-inline' https://fonts.googleapis.com"],
                 [true, 'worker-src',                "blob: "],
-                [true, 'frame-src',                 "https://sightmap.com https://www.google.com https://sidebar.bugherd.com"],
-                [true, 'media-src',                 "https://d12st5wwhtuyie.cloudfront.net data: "],
+                [true, 'frame-src',                 "https://www.google.com"],
+                [true, 'media-src',                 "https://xxxxx.cloudfront.net data: "],
                 [true, 'child-src',                 "blob: "],
                 [true, 'font-src',                  "'self' https://fonts.gstatic.com data: "],
-                [true, 'img-src',                   "'self' https://tt-residential.imgix.net https://d12st5wwhtuyie.cloudfront.net https://maps.googleapis.com https://maps.gstatic.com https://cdn.rentcafe.com data: "],
+                [true, 'img-src',                   "'self' https://my-site.imgix.net https://xxxxx.cloudfront.net https://maps.googleapis.com https://maps.gstatic.com data: "],
                 [true, 'connect-src',               "'self' https://*.ingest.sentry.io https://maps.googleapis.com https://www.google-analytics.com"],
                 [true, 'manifest-src',              "'self'"],
             ],
