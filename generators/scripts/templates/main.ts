@@ -23,7 +23,7 @@ import { App } from '@malven/modu';
 
 const app = new App({
   initialModules,
-  importMethod: module => import('./modules/' + module + '.js'),
+  importMethod: module => import(`./modules/${module}.ts`),
 });
 app.init();
 <%_ } _%>
